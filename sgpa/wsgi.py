@@ -1,5 +1,5 @@
 """
-WSGI config for sgpa project.
+WSGI config for sgap project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

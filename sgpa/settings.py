@@ -1,5 +1,5 @@
 """
-Django settings for sgpa project.
+Django settings for sgap project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7f8vs^=%xijo-6$o9_#$l@t^5qbowtvb3asf!we_m!c*-b29fq'
+SECRET_KEY = '0mq2*pxruqx=2mb7fztd7lf+nicenx1$uyij!p&uf@n#&hw+tv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'autenticacion',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,8 +59,15 @@ WSGI_APPLICATION = 'sgpa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'sgpa',                      # Or path to database file if using sqlite3.
+            # The following settings are not used with sqlite3:
+            'USER': 'sgpa',
+            'PASSWORD': 'sgpa',
+            'HOST': 'localhost',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+            'PORT': '5432',
     }
 }
 
@@ -79,5 +87,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
+STATIC_ROOT='/home/alforro/PycharmProjects/sgpa2015/static/'
 STATIC_URL = '/static/'
+#para que django pueda encontrar los templates.
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(
+        os.path.dirname(__file__),
+        'static',
+    ),
+)
+
