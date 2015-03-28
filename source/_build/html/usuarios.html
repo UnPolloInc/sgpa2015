@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>usuarios package &mdash; documentación de SGPA2015 - 0.0.1</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de SGPA2015 - 0.0.1" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> SGPA2015</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="simple">
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SGPA2015</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>usuarios package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/usuarios.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="usuarios-package">
+<h1>usuarios package<a class="headerlink" href="#usuarios-package" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usuarios.migrations.html">usuarios.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usuarios.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarios.migrations.html#module-usuarios.migrations.0001_initial">usuarios.migrations.0001_initial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarios.migrations.html#module-usuarios.migrations.0002_auto_20150327_2028">usuarios.migrations.0002_auto_20150327_2028 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarios.migrations.html#module-usuarios.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-usuarios.admin">
+<span id="usuarios-admin-module"></span><h2>usuarios.admin module<a class="headerlink" href="#module-usuarios.admin" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-usuarios.forms">
+<span id="usuarios-forms-module"></span><h2>usuarios.forms module<a class="headerlink" href="#module-usuarios.forms" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="usuarios.forms.UserForm">
+<em class="property">class </em><code class="descclassname">usuarios.forms.</code><code class="descname">UserForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/forms.html#UserForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.forms.UserForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.forms.UserCreationForm</span></code></p>
+<dl class="class">
+<dt id="usuarios.forms.UserForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/usuarios/forms.html#UserForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.forms.UserForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="usuarios.forms.UserForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('username', 'email', 'is_superuser', 'first_name', 'last_name', 'cedula', 'telefono', 'direccion')</em><a class="headerlink" href="#usuarios.forms.UserForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.forms.UserForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#usuarios.forms.UserForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Usuario</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.forms.UserForm.base_fields">
+<code class="descclassname">UserForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('username', &lt;django.forms.fields.RegexField object at 0x7efefd258750&gt;), ('email', &lt;django.forms.fields.EmailField object at 0x7efef8bd2c50&gt;), ('is_superuser', &lt;django.forms.fields.BooleanField object at 0x7efef8bb8c50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x7efef8bd2450&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x7efef8bd2850&gt;), ('cedula', &lt;django.forms.fields.IntegerField object at 0x7efef8bd2e90&gt;), ('telefono', &lt;django.forms.fields.IntegerField object at 0x7efef8bd2d90&gt;), ('direccion', &lt;django.forms.fields.CharField object at 0x7efef8bd2f50&gt;), ('password1', &lt;django.forms.fields.CharField object at 0x7efefd258950&gt;), ('password2', &lt;django.forms.fields.CharField object at 0x7efefd2585d0&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.forms.UserForm.declared_fields">
+<code class="descclassname">UserForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('username', &lt;django.forms.fields.RegexField object at 0x7efefd258750&gt;), ('password1', &lt;django.forms.fields.CharField object at 0x7efefd258950&gt;), ('password2', &lt;django.forms.fields.CharField object at 0x7efefd2585d0&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.forms.UserForm.media">
+<code class="descclassname">UserForm.</code><code class="descname">media</code><a class="headerlink" href="#usuarios.forms.UserForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-usuarios.models">
+<span id="usuarios-models-module"></span><h2>usuarios.models module<a class="headerlink" href="#module-usuarios.models" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="usuarios.models.Usuario">
+<em class="property">class </em><code class="descclassname">usuarios.models.</code><code class="descname">Usuario</code><span class="sig-paren">(</span><em>id</em>, <em>password</em>, <em>last_login</em>, <em>is_superuser</em>, <em>username</em>, <em>first_name</em>, <em>last_name</em>, <em>email</em>, <em>is_staff</em>, <em>is_active</em>, <em>date_joined</em>, <em>user_ptr_id</em>, <em>telefono</em>, <em>cedula</em>, <em>direccion</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/models.html#Usuario"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.models.Usuario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.models.User</span></code></p>
+<dl class="exception">
+<dt id="usuarios.models.Usuario.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#usuarios.models.Usuario.DoesNotExist" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.models.DoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="usuarios.models.Usuario.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Usuario.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#usuarios.models.Usuario.MultipleObjectsReturned" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.models.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usuarios.models.Usuario.get_absolute_url">
+<code class="descclassname">Usuario.</code><code class="descname">get_absolute_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/models.html#Usuario.get_absolute_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.models.Usuario.get_absolute_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.models.Usuario.objects">
+<code class="descclassname">Usuario.</code><code class="descname">objects</code><em class="property"> = &lt;django.contrib.auth.models.UserManager object&gt;</em><a class="headerlink" href="#usuarios.models.Usuario.objects" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.models.Usuario.user_ptr">
+<code class="descclassname">Usuario.</code><code class="descname">user_ptr</code><a class="headerlink" href="#usuarios.models.Usuario.user_ptr" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-usuarios.tests">
+<span id="usuarios-tests-module"></span><h2>usuarios.tests module<a class="headerlink" href="#module-usuarios.tests" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-usuarios.urls">
+<span id="usuarios-urls-module"></span><h2>usuarios.urls module<a class="headerlink" href="#module-usuarios.urls" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-usuarios.views">
+<span id="usuarios-views-module"></span><h2>usuarios.views module<a class="headerlink" href="#module-usuarios.views" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="usuarios.views.CreateUser">
+<em class="property">class </em><code class="descclassname">usuarios.views.</code><code class="descname">CreateUser</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/views.html#CreateUser"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.CreateUser" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></code></p>
+<dl class="method">
+<dt id="usuarios.views.CreateUser.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/views.html#CreateUser.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.CreateUser.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.CreateUser.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#usuarios.views.CreateUser.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">UserForm</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.CreateUser.success_url">
+<code class="descname">success_url</code><em class="property"> = '/usuarios'</em><a class="headerlink" href="#usuarios.views.CreateUser.success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.CreateUser.template_name">
+<code class="descname">template_name</code><em class="property"> = 'usuarios/create.html'</em><a class="headerlink" href="#usuarios.views.CreateUser.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="usuarios.views.DeleteUser">
+<em class="property">class </em><code class="descclassname">usuarios.views.</code><code class="descname">DeleteUser</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/views.html#DeleteUser"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.DeleteUser" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#usuarios.views.UserMixin" title="usuarios.views.UserMixin"><code class="xref py py-class docutils literal"><span class="pre">usuarios.views.UserMixin</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></code></p>
+<dl class="method">
+<dt id="usuarios.views.DeleteUser.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/views.html#DeleteUser.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.DeleteUser.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.DeleteUser.success_url">
+<code class="descname">success_url</code><em class="property"> = '/usuarios'</em><a class="headerlink" href="#usuarios.views.DeleteUser.success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.DeleteUser.template_name">
+<code class="descname">template_name</code><em class="property"> = 'usuarios/delete_confirm.html'</em><a class="headerlink" href="#usuarios.views.DeleteUser.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="usuarios.views.IndexView">
+<em class="property">class </em><code class="descclassname">usuarios.views.</code><code class="descname">IndexView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/views.html#IndexView"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.IndexView" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="method">
+<dt id="usuarios.views.IndexView.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/views.html#IndexView.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.IndexView.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.IndexView.model">
+<code class="descname">model</code><a class="headerlink" href="#usuarios.views.IndexView.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Usuario</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.IndexView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'usuario_list'</em><a class="headerlink" href="#usuarios.views.IndexView.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="usuarios.views.UserMixin">
+<em class="property">class </em><code class="descclassname">usuarios.views.</code><code class="descname">UserMixin</code><a class="reference internal" href="_modules/usuarios/views.html#UserMixin"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.UserMixin" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference external" href="https://docs.python.org/library/functions.html#object" title="(en Python versión 2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="usuarios.views.UserMixin.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/views.html#UserMixin.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.views.UserMixin.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="usuarios.views.UserMixin.model">
+<code class="descname">model</code><a class="headerlink" href="#usuarios.views.UserMixin.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Usuario</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-usuarios">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-usuarios" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, AlvaroRodriguez JorgeFlor Marcelo Vera.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
