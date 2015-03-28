@@ -2,8 +2,11 @@ __author__ = 'alforro'
 
 from django.conf.urls import patterns, url
 from usuarios import views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('',
-    url(r'^$', views.IndexView.as_view(), name='lista_usuario'),
-    url(r'^crear$', views.CreateUser.as_view(), name='crear_usuario'), #new line
+    url(r'^$', login_required(views.IndexView.as_view()), name='lista_usuario'),
+    url(r'^crear$', login_required(views.CreateUser.as_view()), name='crear_usuario'), #new line
+    url(r'^borrar/(?P<pk>\d+)$', views.DeleteUser.as_view(), name='borrar_usuario'),
+
 )

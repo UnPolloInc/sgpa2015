@@ -16,9 +16,6 @@ def index(request):
     #return HttpResponse("You found my secret place!")
     return render_to_response('main/principal.html')
 
-def principal(request):
-    return HttpResponse("ola que ase!")
-
 def logout_view(request):
         logout(request)
         return redirect('/login/?next=/')

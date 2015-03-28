@@ -104,3 +104,5 @@ STATICFILES_DIRS = (
     ),
 )
 
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'django.contrib.auth.views.login'

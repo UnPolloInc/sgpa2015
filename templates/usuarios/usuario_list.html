@@ -1,8 +1,24 @@
 {% extends "main/principal.html" %}
 {% block list %}
 <ul class="list-group">
-  <li class="list-group-item">First item</li>
-  <li class="list-group-item">Second item</li>
-  <li class="list-group-item">Third item</li>
+    <h1>Usuarios</h1>
+<table class="table">
+    <tr>
+        <th>Username</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Eliminar</th>
+
+    </tr>
+    {% for usuario in object_list %}
+        <tr>
+            <td>{{ usuario.username }}</td>
+            <td>{{ usuario.first_name }}</td>
+            <td>{{ usuario.last_name }}</td>
+            	<td><a href="{% url 'borrar_usuario' usuario.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
 </ul>
 {% endblock %}
