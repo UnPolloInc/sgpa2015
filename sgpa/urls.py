@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('autenticacion.urls')),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login', ),
-
+    url(r'^usuarios/', include('usuarios.urls')),
 
 
 

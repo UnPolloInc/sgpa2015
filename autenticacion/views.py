@@ -21,6 +21,6 @@ def principal(request):
 
 def logout_view(request):
         logout(request)
-        return redirect('/login/?next=%s')
+        return redirect('/login/?next=/')
 
 # Redirect to a success page.
