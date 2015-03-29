@@ -1,15 +1,7 @@
-{% extends "main/principal.html" %}
-{% block busqueda%}
- <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_usuario' %}" method="get">
-        <div class="form-group">
-          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
-        </div>
-        <button type="submit" class="btn btn-default">Buscar</button>
- </form>
+{% extends "usuarios/usuario_list.html" %}
 
-{% endblock%}
-{% block list %}
-<ul class="list-group">
+    {% block list %}
+
     <h1>Usuarios</h1>
 <table class="table">
     <tr>
@@ -20,7 +12,7 @@
         <th>Modificar</th>
 
     </tr>
-    {% for usuario in object_list %}
+    {% for usuario in found_entries %}
         <tr>
             <td>{{ usuario.username }}</td>
             <td>{{ usuario.first_name }}</td>
@@ -28,10 +20,11 @@
             <td><a href="{% url 'borrar_usuario' usuario.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
             <td><a href="{% url 'modificar_usuario' usuario.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
         </tr>
+    {% empty %}
+<div class="alert alert-danger">La busqueda no tuvo resultados</div>
     {% endfor %}
 </table>
 
 </ul>
 {% endblock %}
-{% block list_no_results%}
-{% endblock %}
+
