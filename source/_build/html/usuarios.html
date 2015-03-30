@@ -143,12 +143,12 @@
 
 <dl class="attribute">
 <dt id="usuarios.forms.UserForm.base_fields">
-<code class="descclassname">UserForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('username', &lt;django.forms.fields.RegexField object at 0x7f807f558c10&gt;), ('email', &lt;django.forms.fields.EmailField object at 0x7f807f489fd0&gt;), ('is_superuser', &lt;django.forms.fields.BooleanField object at 0x7f807f489050&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x7f807f4897d0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x7f807f489bd0&gt;), ('cedula', &lt;django.forms.fields.IntegerField object at 0x7f807f494250&gt;), ('telefono', &lt;django.forms.fields.IntegerField object at 0x7f807f494150&gt;), ('direccion', &lt;django.forms.fields.CharField object at 0x7f807f494310&gt;), ('password1', &lt;django.forms.fields.CharField object at 0x7f807f558e50&gt;), ('password2', &lt;django.forms.fields.CharField object at 0x7f807f558f90&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">UserForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('username', &lt;django.forms.fields.RegexField object at 0x7fa499c4cc10&gt;), ('email', &lt;django.forms.fields.EmailField object at 0x7fa499be3a10&gt;), ('is_superuser', &lt;django.forms.fields.BooleanField object at 0x7fa499bcfa50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x7fa499be3210&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x7fa499be3610&gt;), ('cedula', &lt;django.forms.fields.IntegerField object at 0x7fa499be3c50&gt;), ('telefono', &lt;django.forms.fields.IntegerField object at 0x7fa499be3b50&gt;), ('direccion', &lt;django.forms.fields.CharField object at 0x7fa499be3d10&gt;), ('password1', &lt;django.forms.fields.CharField object at 0x7fa499c4ce50&gt;), ('password2', &lt;django.forms.fields.CharField object at 0x7fa499c4cf90&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="usuarios.forms.UserForm.declared_fields">
-<code class="descclassname">UserForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('username', &lt;django.forms.fields.RegexField object at 0x7f807f558c10&gt;), ('password1', &lt;django.forms.fields.CharField object at 0x7f807f558e50&gt;), ('password2', &lt;django.forms.fields.CharField object at 0x7f807f558f90&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">UserForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('username', &lt;django.forms.fields.RegexField object at 0x7fa499c4cc10&gt;), ('password1', &lt;django.forms.fields.CharField object at 0x7fa499c4ce50&gt;), ('password2', &lt;django.forms.fields.CharField object at 0x7fa499c4cf90&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -187,7 +187,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 <dl class="attribute">
 <dt id="usuarios.forms.UserUpdateForm.base_fields">
-<code class="descclassname">UserUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x7f807f494f50&gt;), ('is_superuser', &lt;django.forms.fields.BooleanField object at 0x7f807f489350&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x7f807f494610&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x7f807f494b10&gt;), ('telefono', &lt;django.forms.fields.IntegerField object at 0x7f807f4a40d0&gt;), ('direccion', &lt;django.forms.fields.CharField object at 0x7f807f4a4190&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">UserUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x7fa499beec10&gt;), ('is_superuser', &lt;django.forms.fields.BooleanField object at 0x7fa499bee050&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x7fa499bee3d0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x7fa499bee7d0&gt;), ('telefono', &lt;django.forms.fields.IntegerField object at 0x7fa499beed50&gt;), ('direccion', &lt;django.forms.fields.CharField object at 0x7fa499beee10&gt;)])</em><a class="headerlink" href="#usuarios.forms.UserUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -250,6 +250,27 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </div>
 <div class="section" id="module-usuarios.tests">
 <span id="usuarios-tests-module"></span><h2>usuarios.tests module<a class="headerlink" href="#module-usuarios.tests" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="usuarios.tests.TestUsuarioView">
+<em class="property">class </em><code class="descclassname">usuarios.tests.</code><code class="descname">TestUsuarioView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/tests.html#TestUsuarioView"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.tests.TestUsuarioView" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="usuarios.tests.TestUsuarioView.crear_usuario">
+<code class="descname">crear_usuario</code><span class="sig-paren">(</span><em>username='alforro'</em>, <em>first_name='alvaro'</em>, <em>last_name='test'</em>, <em>cedula='4617510'</em>, <em>email='alfa.alvaro.rodriguez&#64;gmail.com'</em>, <em>password='alforro'</em>, <em>is_superuser=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/tests.html#TestUsuarioView.crear_usuario"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.tests.TestUsuarioView.crear_usuario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="usuarios.tests.TestUsuarioView.test_crear_superusuario">
+<code class="descname">test_crear_superusuario</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/tests.html#TestUsuarioView.test_crear_superusuario"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.tests.TestUsuarioView.test_crear_superusuario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="usuarios.tests.TestUsuarioView.test_crear_usuario">
+<code class="descname">test_crear_usuario</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/usuarios/tests.html#TestUsuarioView.test_crear_usuario"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#usuarios.tests.TestUsuarioView.test_crear_usuario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-usuarios.urls">
 <span id="usuarios-urls-module"></span><h2>usuarios.urls module<a class="headerlink" href="#module-usuarios.urls" title="Enlazar permanentemente con este título">¶</a></h2>

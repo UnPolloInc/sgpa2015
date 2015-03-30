@@ -17,7 +17,7 @@ class Usuario(User):
     direccion = models.CharField(max_length=50, null=False, blank=True)
 
     def __unicode__(self):
-        return self.nombre+str(self.codigo)
+        return self.username
 
     def get_absolute_url(self):
         return reverse('editar_usuario', kwargs={'pk': self.pk})
