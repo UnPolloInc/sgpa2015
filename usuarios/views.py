@@ -12,6 +12,11 @@ from django.db.models import Q
 
 
 class IndexView(ListView):
+    """
+        *Vista basada en Clase para lista de usuarios*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
     template_name = 'usuario_list'
     model = Usuario
 
@@ -21,6 +26,12 @@ class IndexView(ListView):
 
 
 class CreateUser(CreateView):
+    """
+        *Vista Basada en Clase para crear usuarios*:
+            + *template_name*: nombre del template que vamos renderizar
+            + *form_class*: formulario para crear usuarios
+            + *success_url*: url en caso de exito
+    """
     template_name = 'usuarios/create.html'
     form_class = UserForm
     success_url = '/usuarios'
@@ -31,6 +42,10 @@ class CreateUser(CreateView):
         return super(CreateUser, self).dispatch(*args, **kwargs)
 
 class UserMixin(object):
+    """
+        *Vista Basada en Clase para soporte de eliminacion de usuario*:
+            + *model*: modelo a ser eliminado
+    """
     model = Usuario
 
     def get_context_data(self, **kwargs):
@@ -40,6 +55,11 @@ class UserMixin(object):
 
 
 class DeleteUser(UserMixin, DeleteView):
+    """
+        *Vista Basada en Clase para eliminar usuarios*:
+            + *template_name*: nombre del template a ser rendirizado
+            + *success_url: url a ser redireccionada en caso de exito*
+    """
     template_name = 'usuarios/delete_confirm.html'
 
     success_url = '/usuarios'
@@ -47,47 +67,54 @@ class DeleteUser(UserMixin, DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(DeleteUser, self).dispatch(*args, **kwargs)
-"""
-class UpdateUser(UpdateView):
-    context_object_name = 'variable_used_in `update.html`'
-    form_class = UserUpdateForm
-    template_name = 'usuarios/update.html'
-    success_url = '/'
-
-    def form_valid(self, form):
-        #save cleaned post data
-        clean = form.cleaned_data
-        context = {}
-        self.object = context.save(clean)
-        return super(UpdateUser, self).form_valid(form)
-"""
 
 class UpdateUser(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un usuario:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
     template_name = 'usuarios/update.html'
     model = Usuario
     form_class = UserUpdateForm
     success_url = '/usuarios/'
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UpdateUser, self).dispatch(*args, **kwargs)
 
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
                     normspace=re.compile(r'\s{2,}').sub):
-    ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
+    """
+    Splits the query string in invidual keywords, getting rid of unecessary spaces
         and grouping quoted words together.
         Example:
 
         >>> normalize_query('  some random  words "with   quotes  " and   spaces')
         ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
 
-    '''
+
+    :param query_string: cadena completa de busqueda
+    :param findterms: expresion regular para encontrar las palabras
+    :param normspace: expresion regular para normalizar el espacio
+    :return: una lista de palabras separadas y normalizadas
+    """
+
     return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)]
 
 def get_query(query_string, search_fields):
-    ''' Returns a query, that is a combination of Q objects. That combination
-        aims to search keywords within a model by testing the given search fields.
+    """
 
-    '''
+    :param query_string: Cadena que se va usar para la busqueda.
+    :param search_fields: Campos que se usan para comparar con la cadena de busqueda.
+    :return: Retorna una lista, que es una combinacion de objetos Q que cumplen con
+    la cadena de busqueda parcial o totalmente.
+
+    """
     query = None # Query to search for every search term
     terms = normalize_query(query_string)
     for term in terms:
@@ -104,7 +131,12 @@ def get_query(query_string, search_fields):
             query = query & or_query
     return query
 
+@login_required
 def search(request):
+    """
+    :param request: request HTTP
+    :return: retorna una lista de objetos que cumplan con el parametro de busqueda.
+    """
     query_string = ''
     found_entries = None
     if ('busqueda' in request.GET) and request.GET['busqueda'].strip():
@@ -112,7 +144,7 @@ def search(request):
 
         entry_query = get_query(query_string, ['username','first_name', 'last_name',])
 
-        found_entries = Usuario.objects.filter(entry_query).order_by('first_name')
+        found_entries = Usuario.objects.filter(entry_query).order_by('username')
     return render_to_response('usuarios/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))

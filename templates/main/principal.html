@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">SGPA</a>
+      <a class="navbar-brand" href="{% url 'index' %}">SGPA</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,4 +38,27 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+{% endblock %}
+{%block list%}
+<div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+
+          <div class="inner cover">
+            <h1 class="cover-heading" align="center">Bienvenido {{ request.usuario.username }} a SGPA</h1>
+            <p class="lead" ALIGN=center>Sistema Gerenciador de Proyecto Ágiles</p>
+            <p class="lead" align="center">
+              <!--a href="#" class="btn btn-lg btn-default">Learn more</a-->
+                Este sistema software, utiliza el
+ciclo de vida iterativo adaptado de la Metodología SCRUM y KANBAN, debido a la naturaleza de
+los equipos de trabajo y del tamaño del proyecto.
+            </p>
+          </div>
+
+
+        </div>
+
+      </div>
+
 {% endblock %}

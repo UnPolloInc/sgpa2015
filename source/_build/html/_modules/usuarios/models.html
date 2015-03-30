@@ -107,6 +107,12 @@
 
 
 <div class="viewcode-block" id="Usuario"><a class="viewcode-back" href="../../usuarios.html#usuarios.forms.Usuario">[documentos]</a><span class="k">class</span> <span class="nc">Usuario</span><span class="p">(</span><span class="n">User</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    *Modelo para Usuario con campos extras:*</span>
+<span class="sd">        + *telefono*: telefono del usuario</span>
+<span class="sd">        + *cedula*: documento de identidad del usuario</span>
+<span class="sd">        + *direccion*: direccion del usuario</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">telefono</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">cedula</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">direccion</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# SGPA2015 documentation build configuration file, created by
+# SGPA2015 documentation _build configuration file, created by
 # sphinx-quickstart on Sat Mar 28 06:52:45 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -58,7 +58,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'SGPA2015'
 copyright = u'2015, AlvaroRodriguez JorgeFlor Marcelo Vera'
-author = u'AlvaroRodriguez JorgeFlor Marcelo Vera'
+author = u'Alvaro Rodriguez Jorge Flor Marcelo Vera'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

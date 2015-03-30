@@ -99,49 +99,156 @@
           <div role="main" class="document">
             
   <h1>Código fuente para usuarios.views</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
-<span class="kn">from</span> <span class="nn">django.contrib.auth.forms</span> <span class="kn">import</span> <span class="n">UserCreationForm</span>
-<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
-<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">ListView</span><span class="p">,</span><span class="n">CreateView</span><span class="p">,</span> <span class="n">DeleteView</span>
-<span class="kn">from</span> <span class="nn">usuarios.forms</span> <span class="kn">import</span> <span class="n">UserForm</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span><span class="p">,</span> <span class="n">user_passes_test</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render_to_response</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">RequestContext</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">ListView</span><span class="p">,</span><span class="n">CreateView</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">,</span> <span class="n">UpdateView</span>
+<span class="kn">from</span> <span class="nn">usuarios.forms</span> <span class="kn">import</span> <span class="n">UserForm</span><span class="p">,</span><span class="n">UserUpdateForm</span>
 <span class="kn">from</span> <span class="nn">usuarios.models</span> <span class="kn">import</span> <span class="n">Usuario</span>
 <span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+
 <span class="c"># Create your views here.</span>
 
 
 <div class="viewcode-block" id="IndexView"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.IndexView">[documentos]</a><span class="k">class</span> <span class="nc">IndexView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *Vista basada en Clase para lista de usuarios*:</span>
+<span class="sd">            + *template_name*: nombre del template que vamos a renderizar</span>
+<span class="sd">            + *model*: modelo que vamos a listar.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;usuario_list&#39;</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Usuario</span>
 
     <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
 <div class="viewcode-block" id="IndexView.dispatch"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.IndexView.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
 </div></div>
 <div class="viewcode-block" id="CreateUser"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.CreateUser">[documentos]</a><span class="k">class</span> <span class="nc">CreateUser</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *Vista Basada en Clase para crear usuarios*:</span>
+<span class="sd">            + *template_name*: nombre del template que vamos renderizar</span>
+<span class="sd">            + *form_class*: formulario para crear usuarios</span>
+<span class="sd">            + *success_url*: url en caso de exito</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;usuarios/create.html&#39;</span>
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">UserForm</span>
     <span class="n">success_url</span> <span class="o">=</span> <span class="s">&#39;/usuarios&#39;</span>
 
+    <span class="c">#@user_passes_test(lambda user: user.is_superuser)</span>
     <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
 <div class="viewcode-block" id="CreateUser.dispatch"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.CreateUser.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CreateUser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </div></div>
 <div class="viewcode-block" id="UserMixin"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.UserMixin">[documentos]</a><span class="k">class</span> <span class="nc">UserMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *Vista Basada en Clase para soporte de eliminacion de usuario*:</span>
+<span class="sd">            + *model*: modelo a ser eliminado</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Usuario</span>
 
 <div class="viewcode-block" id="UserMixin.get_context_data"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.UserMixin.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&#39;object_name&#39;</span><span class="p">:</span><span class="s">&#39;Usuario&#39;</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">kwargs</span>
+
+
 </div></div>
 <div class="viewcode-block" id="DeleteUser"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.DeleteUser">[documentos]</a><span class="k">class</span> <span class="nc">DeleteUser</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *Vista Basada en Clase para eliminar usuarios*:</span>
+<span class="sd">            + *template_name*: nombre del template a ser rendirizado</span>
+<span class="sd">            + *success_url: url a ser redireccionada en caso de exito*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;usuarios/delete_confirm.html&#39;</span>
 
     <span class="n">success_url</span> <span class="o">=</span> <span class="s">&#39;/usuarios&#39;</span>
 
     <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
 <div class="viewcode-block" id="DeleteUser.dispatch"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.DeleteUser.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">DeleteUser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">DeleteUser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="UpdateUser"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.UpdateUser">[documentos]</a><span class="k">class</span> <span class="nc">UpdateUser</span><span class="p">(</span><span class="n">UpdateView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *Vista Basada en Clase para modificar un usuario:*</span>
+<span class="sd">            +*template_name*: template a ser renderizado</span>
+<span class="sd">            +*model*: modelo que se va modificar</span>
+<span class="sd">            +*form_class*:Formulario para actualizar el usuario</span>
+<span class="sd">            +*success_url*: url a ser redireccionada en caso de exito</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;usuarios/update.html&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Usuario</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">UserUpdateForm</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="s">&#39;/usuarios/&#39;</span>
+
+    <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
+<div class="viewcode-block" id="UpdateUser.dispatch"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.UpdateUser.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">UpdateUser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="normalize_query"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.normalize_query">[documentos]</a><span class="k">def</span> <span class="nf">normalize_query</span><span class="p">(</span><span class="n">query_string</span><span class="p">,</span>
+                    <span class="n">findterms</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&quot;([^&quot;]+)&quot;|(\S+)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">findall</span><span class="p">,</span>
+                    <span class="n">normspace</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;\s{2,}&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sub</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Splits the query string in invidual keywords, getting rid of unecessary spaces</span>
+<span class="sd">        and grouping quoted words together.</span>
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; normalize_query(&#39;  some random  words &quot;with   quotes  &quot; and   spaces&#39;)</span>
+<span class="sd">        [&#39;some&#39;, &#39;random&#39;, &#39;words&#39;, &#39;with quotes&#39;, &#39;and&#39;, &#39;spaces&#39;]</span>
+
+
+<span class="sd">    :param query_string: cadena completa de busqueda</span>
+<span class="sd">    :param findterms: expresion regular para encontrar las palabras</span>
+<span class="sd">    :param normspace: expresion regular para normalizar el espacio</span>
+<span class="sd">    :return: una lista de palabras separadas y normalizadas</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">normspace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">findterms</span><span class="p">(</span><span class="n">query_string</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="get_query"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.get_query">[documentos]</a><span class="k">def</span> <span class="nf">get_query</span><span class="p">(</span><span class="n">query_string</span><span class="p">,</span> <span class="n">search_fields</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param query_string: Cadena que se va usar para la busqueda.</span>
+<span class="sd">    :param search_fields: Campos que se usan para comparar con la cadena de busqueda.</span>
+<span class="sd">    :return: Retorna una lista, que es una combinacion de objetos Q que cumplen con</span>
+<span class="sd">    la cadena de busqueda parcial o totalmente.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="bp">None</span> <span class="c"># Query to search for every search term</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">normalize_query</span><span class="p">(</span><span class="n">query_string</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
+        <span class="n">or_query</span> <span class="o">=</span> <span class="bp">None</span> <span class="c"># Query to search for a given term in each field</span>
+        <span class="k">for</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="n">search_fields</span><span class="p">:</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">__icontains&quot;</span> <span class="o">%</span> <span class="n">field_name</span><span class="p">:</span> <span class="n">term</span><span class="p">})</span>
+            <span class="k">if</span> <span class="n">or_query</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">or_query</span> <span class="o">=</span> <span class="n">q</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">or_query</span> <span class="o">=</span> <span class="n">or_query</span> <span class="o">|</span> <span class="n">q</span>
+        <span class="k">if</span> <span class="n">query</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="n">or_query</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="n">query</span> <span class="o">&amp;</span> <span class="n">or_query</span>
+    <span class="k">return</span> <span class="n">query</span>
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="search"><a class="viewcode-back" href="../../usuarios.html#usuarios.views.search">[documentos]</a><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param request: request HTTP</span>
+<span class="sd">    :return: retorna una lista de objetos que cumplan con el parametro de busqueda.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query_string</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">found_entries</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s">&#39;busqueda&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">)</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s">&#39;busqueda&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="n">query_string</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s">&#39;busqueda&#39;</span><span class="p">]</span>
+
+        <span class="n">entry_query</span> <span class="o">=</span> <span class="n">get_query</span><span class="p">(</span><span class="n">query_string</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">,</span><span class="s">&#39;first_name&#39;</span><span class="p">,</span> <span class="s">&#39;last_name&#39;</span><span class="p">,])</span>
+
+        <span class="n">found_entries</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">entry_query</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;username&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;usuarios/search_results.html&#39;</span><span class="p">,</span>
+                          <span class="p">{</span> <span class="s">&#39;query_string&#39;</span><span class="p">:</span> <span class="n">query_string</span><span class="p">,</span> <span class="s">&#39;found_entries&#39;</span><span class="p">:</span> <span class="n">found_entries</span> <span class="p">},</span>
+                          <span class="n">context_instance</span><span class="o">=</span><span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">))</span></div>
 </pre></div>
 
           </div>
