@@ -1,0 +1,42 @@
+{% extends "main/principal.html" %}
+{% block busqueda%}
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_usuario' %}" method="get">
+        <div class="form-group">
+          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+ </form>
+
+{% endblock%}
+{% block list %}
+<ul class="list-group">
+    <h1>Proyectos</h1>
+<table class="table">
+    <tr>
+
+        <th>Nombre</th>
+        <th>Lider</th>
+        <th>Descripcion</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Finalizacion</th>
+        <th>Estado</th>
+        <th>Observaciones</th>
+
+    </tr>
+    {% for proyecto in object_list %}
+        <tr>
+            <td>{{ proyecto.nombre }}</td>
+            <td>{{ proyecto.lider_proyecto }}</td>
+            <td>{{ proyecto.descripcion }}</td>
+            <td>{{ proyecto.fecha_inicio }}</td>
+            <td>{{ proyecto.fecha_fin }}</td>
+            <td>{{ proyecto.estado }}</td>
+            <td>{{ proyecto.observaciones }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+</ul>
+{% endblock %}
+{% block list_no_results%}
+{% endblock %}

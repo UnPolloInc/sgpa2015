@@ -36,8 +36,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'autenticacion',
     'usuarios',
+    'proyectos',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,7 +103,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(
         os.path.dirname(__file__),
-        'static',
+        'static/',
     ),
 )
 
