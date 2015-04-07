@@ -1,18 +1,10 @@
-{% extends "main/principal.html" %}
-{% block busqueda%}
- <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_proyecto' %}" method="get">
-        <div class="form-group">
-          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
-        </div>
-        <button type="submit" class="btn btn-default">Buscar</button>
- </form>
+{% extends "proyectos/proyecto_list.html" %}
 
-{% endblock%}
-{% block list %}
-<ul class="list-group">
+    {% block list %}
+
     <h1>Proyectos</h1>
 <table class="table">
-    <tr>
+     <tr>
 
         <th>Nombre</th>
         <th>Lider</th>
@@ -24,8 +16,8 @@
         <th>Eliminar</th>
 
     </tr>
-    {% for proyecto in object_list %}
-        <tr>
+    {% for proyecto in found_entries %}
+         <tr>
             <td>{{ proyecto.nombre }}</td>
             <td>{{ proyecto.lider_proyecto }}</td>
             <td>{{ proyecto.descripcion }}</td>
@@ -37,10 +29,11 @@
             <td><a href="{% url 'modificar_proyecto' proyecto.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
 
         </tr>
+    {% empty %}
+<div class="alert alert-danger">La busqueda no tuvo resultados</div>
     {% endfor %}
 </table>
 
 </ul>
 {% endblock %}
-{% block list_no_results%}
-{% endblock %}
+

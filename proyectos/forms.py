@@ -1,16 +1,11 @@
-from django.forms import DateField
+from django import forms
 
 __author__ = 'alforro'
-
-from django import forms
+from django.forms import DateField, ModelForm
 from django.contrib.admin.widgets import AdminDateWidget
-
-
-
-
 from proyectos.models import Proyecto
 
-class ProyectoForm(forms.ModelForm):
+class ProyectoForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ProyectoForm, self).__init__(*args, **kwargs)
@@ -31,3 +26,17 @@ class ProyectoForm(forms.ModelForm):
             raise forms.ValidationError("La fecha de inicio es mayor a la de fin")
 
         return fecha_inicio
+
+
+class ProyectoUpdateForm(ModelForm):
+
+    """def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args,
+**kwargs)
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+    """
+    class Meta:
+        model = Proyecto
+        fields = ('nombre', 'lider_proyecto','descripcion', 'observaciones')
+
