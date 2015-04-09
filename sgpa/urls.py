@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django.contrib.auth.views.login', name='login', ),
     url(r'^usuarios/', include('usuarios.urls')),
     url(r'^proyectos/', include('proyectos.urls')),
+    url(r'^clientes/', include('clientes.urls')),
 
 
 

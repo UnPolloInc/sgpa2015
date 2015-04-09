@@ -29,6 +29,19 @@
 
           </ul>
         </li>
+          {% block administracion_clientes %}
+                  <li class="dropdown">
+          <a href="{% url 'lista_cliente' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administracion de Clientes<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+
+            <li><a href="{% url 'crear_cliente' %}">Crear</a></li>
+
+            <li><a href="{% url 'lista_cliente' %}">Listar</a></li>
+
+          </ul>
+        </li>
+
+          {% endblock %}
           {% block administracion_proyectos%}
           <li class="dropdown">
           <a href="{% url 'lista_proyecto' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administracion de Proyectos<span class="caret"></span></a>

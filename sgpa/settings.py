@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'autenticacion',
     'usuarios',
     'proyectos',
+    'clientes',
 )
 
 MIDDLEWARE_CLASSES = (
