@@ -1,6 +1,6 @@
-from django import forms
-
 __author__ = 'alforro'
+
+from django import forms
 from django.forms import DateField, ModelForm
 from django.contrib.admin.widgets import AdminDateWidget
 from proyectos.models import Proyecto
@@ -15,7 +15,7 @@ class ProyectoForm(ModelForm):
 
     class Meta:
         model = Proyecto
-        fields = ('nombre','lider_proyecto', 'fecha_inicio','fecha_fin', 'estado', 'descripcion','observaciones')
+        fields = ('nombre','lider_proyecto', 'fecha_inicio','fecha_fin', 'descripcion','observaciones')
 
     def clean_fecha_inicio_menor_fecha_fin(self):
         diccionario_limpio = self.cleaned_data
