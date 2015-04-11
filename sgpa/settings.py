@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'usuarios',
     'proyectos',
     'clientes',
+    'flujos',
 )
 
 MIDDLEWARE_CLASSES = (
