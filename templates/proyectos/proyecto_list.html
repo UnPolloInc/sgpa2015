@@ -16,18 +16,21 @@
 
         <th>Nombre</th>
         <th>Lider</th>
+        <th>Cliente</th>
         <th>Descripcion</th>
         <th>Fecha de Inicio</th>
         <th>Fecha de Finalizacion</th>
         <th>Estado</th>
         <th>Observaciones</th>
         <th>Eliminar</th>
+        <th>Modificar</th>
 
     </tr>
     {% for proyecto in object_list %}
         <tr>
             <td>{{ proyecto.nombre }}</td>
             <td>{{ proyecto.lider_proyecto }}</td>
+            <td>{{ proyecto.cliente }}</td>
             <td>{{ proyecto.descripcion }}</td>
             <td>{{ proyecto.fecha_inicio }}</td>
             <td>{{ proyecto.fecha_fin }}</td>

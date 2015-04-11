@@ -40,7 +40,7 @@ class CreateUser(CreateView):
 
 class UserMixin(object):
     """
-        *Vista Basada en Clase para soporte de eliminacion de usuario*:
+        *Vista Basada en Clase para soporte de eliminacion de clientes*:
             + *model*: modelo a ser eliminado
     """
     model = Cliente
@@ -67,10 +67,10 @@ class DeleteUser(UserMixin, DeleteView):
 
 class UpdateUser(UpdateView):
     """
-        *Vista Basada en Clase para modificar un usuario:*
+        *Vista Basada en Clase para modificar un clientes:*
             +*template_name*: template a ser renderizado
             +*model*: modelo que se va modificar
-            +*form_class*:Formulario para actualizar el usuario
+            +*form_class*:Formulario para actualizar el clientes
             +*success_url*: url a ser redireccionada en caso de exito
     """
     template_name = 'clientes/update.html'

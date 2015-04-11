@@ -6,7 +6,7 @@ class Cliente(User):
     """
     *Modelo para cliente con campos extras:*
         + *telefono*: telefono del usuario
-        + *cedula*: documento de identidad del usuario
+        + *cedula*: documento de identidad del cliente
         + *direccion*: direccion del usuario
     """
     telefono = models.PositiveIntegerField(default=0, blank=True)

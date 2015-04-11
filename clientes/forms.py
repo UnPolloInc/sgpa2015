@@ -9,6 +9,12 @@ from clientes.models import Cliente
 class UserForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
+        """
+        metodo para crear clientes
+        :param args:
+        :param kwargs:
+        :return:
+        """
         super(UserCreationForm, self).__init__(*args,
 **kwargs)
         self.fields['first_name'].required = True
@@ -20,7 +26,9 @@ class UserForm(UserCreationForm):
 
 class UserUpdateForm(ModelForm):
 
-    """def __init__(self, *args, **kwargs):
+    """
+    Metodo para modificar clientes
+    def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args,
 **kwargs)
         self.fields['first_name'].required = True

@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import request
 from django.shortcuts import render, render_to_response
 
 # Create your views here.
@@ -14,9 +15,9 @@ from django.db.models import Q
 
 class CreateProyecto(CreateView):
     """
-        *Vista Basada en Clase para crear usuarios*:
+        *Vista Basada en Clase para crear proyectos*:
             + *template_name*: nombre del template que vamos renderizar
-            + *form_class*: formulario para crear usuarios
+            + *form_class*: formulario para crear proyectos
             + *success_url*: url en caso de exito
     """
     template_name = 'proyectos/create.html'
@@ -30,7 +31,7 @@ class CreateProyecto(CreateView):
 
 class IndexView(ListView):
     """
-        *Vista basada en Clase para lista de usuarios*:
+        *Vista basada en Clase para lista de proyectos*:
             + *template_name*: nombre del template que vamos a renderizar
             + *model*: modelo que vamos a listar.
     """
@@ -40,6 +41,21 @@ class IndexView(ListView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(IndexView, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        lideres = Proyecto.objects.filter(lider_proyecto=self.request.user)
+        clientes = Proyecto.objects.filter( cliente=self.request.user)
+        if lideres:
+            return lideres
+        elif clientes:
+            return clientes
+        elif self.request.user.is_superuser:
+            return Proyecto.objects.all()
+        else:
+            return lideres
+
+
+
 
 class ProyectoMixin(object):
     """
@@ -93,11 +109,8 @@ def normalize_query(query_string,
     Splits the query string in invidual keywords, getting rid of unecessary spaces
         and grouping quoted words together.
         Example:
-
         >>> normalize_query('  some random  words "with   quotes  " and   spaces')
         ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
-
-
     :param query_string: cadena completa de busqueda
     :param findterms: expresion regular para encontrar las palabras
     :param normspace: expresion regular para normalizar el espacio
@@ -108,12 +121,10 @@ def normalize_query(query_string,
 
 def get_query(query_string, search_fields):
     """
-
     :param query_string: Cadena que se va usar para la busqueda.
     :param search_fields: Campos que se usan para comparar con la cadena de busqueda.
     :return: Retorna una lista, que es una combinacion de objetos Q que cumplen con
     la cadena de busqueda parcial o totalmente.
-
     """
     query = None # Query to search for every search term
     terms = normalize_query(query_string)

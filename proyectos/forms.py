@@ -6,8 +6,11 @@ from django.contrib.admin.widgets import AdminDateWidget
 from proyectos.models import Proyecto
 
 class ProyectoForm(ModelForm):
-
+    """
+    Clase para crear Proyecto
+    """
     def __init__(self, *args, **kwargs):
+
         super(ProyectoForm, self).__init__(*args, **kwargs)
         self.fields['nombre'].required = True
         fecha_inicio = DateField(widget=AdminDateWidget)
@@ -15,9 +18,12 @@ class ProyectoForm(ModelForm):
 
     class Meta:
         model = Proyecto
-        fields = ('nombre','lider_proyecto', 'fecha_inicio','fecha_fin', 'descripcion','observaciones')
+        fields = ('nombre','lider_proyecto', 'cliente', 'fecha_inicio', 'fecha_fin', 'descripcion', 'observaciones')
 
     def clean_fecha_inicio_menor_fecha_fin(self):
+        """
+        Validacion de fecha, inicio menor a fin
+        """
         diccionario_limpio = self.cleaned_data
         fecha_inicio = diccionario_limpio.get('fecha_inicio')
         fecha_fin = diccionario_limpio.get('fecha_fin')
@@ -30,7 +36,9 @@ class ProyectoForm(ModelForm):
 
 class ProyectoUpdateForm(ModelForm):
 
-    """def __init__(self, *args, **kwargs):
+    """
+    Clase para modifica Proyectos.
+    def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args,
 **kwargs)
         self.fields['first_name'].required = True
