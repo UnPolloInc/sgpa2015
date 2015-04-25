@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^clientes/', include('clientes.urls')),
     url(r'^flujos/', include('flujos.urls')),
     url(r'^sprint/', include('sprint.urls')),
-
+    url(r'^us/', include('us.urls')),
 
 
 

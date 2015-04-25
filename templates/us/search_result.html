@@ -1,0 +1,34 @@
+{% extends "us/us_list.html" %}
+
+    {% block list %}
+
+    <h1>User Stories</h1>
+<table class="table">
+     <tr>
+        <th>Nombre</th>
+        <th>Valor de Negocio</th>
+        <th>Prioridad</th>
+         <th>Valor Técnico</th>
+         <th>Historial</th>
+         <th>Duración en Horas</th>
+    </tr>
+    {% for us in found_entries %}
+         <tr>
+            <td>{{ us.nombre }}</td>
+            <td>{{ us.valor_de_negocio }}</td>
+            <td>{{ us.prioridad }}</td>
+            <td>{{ us.valor_tecnico }}</td>
+             <td>{{ us.historial }}</td>
+             <td>{{ us.duracion_horas }}</td>
+            <td><a href="{% url 'borrar_us' us.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
+            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
+
+        </tr>
+    {% empty %}
+<div class="alert alert-danger">La busqueda no tuvo resultados</div>
+    {% endfor %}
+</table>
+
+</ul>
+{% endblock %}
+

@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'clientes',
     'flujos',
     'sprint',
+    'us',
 )
 
 MIDDLEWARE_CLASSES = (

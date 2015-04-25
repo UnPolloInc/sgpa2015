@@ -1,0 +1,45 @@
+{% extends "main/principal.html" %}
+{% block busqueda%}
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_us' %}" method="get">
+        <div class="form-group">
+          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+ </form>
+
+{% endblock%}
+{% block list %}
+<ul class="list-group">
+    <h1>User Stories</h1>
+<table class="table">
+    <tr>
+
+        <th>Nombre</th>
+        <th>Valor de Negocio</th>
+        <th>Prioridad</th>
+        <th>Valor Tecnico</th>
+        <th>Historial</th>
+        <th>Duración en Horas</th>
+        <th>Eliminar</th>
+        <th>Modificar</th>
+
+    </tr>
+    {% for us in object_list %}
+        <tr>
+            <td>{{ us.nombre }}</td>
+            <td>{{ us.valor_de_negocio }}</td>
+            <td>{{ us.prioridad }}</td>
+            <td>{{ us.valor_tecnico }}</td>
+            <td>{{ us.historial }}
+            <td>{{ us.duracion_horas }}
+            <td><a href="{% url 'borrar_us' us.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
+            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
+
+        </tr>
+    {% endfor %}
+</table>
+
+</ul>
+{% endblock %}
+{% block list_no_results%}
+{% endblock %}

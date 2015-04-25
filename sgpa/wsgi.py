@@ -22,8 +22,8 @@ os.environ.setdefault('LANG', "en_US.UTF-8")
 os.environ.setdefault("LC_ALL", "en_US.UTF-8")
 
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sgpa.settings")
-activate_this='/home/chelox/mysite/proyecto/bin/activate_this.py'
-execfile(activate_this, dict(__file__=activate_this))
+#activate_this='/home/chelox/mysite/proyecto/bin/activate_this.py'
+#execfile(activate_this, dict(__file__=activate_this))
 
 #obtenemos la aplicacion
 from django.core.wsgi import get_wsgi_application
