@@ -1,13 +1,18 @@
-{% extends "proyectos/proyecto_list.html" %}
+{% extends "flujos/flujos_list.html" %}
 
-    {% block list %}
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+          <ul class="list-group">
 
-    <h1>Flujos</h1>
+              <h1>Flujos</h1>
 <table class="table">
      <tr>
         <th>Nombre</th>
         <th>Descripcion</th>
-
+        <th>Fecha y Hora de Creación</th>
+        <th>Modificar</th>
     </tr>
     {% for flujo in found_entries %}
          <tr>
@@ -15,7 +20,7 @@
             <td>{{ flujo.descripcion }}</td>
             <td>{{ flujo.fecha_hora_creacion }}</td>
 
-            <td><a href="{% url 'borrar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
+            <!--td><a href="{% url 'borrar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td-->
             <td><a href="{% url 'modificar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
 
         </tr>
@@ -25,5 +30,11 @@
 </table>
 
 </ul>
+
+</ul>
+          </ul>
+      </div>
+</div>
+
 {% endblock %}
 

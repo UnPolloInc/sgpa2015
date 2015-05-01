@@ -1,12 +1,11 @@
 {% extends "main/menu.html" %}
 {% block busqueda%}
- <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_flujo' %}" method="get">
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_flujo' proyecto.id %}" method="get">
         <div class="form-group">
           <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
  </form>
-
 {% endblock%}
 {% block list %}
 <div class="col-sm-9">
@@ -19,7 +18,8 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Fecha y Hora de Creación</th>
-                    <th>Eliminar</th>
+                    <!-- th>Proyecto</th>
+                    <th>Eliminar</th-->
                     <th>Modificar</th>
 
     </tr>
@@ -28,9 +28,9 @@
             <td>{{ flujo.nombre }}</td>
             <td>{{ flujo.descripcion }}</td>
             <td>{{ flujo.fecha_hora_creacion }}</td>
-            <td><a href="{% url 'borrar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
+            <!--td>{{ flujo.proyecto }}</td>
+            <td><a href="{% url 'borrar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td-->
             <td><a href="{% url 'modificar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
-
         </tr>
     {% endfor %}
 </table>

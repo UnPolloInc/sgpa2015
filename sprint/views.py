@@ -88,7 +88,6 @@ class UpdateSprint(UpdateView):
     template_name = 'sprint/update.html'
     model = Sprint
     form_class = SprintUpdateForm
-    #success_url = '/sprint/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -148,20 +147,19 @@ def get_query(query_string, search_fields):
     return query
 
 @login_required
-def search(request):
+def search(request,pk):
     """
     :param request: request HTTP
     :return: retorna una lista de objetos que cumplan con el parametro de busqueda.
     """
     query_string = ''
     found_entries = None
+    proyecto= None
     if ('busqueda' in request.GET) and request.GET['busqueda'].strip():
         query_string = request.GET['busqueda']
-
         entry_query = get_query(query_string, ['nombre'])
-
         found_entries = Sprint.objects.filter(entry_query).order_by('nombre')
-        proyecto = Proyecto.objects.get(pk=1)
+        proyecto = Proyecto.objects.get(pk=pk)
     return render_to_response('sprint/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries, 'proyecto': proyecto },
                           context_instance=RequestContext(request))

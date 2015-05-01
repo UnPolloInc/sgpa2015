@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     url(r'^crear/(?P<pk>\d+)$', login_required(views.CreateSprint.as_view()), name='crear_sprint'), #new line
     #url(r'^borrar/(?P<pk>\d+)$', login_required(views.DeleteProyecto.as_view()), name='borrar_sprint'),
     url(r'^modificar/(?P<pk>\d+)$', login_required(views.UpdateSprint.as_view()), name='modificar_sprint'),
-    url(r'^buscar/$', views.search, name='buscar_sprint'),
+    url(r'^buscar/(?P<pk>\d+)$', views.search, name='buscar_sprint'),
 )

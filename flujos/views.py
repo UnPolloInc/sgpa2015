@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, render_to_response
 
 # Create your views here.
@@ -22,12 +23,27 @@ class CreateFlujos(CreateView):
     """
     template_name = 'flujos/crear.html'
     form_class = FlujosForm
-    success_url = 'lista_flujos'
 
     #@user_passes_test(lambda user: user.is_superuser)
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(CreateFlujos, self).dispatch(*args, **kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateFlujos, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(CreateFlujos, self).get_form_kwargs(**kwargs)
+
+        proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['proyecto'] = proyecto.pk
+        return kwargs
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(CreateFlujos, self).get_form_kwargs(**kwargs)
+        return reverse('lista_flujo',args=[self.kwargs['pk']])
 
 class IndexView(ListView):
     """
@@ -94,11 +110,22 @@ class UpdateFlujos(UpdateView):
     template_name = 'flujos/update.html'
     model = Flujos
     form_class = FlujosUpdateForm
-    success_url = '/flujos'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(UpdateFlujos, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateFlujos, self).get_context_data(**kwargs)
+        flujo = Flujos.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=flujo.proyecto.pk)
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(UpdateFlujos, self).get_form_kwargs(**kwargs)
+        flujo = Flujos.objects.get(pk=self.kwargs['pk'])
+        return reverse('lista_flujo', args=[flujo.proyecto.pk])
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
@@ -146,7 +173,7 @@ def get_query(query_string, search_fields):
     return query
 
 @login_required
-def search(request):
+def search(request, pk):
     """
     :param request: request HTTP
     :return: retorna una lista de objetos que cumplan con el parametro de busqueda.
@@ -159,6 +186,7 @@ def search(request):
         entry_query = get_query(query_string, ['nombre'])
 
         found_entries = Flujos.objects.filter(entry_query).order_by('nombre')
+        proyecto = Proyecto.objects.get(pk=pk)
     return render_to_response('flujos/search_results.html',
-                          { 'query_string': query_string, 'found_entries': found_entries },
+                          { 'query_string': query_string, 'found_entries': found_entries, 'proyecto':proyecto },
                           context_instance=RequestContext(request))

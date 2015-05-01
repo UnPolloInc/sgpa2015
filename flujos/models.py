@@ -15,11 +15,17 @@ class Flujos(models.Model):
 
     def __unicode__(self):
         return self.nombre
-"""
-    class Meta:
-        permissions = (
-            ('consultar_Proyecto', 'Puede consultar proyecto'),
-            ('consultar_Usuarios_Vinculados', 'Puede consultar usuarios vinculados'),
-        )
-"""
 
+class Actividad(models.Model):
+    """
+    opciones_estado = (
+        ('TODO', 'To Do'),
+        ('DOING', 'Doing'),
+        ('DONE', 'Done'),
+    )
+        estado = models.CharField(max_length=3, choices=opciones_estado, default='PEN', help_text='Estado del flujo')
+    """
+
+    nombre = models.CharField(max_length=100, unique=True)
+    orden = models.PositiveIntegerField(help_text='Introduzca el orden correspondiente de la actividad')
+    flujo = models.ForeignKey(Flujos)
