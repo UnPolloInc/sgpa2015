@@ -5,22 +5,21 @@ from django import forms
 from django.forms import DateField, ModelForm
 from django.contrib.admin.widgets import AdminDateWidget
 from sprint.models import Sprint
+from django.forms.widgets import HiddenInput
 
 class SprintForm(ModelForm):
     """
     Clase para crear Sprint's
     """
     def __init__(self, *args, **kwargs):
-
         super(SprintForm, self).__init__(*args, **kwargs)
         self.fields['nombre'].required = True
-        #fecha_inicio = DateField(widget=AdminDateWidget)
-        #fecha_fin = DateField(widget=AdminDateWidget)
+        self.fields['proyecto'].widget = HiddenInput()
 
 
     class Meta:
         model = Sprint
-        fields = ('nombre','proyecto', 'descripcion', 'duracion_dias', 'observaciones')
+        fields = ('nombre', 'proyecto', 'descripcion', 'duracion_dias', 'observaciones')
 
     def clean_duracion_dias_menor_quince(self):
         """
@@ -35,6 +34,8 @@ class SprintForm(ModelForm):
         return duracion_dias
 
 
+
+
 class SprintUpdateForm(ModelForm):
 
     """
@@ -47,5 +48,5 @@ class SprintUpdateForm(ModelForm):
     """
     class Meta:
         model = Sprint
-        fields = ('nombre', 'proyecto','descripcion','duracion_dias','observaciones')
+        fields = ('nombre','descripcion','duracion_dias','observaciones')
 

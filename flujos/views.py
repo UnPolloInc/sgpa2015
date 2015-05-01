@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from flujos.forms import FlujosForm, FlujosUpdateForm
 from flujos.models import Flujos
+from proyectos.models import Proyecto
 from usuarios.views import get_query
 import re
 from django.db.models import Q
@@ -21,7 +22,7 @@ class CreateFlujos(CreateView):
     """
     template_name = 'flujos/crear.html'
     form_class = FlujosForm
-    success_url = '/flujos'
+    success_url = 'lista_flujos'
 
     #@user_passes_test(lambda user: user.is_superuser)
     @method_decorator(login_required)
@@ -35,15 +36,22 @@ class IndexView(ListView):
             + *model*: modelo que vamos a listar.
     """
     template_name = 'flujos/flujos_list'
+
     model = Flujos
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(IndexView, self).dispatch(*args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+
 class FlujosMixin(object):
     """
-        *Vista Basada en Clase para soporte de eliminacion de flujos*:
+        *Vista Basada en Clase para soporte de eliminacion de proyecto*:
             + *model*: modelo a ser eliminado
     """
     model = Flujos
@@ -62,13 +70,19 @@ class DeleteFlujos(FlujosMixin, DeleteView):
     """
     template_name = 'flujos/delete_confirm.html'
 
-    success_url = '/flujos'
+    success_url = '/flujos/configurar/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(DeleteFlujos, self).dispatch(*args, **kwargs)
-
-
+"""
+    def get_context_data(self, **kwargs):
+        context = super(DeleteFlujos, self).get_context_data(**kwargs)
+        flujo = Flujos.objects.get(pk=self.kwargs['pk'])
+        context['flujo'] = flujo
+        context['proyecto'] = Proyecto.objects.get(pk=flujo.proyecto.pk)
+        return context
+"""
 class UpdateFlujos(UpdateView):
     """
         *Vista Basada en Clase para modificar un flujo:*
@@ -145,6 +159,6 @@ def search(request):
         entry_query = get_query(query_string, ['nombre'])
 
         found_entries = Flujos.objects.filter(entry_query).order_by('nombre')
-    return render_to_response('flujos/search_result.html',
+    return render_to_response('flujos/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))

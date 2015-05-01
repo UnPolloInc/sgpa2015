@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import request
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from proyectos.models import Proyecto
 from sprint.forms import SprintForm, SprintUpdateForm
 from sprint.models import Sprint
 from usuarios.views import get_query
@@ -22,12 +24,26 @@ class CreateSprint(CreateView):
     """
     template_name = 'sprint/create.html'
     form_class = SprintForm
-    success_url = '/sprint'
 
-    #@user_passes_test(lambda user: user.is_superuser)
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(CreateSprint, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateSprint, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(CreateSprint, self).get_form_kwargs(**kwargs)
+
+        proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['proyecto'] = proyecto.pk
+        return kwargs
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(CreateSprint, self).get_form_kwargs(**kwargs)
+        return reverse('lista_sprint',args=[self.kwargs['pk']])
 
 class IndexView(ListView):
     """
@@ -42,20 +58,10 @@ class IndexView(ListView):
     def dispatch(self, *args, **kwargs):
         return super(IndexView, self).dispatch(*args, **kwargs)
 
-    """
-    def get_queryset(self):
-        lideres = Sprint.objects.filter(lider_proyecto=self.request.user)
-        clientes = Sprint.objects.filter( cliente=self.request.user)
-        if lideres:
-            return lideres
-        elif clientes:
-            return clientes
-        elif self.request.user.is_superuser:
-            return Sprint.objects.all()
-        else:
-            return lideres
-
-    """
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
 
 
 class SprintMixin(object):
@@ -70,22 +76,7 @@ class SprintMixin(object):
         return kwargs
 
 
-"""
-class DeleteSprint(SprintMixin, DeleteView):
 
-        #*Vista Basada en Clase para eliminar sprint*:
-         #   + *template_name*: nombre del template a ser rendirizado
-          #  + *success_url: url a ser redireccionada en caso de exito*
-
-    template_name = 'sprint/delete_confirm.html'
-
-    success_url = '/sprint'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(DeleteSprint, self).dispatch(*args, **kwargs)
-
-"""
 class UpdateSprint(UpdateView):
     """
         *Vista Basada en Clase para modificar un sprint:*
@@ -97,11 +88,24 @@ class UpdateSprint(UpdateView):
     template_name = 'sprint/update.html'
     model = Sprint
     form_class = SprintUpdateForm
-    success_url = '/sprint/'
+    #success_url = '/sprint/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(UpdateSprint, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateSprint, self).get_context_data(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(UpdateSprint, self).get_form_kwargs(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        return reverse('lista_sprint',args=[sprint.proyecto.pk])
+
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
@@ -157,6 +161,7 @@ def search(request):
         entry_query = get_query(query_string, ['nombre'])
 
         found_entries = Sprint.objects.filter(entry_query).order_by('nombre')
+        proyecto = Proyecto.objects.get(pk=1)
     return render_to_response('sprint/search_results.html',
-                          { 'query_string': query_string, 'found_entries': found_entries },
+                          { 'query_string': query_string, 'found_entries': found_entries, 'proyecto': proyecto },
                           context_instance=RequestContext(request))

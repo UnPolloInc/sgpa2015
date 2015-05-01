@@ -13,7 +13,7 @@ class FlujosForm(ModelForm):
 
     class Meta:
         model = Flujos
-        fields = ('nombre','descripcion')
+        fields = ('nombre','proyecto' , 'descripcion')
 
 
 

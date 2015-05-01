@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.http import request
 from django.shortcuts import render, render_to_response
 
@@ -78,11 +79,16 @@ class DeleteProyecto(ProyectoMixin, DeleteView):
     """
     template_name = 'proyectos/delete_confirm.html'
 
-    success_url = '/proyectos'
+    #success_url = '/proyectos/flujos/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(DeleteProyecto, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteProyecto, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
 
 
 class UpdateProyecto(UpdateView):

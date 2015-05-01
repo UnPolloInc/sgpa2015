@@ -1,0 +1,48 @@
+{% extends "main/principal.html" %}
+{% block menu %}
+
+<div class="col-sm-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-xs navbar-brand">Sidebar menu</span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="{% url 'lista_sprint' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Sprint <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'crear_sprint' proyecto.id %}">Crear</a></li>
+                <li><a href="{% url 'lista_sprint' proyecto.id %}">Listar</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'lista_flujo' proyecto.id %}">Flujo</a></li>
+            <li><a href="#">User Stories</a></li>
+            <li><a href="#">Miembros</a></li>
+            <li><a href="#">Roles</a></li>
+            <li><a href="{% url 'lista_proyecto' %}">Atras</a></li>
+          </ul>
+
+
+        </div>
+      </div>
+    </div>
+</div>
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+            <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+            <p class="lead" align="center">
+              <!--a href="#" class="btn btn-lg btn-default">Learn more</a-->
+                {{ proyecto.descripcion }}
+            </p>
+      </div>
+</div>
+{% endblock %}
+{% endblock %}

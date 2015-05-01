@@ -1,4 +1,4 @@
-{% extends "main/principal.html" %}
+{% extends "main/menu.html" %}
 {% block busqueda%}
  <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_flujo' %}" method="get">
         <div class="form-group">
@@ -9,15 +9,18 @@
 
 {% endblock%}
 {% block list %}
-<ul class="list-group">
-    <h1>Flujos</h1>
-<table class="table">
-    <tr>
-
-        <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>Fecha y Hora de Creación</th>
-        <th>Eliminar</th>
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+          <ul class="list-group">
+            <h1>Flujos</h1>
+            <table class="table">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha y Hora de Creación</th>
+                    <th>Eliminar</th>
+                    <th>Modificar</th>
 
     </tr>
     {% for flujo in object_list %}
@@ -33,6 +36,8 @@
 </table>
 
 </ul>
+      </div>
+</div>
+
 {% endblock %}
-{% block list_no_results%}
-{% endblock %}
+

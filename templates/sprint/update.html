@@ -1,6 +1,7 @@
 {% extends "main/principal.html" %}
-
+{% block menu %}
 {% block list %}
+<h1>{{ proyecto.nombre }}</h1>
 <h1>Modificar Sprint</h1>
 <form method="post" class="form">
     {% csrf_token %}
@@ -13,4 +14,5 @@
     {% endfor %}
     <input type="submit" value="Submit" />
 </form>
+{% endblock %}
 {% endblock %}

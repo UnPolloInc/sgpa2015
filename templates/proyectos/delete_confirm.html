@@ -1,12 +1,2 @@
 
-{% extends "main/principal.html" %}
-
-{% block list %}
-<form method="post">
-    {% csrf_token %}
-    <div class="alert alert-danger">Estas seguro que deseas eliminar el Proyecto "{{ object.nombre }}" ?</div>
-
-    <input type="submit" class="btn btn-default" value="Eliminar" />
-    <a href="{% url 'lista_proyecto' %}" class="btn btn-default">Cancelar</a>
-</form>
-{% endblock %}
+{% extends "main/menu.html" %}

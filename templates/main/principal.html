@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
+
 {% block content %}
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -49,8 +50,8 @@
 
           </ul>
         </li>
-          {% endblock%}
-            {% endblock %}
+{% endblock%}
+{% endblock %}
            {% else %}
           <li class="dropdown">
           <a href="{% url 'lista_proyecto' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administracion de Proyectos<span class="caret"></span></a>
@@ -75,12 +76,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 {% endblock %}
-{%block list%}
-<div class="site-wrapper-inner">
 
+{% block menu %}
+<div class="row">
+    <div class="site-wrapper-inner">
         <div class="cover-container">
-
-
           <div class="inner cover">
             <h1 class="cover-heading" align="center">Bienvenido {{ request.usuario.username }} a SGPA</h1>
             <p class="lead" ALIGN=center>Sistema Gerenciador de Proyecto Ágiles</p>
@@ -91,10 +91,11 @@ ciclo de vida iterativo adaptado de la Metodología SCRUM y KANBAN, debido a la 
 los equipos de trabajo y del tamaño del proyecto.
             </p>
           </div>
-
-
         </div>
-
       </div>
+</div>
 
+{% block list %}
 {% endblock %}
+{% endblock %}
+

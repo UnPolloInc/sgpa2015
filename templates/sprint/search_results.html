@@ -1,18 +1,18 @@
 {% extends "sprint/sprint_list.html" %}
 
-    {% block list %}
+{% block list %}
 
     <h1>Sprint</h1>
-<table class="table">
-     <tr>
-        <th>Nombre</th>
-        <th>Proyecto</th>
-        <th>Descripcion</th>
-        <th>Duracion en Dias</th>
-        <th>Observaciones</th>
-        <th>Modificar</th>
-    </tr>
-    {% for sprint in found_entries %}
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Proyecto</th>
+            <th>Descripcion</th>
+            <th>Duracion en Dias</th>
+            <th>Observaciones</th>
+            <th>Modificar</th>
+        </tr>
+        {% for sprint in found_entries %}
          <tr>
             <td>{{ sprint.nombre }}</td>
             <td>{{ sprint.proyecto }}</td>
@@ -20,12 +20,11 @@
             <td>{{ sprint.duracion_dias }}</td>
             <td>{{ sprint.observaciones }}</td>
             <td><a href="{% url 'modificar_sprint' sprint.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
-
-        </tr>
-    {% empty %}
-<div class="alert alert-danger">La busqueda no tuvo resultados</div>
-    {% endfor %}
-</table>
+         </tr>
+        {% empty %}
+            <div class="alert alert-danger">La busqueda no tuvo resultados</div>
+        {% endfor %}
+    </table>
 
 </ul>
 {% endblock %}
