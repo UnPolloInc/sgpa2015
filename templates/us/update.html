@@ -1,16 +1,18 @@
 {% extends "main/principal.html" %}
-
+{% block menu %}
 {% block list %}
+<h1>{{ proyecto.nombre }}</h1>
 <h1>Modificar User Stories</h1>
 <form method="post" class="form">
     {% csrf_token %}
     {% for field in form %}
         <div class="form-group">
         {{ field.errors }}
-        {{ field.label_tag }}
+        {{ field.label_tag }}<br/>
         {{ field }}
         </div>
     {% endfor %}
     <input type="submit" value="Submit" />
 </form>
+{% endblock %}
 {% endblock %}

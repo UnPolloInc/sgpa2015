@@ -1,11 +1,15 @@
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
-from us.forms import usForm, usUpdateForm
+from flujos.models import Flujos
+from proyectos.models import Proyecto
+from sprint.models import Sprint
+from us.forms import usForm, usUpdateForm, PriorizarForm
 from us.models import us
 from usuarios.views import get_query
 import re
@@ -28,6 +32,24 @@ class Createus(CreateView):
     def dispatch(self, *args, **kwargs):
         return super(Createus, self).dispatch(*args, **kwargs)
 
+    #def get_family(self):
+    #    return get_object_or_404(Family, pk=self.kwargs.get('family_pk'))
+
+    def get_form(self, form_class):
+        form = super(Createus, self).get_form(form_class)
+        form.fields['flujo'].queryset = Flujos.objects.filter(proyecto=self.kwargs['pk'])
+        form.fields['sprint'].queryset = Sprint.objects.filter(proyecto=self.kwargs['pk'])
+        return form
+
+    def get_context_data(self, **kwargs):
+        context = super(Createus, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(Createus, self).get_form_kwargs(**kwargs)
+        return reverse('lista_us',args=[self.kwargs['pk']])
+
 class IndexView(ListView):
     """
         *Vista basada en Clase para lista de flujos*:
@@ -40,6 +62,18 @@ class IndexView(ListView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(IndexView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        qs = super(IndexView, self).get_queryset()
+        sprints = Sprint.objects.filter(proyecto=self.kwargs['pk'])
+        qs= us.objects.all()
+        qs.exclude(id__in=[sprint.pk for sprint in sprints])
+        return qs.order_by('prioridad')
 
 class usMixin(object):
     """
@@ -86,6 +120,49 @@ class Updateus(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(Updateus, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(Updateus, self).get_context_data(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(Updateus, self).get_form_kwargs(**kwargs)
+        US = us.objects.get(pk=self.kwargs['pk'])
+        sprint = Sprint.objects.get(pk=US.sprint.pk)
+        return reverse('lista_us',args=[sprint.proyecto.pk])
+
+class PriorizarUs(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un flujo:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'us/update.html'
+    model = us
+    form_class = PriorizarForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PriorizarUs, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(PriorizarUs, self).get_context_data(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(PriorizarUs, self).get_form_kwargs(**kwargs)
+        US = us.objects.get(pk=self.kwargs['pk'])
+        sprint = Sprint.objects.get(pk=US.sprint.pk)
+        return reverse('lista_us',args=[sprint.proyecto.pk])
+
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,

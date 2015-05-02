@@ -21,8 +21,8 @@
             <td>{{ flujo.fecha_hora_creacion }}</td>
 
             <!--td><a href="{% url 'borrar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td-->
-            <td><a href="{% url 'modificar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
-            <td><a href="{% url 'crear_actividad' flujo.id %}" class="btn btn-primary btn-sm btn-warning">Configurar</a></td>
+            <td><a href="{% url 'modificar_flujo' flujo.id %}" class="btn btn-default" >Modificar</a></td>
+            <td><a href="{% url 'crear_actividad' flujo.id %}" class="btn btn-default">Configurar</a></td>
 
         </tr>
     {% empty %}

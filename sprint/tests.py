@@ -23,9 +23,6 @@ class SprintTest(TestCase):
         lider = self.crear_usuario()
         lider.save()
         proyecto= Proyecto.objects.create(nombre='ProyectoPrueba', lider_proyecto=lider, cliente=cliente, descripcion='Descripcion del proyecto de prueba' , fecha_creacion= datetime.date.today(), fecha_inicio=datetime.date.today(), fecha_fin=datetime.date.today(), estado='PEN', observaciones='esta es la observacion del test')
-
-
-
         s= Sprint.objects.create(nombre="PruebaTestSprint", proyecto=proyecto, descripcion="Pequenha descripcion para el test de Sprint", duracion_dias=12, observaciones= "no hay observaciones")
         self.assertTrue(isinstance(s, Sprint))
         self.assertEqual((s.__unicode__()), s.nombre)
