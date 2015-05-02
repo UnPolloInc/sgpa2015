@@ -3,7 +3,8 @@
 {% block menu %}
 {% block list %}
 <h1>{{ proyecto.nombre }}</h1>
-<h1>Crear Flujo</h1>
+<h1>{{ flujo.nombre }}</h1>
+<h1>Crear Actividad</h1>
 <form method="post" class="form">
     {% csrf_token %}
     {% for field in form.visible_fields %}

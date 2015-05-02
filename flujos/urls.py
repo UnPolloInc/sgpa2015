@@ -9,4 +9,6 @@ urlpatterns = patterns('',
     url(r'^borrar/(?P<pk>\d+)$', login_required(views.DeleteFlujos.as_view()), name='borrar_flujo'),
     url(r'^modificar/(?P<pk>\d+)$', login_required(views.UpdateFlujos.as_view()), name='modificar_flujo'),
     url(r'^buscar/(?P<pk>\d+)$', views.search, name='buscar_flujo'),
+    url(r'^actividades/crear/(?P<pk>\d+)$',login_required(views.CreateActividad.as_view()), name='crear_actividad'),
+    url(r'^actividades/(?P<pk>\d+)$',login_required(views.ActividadesListView.as_view()), name='lista_actividad'),
 )

@@ -32,10 +32,10 @@ class FlujosUpdateForm(ModelForm):
         fields = ('nombre', 'descripcion')
 
 
-class ActividadesForm(ModelForm):
+class ActividadForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super(ActividadesForm, self).__init__(*args, **kwargs)
+        super(ActividadForm, self).__init__(*args, **kwargs)
         self.fields['nombre'].required = True
         self.fields['flujo'].widget = HiddenInput()
 

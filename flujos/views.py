@@ -6,8 +6,8 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
-from flujos.forms import FlujosForm, FlujosUpdateForm
-from flujos.models import Flujos
+from flujos.forms import FlujosForm, FlujosUpdateForm, ActividadForm
+from flujos.models import Flujos, Actividad
 from proyectos.models import Proyecto
 from usuarios.views import get_query
 import re
@@ -64,6 +64,9 @@ class IndexView(ListView):
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         return context
 
+    def get_queryset(self):
+        qs = super(IndexView, self).get_queryset()
+        return qs.filter(proyecto=self.kwargs['pk'])
 
 class FlujosMixin(object):
     """
@@ -190,3 +193,63 @@ def search(request, pk):
     return render_to_response('flujos/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries, 'proyecto':proyecto },
                           context_instance=RequestContext(request))
+
+class CreateActividad(CreateView):
+    """
+        *Vista Basada en Clase para crear flujos*:
+            + *template_name*: nombre del template que vamos renderizar
+            + *form_class*: formulario para crear flujos
+            + *success_url*: url en caso de exito
+    """
+    template_name = 'actividades/crear.html'
+    form_class = ActividadForm
+
+    #@user_passes_test(lambda user: user.is_superuser)
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CreateActividad, self).dispatch(*args, **kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateActividad, self).get_context_data(**kwargs)
+        context['flujo'] = Flujos.objects.get(pk=self.kwargs['pk'])
+        flujo=Flujos.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = Proyecto.objects.get(pk=flujo.proyecto.pk)
+        return context
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(CreateActividad, self).get_form_kwargs(**kwargs)
+
+        flujo=Flujos.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['flujo'] = flujo.pk
+        return kwargs
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(CreateActividad, self).get_form_kwargs(**kwargs)
+        flujo=Flujos.objects.get(pk=self.kwargs['pk'])
+        return reverse('lista_actividad',args=[flujo.pk])
+
+class ActividadesListView(ListView):
+    """
+        *Vista basada en Clase para lista de flujos*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'actividades/actividades_list.html'
+
+    model = Actividad
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ActividadesListView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ActividadesListView, self).get_context_data(**kwargs)
+        context['flujo'] = Flujos.objects.get(pk=self.kwargs['pk'])
+        flujo = Flujos.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = Proyecto.objects.get(pk=flujo.proyecto.pk)
+        return context
+
+    def get_queryset(self):
+        qs = super(ActividadesListView, self).get_queryset()
+        return qs.filter(flujo=self.kwargs['pk'])

@@ -146,6 +146,6 @@ def search(request):
         entry_query = get_query(query_string, ['nombre'])
 
         found_entries = us.objects.filter(entry_query).order_by('nombre')
-    return render_to_response('us/search_result.html',
+    return render_to_response('us/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))

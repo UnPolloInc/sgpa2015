@@ -63,6 +63,9 @@ class IndexView(ListView):
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         return context
 
+    def get_queryset(self):
+        qs = super(IndexView, self).get_queryset()
+        return qs.filter(proyecto=self.kwargs['pk'])
 
 class SprintMixin(object):
     """

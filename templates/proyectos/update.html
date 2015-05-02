@@ -1,5 +1,5 @@
-{% extends "main/principal.html" %}
-
+{% extends "main/menu.html" %}
+{% block menu %}
 {% block list %}
 <h1>Modificar Proyecto</h1>
 <form method="post" class="form">
@@ -13,4 +13,5 @@
     {% endfor %}
     <input type="submit" value="Submit" />
 </form>
+{% endblock %}
 {% endblock %}

@@ -1,0 +1,51 @@
+{% extends "main/menu.html" %}
+{% block busqueda%}
+{% endblock%}
+              {% block actividades %}
+            <li class="dropdown">
+              <a href="{% url 'lista_actividad' flujo.id %}" class="dropdown-toggle" data-toggle="dropdown">Actividad <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'crear_actividad' flujo.id %}">Crear</a></li>
+                <li><a href="{% url 'lista_actividad' flujo.id %}">Listar</a></li>
+              </ul>
+            </li>
+
+              {% endblock %}
+
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+          <ul class="list-group">
+              <h1>{{ flujo.nombre }}</h1>
+              <h1>Actividades</h1>
+            <table class="table">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Orden</th>
+                    <th>Flujo</th>
+                    <!-- th>Proyecto</th>
+                    <th>Eliminar</th>
+                    <th>Modificar</th>
+                    <th>Actividades</th-->
+
+    </tr>
+    {% for actividad in object_list %}
+        <tr>
+            <td>{{ actividad.nombre }}</td>
+            <td>{{ actividad.orden }}</td>
+            <td>{{ actividad.flujo }}</td>
+            <!--td>{{ flujo.proyecto }}</td>
+            <td><a href="{% url 'borrar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
+            <td><a href="{% url 'modificar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Modificar</a></td>
+            <td><a href="{% url 'crear_actividad' flujo.id %}" class="btn btn-primary btn-sm btn-warning">Configurar</a></td-->
+        </tr>
+    {% endfor %}
+</table>
+
+</ul>
+      </div>
+</div>
+
+{% endblock %}
+
