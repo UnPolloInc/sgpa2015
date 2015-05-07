@@ -1,0 +1,12 @@
+
+{% extends "main/principal.html" %}
+
+{% block list %}
+<form method="post">
+    {% csrf_token %}
+    <div classe="alert alert-danger">Estas seguro que deseas agregar este usuario al Proyecto "{{ object.username }}" ?</div>
+
+    <input type="submit" class="btn btn-primary btn-sm btn-default" value="Agregar" />
+    <a href="{% url 'miembros_listar' %}" class="btn btn-primary btn-sm btn-default">Cancelar</a>
+</form>
+{% endblock %}

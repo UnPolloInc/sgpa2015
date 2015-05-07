@@ -17,8 +17,8 @@
             <td>{{ usuario.username }}</td>
             <td>{{ usuario.first_name }}</td>
             <td>{{ usuario.last_name }}</td>
-            <td><a href="{% url 'borrar_usuario' usuario.id %}" class="btn btn-default" >Eliminar</a></td>
-            <td><a href="{% url 'modificar_usuario' usuario.id %}" class="btn btn-default" >Modificar</a></td>
+            <td><a href="{% url 'borrar_usuario' usuario.id %}" class="btn btn-sm btn-default" >Eliminar</a></td>
+            <td><a href="{% url 'modificar_usuario' usuario.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
         </tr>
     {% empty %}
 <div class="alert alert-danger">La busqueda no tuvo resultados</div>

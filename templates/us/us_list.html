@@ -36,8 +36,8 @@
             <td>{{ us.valor_tecnico }}</td>
             <td>{{ us.historial }}
             <td>{{ us.duracion_horas }}
-            <td><a href="{% url 'priorizar_us' us.id %}" class="btn btn-default" >Priorizar</a></td>
-            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-default" >Modificar</a></td>
+            <td><a href="{% url 'priorizar_us' us.id %}" class="btn btn-sm btn-default" >Priorizar</a></td>
+            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
 
         </tr>
     {% endfor %}

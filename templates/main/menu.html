@@ -31,13 +31,15 @@
             </li>
               {% block actividades %}
               {% endblock %}
-            <li class="dropdown">
-              <a href="{% url 'lista_us' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">User Stories <b class="caret"></b></a>
+            <li><a href="#">User Stories</a></li>
+              <li class="dropdown">
+              <a href="{% url 'miembros_listar' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Miembros <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{% url 'crear_us' proyecto.id %}">Crear</a></li>
-                <li><a href="{% url 'lista_us' proyecto.id %}">Listar</a></li>
+                <li><a href="{% url 'ver_usuarios' proyecto.id %}">Agregar</a></li>
+                <li><a href="{% url 'miembros_listar' proyecto.id %}">Listar</a></li>
               </ul>
-            </li><li><a href="#">Miembros</a></li>
+            </li>
+            <!--<li><a href="#">Miembros</a></li>-->
             <li><a href="#">Roles</a></li>
             <li><a href="{% url 'lista_proyecto' %}">Atras</a></li>
           </ul>

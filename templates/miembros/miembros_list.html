@@ -1,0 +1,36 @@
+{% extends "main/menu.html" %}
+{% block busqueda%}
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_miembros' proyecto.id %}" method="get">
+        <div class="form-group">
+          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre" >
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+ </form>
+{% endblock%}
+
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+          <ul class="list-group">
+          <h1>Miembros de Proyectos</h1>
+          <table class="table">
+            <tr>
+                <!--<th>Proyecto</th>-->
+                <th>Miembros</th>
+                <th>Eliminar Miembros</th>
+            </tr>
+            {% for miembro in object_list %}
+            <tr>
+                    <!--<td>{{ miembro.proyecto }}</td>-->
+                    <td>{{ miembro.usuario }}</td>
+                    <td><a href="{% url 'quitar_miembro' miembro.id %}" class="btn btn-sm btn-default" >Eliminar</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+        </ul>
+      </div>
+</div>
+{% endblock %}
+{% block list_no_results%}
+{% endblock %}

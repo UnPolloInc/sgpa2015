@@ -20,8 +20,8 @@
             <td>{{ us.valor_tecnico }}</td>
              <td>{{ us.historial }}</td>
              <td>{{ us.duracion_horas }}</td>
-            <td><a href="{% url 'borrar_us' us.id %}" class="btn btn-default" >Eliminar</a></td>
-            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-default" >Modificar</a></td>
+            <td><a href="{% url 'borrar_us' us.id %}" class="btn btn-sm btn-default" >Eliminar</a></td>
+            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
 
         </tr>
     {% empty %}

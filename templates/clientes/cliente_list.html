@@ -26,8 +26,8 @@
             <td>{{ cliente.username }}</td>
             <td>{{ cliente.first_name }}</td>
             <td>{{ cliente.last_name }}</td>
-            <td><a href="{% url 'borrar_cliente' cliente.id %}" class="btn btn-default" >Eliminar</a></td>
-            <td><a href="{% url 'modificar_cliente' cliente.id %}" class="btn btn-default" >Modificar</a></td>
+            <td><a href="{% url 'borrar_cliente' cliente.id %}" class="btn btn-sm btn-default" >Eliminar</a></td>
+            <td><a href="{% url 'modificar_cliente' cliente.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
         </tr>
     {% endfor %}
 </table>

@@ -1,0 +1,37 @@
+{% extends "miembros/miembros_listar.html" %}
+
+    {% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+          <ul class="list-group">
+
+    <h1>Miembros por Proyecto</h1>
+    <table class="table">
+    <tr>
+        <th>Proyecto</th>
+        <th>Usuarios</th>
+        <th>Eliminar Miembros</th>
+        <th>Modificar Miembros</th>
+
+    </tr>
+    {% for miembro in found_entries %}
+        <tr>
+            <td>{{ miembro.proyecto }}</td>
+            <td>{{ miembro.usuario }}</td>
+                <td><a class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td>
+
+        </tr>
+    {% empty %}
+<div class="alert alert-danger">La busqueda no tuvo resultados</div>
+    {% endfor %}
+</table>
+
+</ul>
+
+</ul>
+          </ul>
+      </div>
+</div>
+{% endblock %}
+
