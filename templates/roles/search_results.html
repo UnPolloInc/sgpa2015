@@ -1,0 +1,29 @@
+{% extends "roles/rol_list.html" %}
+
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+          <ul class="list-group">
+
+    <h1>Rol</h1>
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Modificar</th>
+        </tr>
+        {% for rol in found_entries %}
+         <tr>
+            <td>{{ rol.name }}</td>
+            <td><a href="{% url 'modificar_rol' rol.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
+         </tr>
+        {% empty %}
+            <div class="alert alert-danger">La busqueda no tuvo resultados</div>
+        {% endfor %}
+    </table>
+
+</ul>
+          </ul>
+      </div>
+</div>
+{% endblock %}

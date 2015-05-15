@@ -17,6 +17,8 @@ urlpatterns = patterns('',
     url(r'^sprint/', include('sprint.urls')),
     url(r'^us/', include('us.urls')),
     url(r'^miembros/', include('miembros.urls')),
+    url(r'^proyectos/roles/', include('roles.urls')),
+
 
 
 )

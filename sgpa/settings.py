@@ -44,7 +44,8 @@ INSTALLED_APPS = (
     'flujos',
     'sprint',
     'us',
-    'miembros'
+    'miembros',
+    'roles',
 )
 
 MIDDLEWARE_CLASSES = (

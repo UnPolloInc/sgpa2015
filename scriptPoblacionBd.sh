@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 psql -h localhost postgres -W -f dropAndCreate.sql postgres
 
 

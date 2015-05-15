@@ -1,49 +1,49 @@
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import request
-from django.shortcuts import render, render_to_response, redirect
+from django.core.urlresolvers import reverse
+from django.db.models import Q
+from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView
-from proyectos.models import Proyecto
-from sprint.forms import SprintForm, SprintUpdateForm
-from sprint.models import Sprint
-from usuarios.views import get_query
+from django.views.generic import CreateView, ListView, UpdateView
 import re
-from django.db.models import Q
+from proyectos.models import Proyecto
+from roles.forms import RolForm, RolUpdateForm
+from roles.models import Rol
 
 
-class CreateSprint(CreateView):
+class CrearRol(CreateView):
     """
-        *Vista Basada en Clase para crear sprint*:
+        *Vista Basada en Clase para crear proyectos*:
             + *template_name*: nombre del template que vamos renderizar
-            + *form_class*: formulario para crear sprint
+            + *form_class*: formulario para crear proyectos
             + *success_url*: url en caso de exito
     """
-    template_name = 'sprint/create.html'
-    form_class = SprintForm
+    template_name = 'roles/create.html'
+    form_class = RolForm
+    success_url = '/proyectos'
 
+    #@user_passes_test(lambda user: user.is_superuser)
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CreateSprint, self).dispatch(*args, **kwargs)
+        return super(CrearRol, self).dispatch(*args, **kwargs)
+
 
     def get_context_data(self, **kwargs):
-        context = super(CreateSprint, self).get_context_data(**kwargs)
+        context = super(CrearRol, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         return context
 
     def get_form_kwargs(self, **kwargs):
-        kwargs = super(CreateSprint, self).get_form_kwargs(**kwargs)
-
+        kwargs = super(CrearRol, self).get_form_kwargs(**kwargs)
         proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
         kwargs['initial']['proyecto'] = proyecto.pk
         return kwargs
 
     def get_success_url(self, **kwargs):
-        kwargs = super(CreateSprint, self).get_form_kwargs(**kwargs)
-        return reverse('lista_sprint',args=[self.kwargs['pk']])
+        kwargs = super(CrearRol, self).get_form_kwargs(**kwargs)
+        return reverse('lista_rol',args=[self.kwargs['pk']])
 
 class IndexView(ListView):
     """
@@ -51,8 +51,8 @@ class IndexView(ListView):
             + *template_name*: nombre del template que vamos a renderizar
             + *model*: modelo que vamos a listar.
     """
-    template_name = 'sprint/sprint_list'
-    model = Sprint
+    template_name = 'roles/rol_list'
+    model = Rol
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -67,64 +67,36 @@ class IndexView(ListView):
         qs = super(IndexView, self).get_queryset()
         return qs.filter(proyecto=self.kwargs['pk'])
 
-class SprintMixin(object):
+
+
+
+class UpdateRol(UpdateView):
     """
-        *Vista Basada en Clase para soporte de eliminacion de sprint*:
-            + *model*: modelo a ser eliminado
-    """
-    model = Sprint
-
-    def get_context_data(self, **kwargs):
-        kwargs.update({'object_name':'Sprint'})
-        return kwargs
-
-
-
-def normalize_query(query_string,
-                    findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
-                    normspace=re.compile(r'\s{2,}').sub):
-    """
-    Splits the query string in invidual keywords, getting rid of unecessary spaces
-        and grouping quoted words together.
-        Example:
-        >>> normalize_query('  some random  words "with   quotes  " and   spaces')
-        ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
-    :param query_string: cadena completa de busqueda
-    :param findterms: expresion regular para encontrar las palabras
-    :param normspace: expresion regular para normalizar el espacio
-    :return: una lista de palabras separadas y normalizadas
-    """
-
-    return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)]
-
-
-class UpdateSprint(UpdateView):
-    """
-        *Vista Basada en Clase para modificar un sprint:*
+        *Vista Basada en Clase para modificar un rol:*
             +*template_name*: template a ser renderizado
             +*model*: modelo que se va modificar
-            +*form_class*:Formulario para actualizar el usuario
+            +*form_class*:Formulario para actualizar el sprint
             +*success_url*: url a ser redireccionada en caso de exito
     """
-    template_name = 'sprint/update.html'
-    model = Sprint
-    form_class = SprintUpdateForm
+    template_name = 'roles/update.html'
+    model = Rol
+    form_class = RolUpdateForm
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(UpdateSprint, self).dispatch(*args, **kwargs)
+        return super(UpdateRol, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(UpdateSprint, self).get_context_data(**kwargs)
-        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        context = super(UpdateRol, self).get_context_data(**kwargs)
+        sprint = Rol.objects.get(pk=self.kwargs['pk'])
         context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
         return context
 
 
     def get_success_url(self, **kwargs):
-        kwargs = super(UpdateSprint, self).get_form_kwargs(**kwargs)
-        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
-        return reverse('lista_sprint',args=[sprint.proyecto.pk])
+        kwargs = super(UpdateRol, self).get_form_kwargs(**kwargs)
+        sprint = Rol.objects.get(pk=self.kwargs['pk'])
+        return reverse('lista_rol',args=[sprint.proyecto.pk])
 
 def get_query(query_string, search_fields):
     """
@@ -149,6 +121,25 @@ def get_query(query_string, search_fields):
             query = query & or_query
     return query
 
+
+def normalize_query(query_string,
+                    findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
+                    normspace=re.compile(r'\s{2,}').sub):
+    """
+    Splits the query string in invidual keywords, getting rid of unecessary spaces
+        and grouping quoted words together.
+        Example:
+        >>> normalize_query('  some random  words "with   quotes  " and   spaces')
+        ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
+    :param query_string: cadena completa de busqueda
+    :param findterms: expresion regular para encontrar las palabras
+    :param normspace: expresion regular para normalizar el espacio
+    :return: una lista de palabras separadas y normalizadas
+    """
+
+    return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)]
+
+
 @login_required
 def search(request,pk):
     """
@@ -160,9 +151,9 @@ def search(request,pk):
     proyecto= None
     if ('busqueda' in request.GET) and request.GET['busqueda'].strip():
         query_string = request.GET['busqueda']
-        entry_query = get_query(query_string, ['nombre'])
-        found_entries = Sprint.objects.filter(entry_query).order_by('nombre')
+        entry_query = get_query(query_string, ['name'])
+        found_entries = Rol.objects.filter(entry_query).order_by('name')
         proyecto = Proyecto.objects.get(pk=pk)
-    return render_to_response('sprint/search_results.html',
+    return render_to_response('roles/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries, 'proyecto': proyecto },
                           context_instance=RequestContext(request))
