@@ -2,25 +2,22 @@
 {% block menu %}
 {% block list %}
 <h1>{{ proyecto.nombre }}</h1>
-<h1>Crear User Stories</h1>
-
-
+<h1>Asignar User Storie a Sprint, Flujo y el Responsable</h1>
 <form method="post" class="form">
     {% csrf_token %}
     {% for field in form.visible_fields %}
     <div>
-        {{ field.errors }}
+        {{field.errors}}
         <div class="form-group">
-
-        {{ field.errors }}
-        {{ field.label_tag }}<br />
-        {{ field }}<br />
+            {{ field.errors }}
+            {{ field.label_tag }}<br/>
+            {{ field }}
         </div>
     </div>
- {% endfor %}
- {% for field in form.hidden_fields %}
-     <div style="display:none;">{{ field }}</div>
- {% endfor %}
+    {% endfor %}
+    {% for field in form.hidden_fields %}
+        <div style="display:none;">{{ field }}</div>
+    {% endfor %}
     <input type="submit" value="Submit" />
 </form>
 {% endblock %}

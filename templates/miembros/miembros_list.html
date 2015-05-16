@@ -18,12 +18,14 @@
             <tr>
                 <!--<th>Proyecto</th>-->
                 <th>Miembros</th>
+                <th>Horas Diarias</th>
                 <th>Eliminar Miembros</th>
             </tr>
             {% for miembro in object_list %}
             <tr>
                     <!--<td>{{ miembro.proyecto }}</td>-->
                     <td>{{ miembro.usuario }}</td>
+                    <td>{{ miembro.horas_por_dia }}</td>
                     <td><a href="{% url 'quitar_miembro' miembro.id %}" class="btn btn-sm btn-default" >Eliminar</a></td>
             </tr>
             {% endfor %}

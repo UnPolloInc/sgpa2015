@@ -14,31 +14,37 @@
           <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
 
 <ul class="list-group">
-<h1>User Stories</h1>
+<h1>User Stories del proyecto</h1>
 <table class="table">
     <tr>
 
         <th>Nombre</th>
-        <th>Valor de Negocio</th>
         <th>Prioridad</th>
-        <th>Valor Tecnico</th>
         <th>Historial</th>
         <th>Duración en Horas</th>
+        <th>Sprint</th>
+        <th>Flujo</th>
+        <th>Responsable</th>
         <th>Priorizar</th>
         <th>Modificar</th>
+        <th>Asignar US</th>
+
 
     </tr>
     {% for us in object_list %}
         <tr>
             <td>{{ us.nombre }}</td>
-            <td>{{ us.valor_de_negocio }}</td>
             <td>{{ us.prioridad }}</td>
-            <td>{{ us.valor_tecnico }}</td>
-            <td>{{ us.historial }}
-            <td>{{ us.duracion_horas }}
+            <td>{{ us.historial }}</td>
+            <td>{{ us.duracion_horas }}</td>
+            <td>{{ us.sprint }}</td>
+            <td>{{ us.flujo }}</td>
+            <td>{{ us.responsable }}</td>
+
+
             <td><a href="{% url 'priorizar_us' us.id %}" class="btn btn-sm btn-default" >Priorizar</a></td>
             <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
-
+            <td><a href="{% url 'asignar_us' us.id %}" class="btn btn-sm btn-default" >Asignar</a></td>
         </tr>
     {% endfor %}
 </table>

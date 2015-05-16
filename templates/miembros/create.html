@@ -3,7 +3,7 @@
 {% block list %}
 <h1>{{ proyecto.nombre }}</h1>
 <h1>Agregar Miembros a Proyectos</h1>
-<div class="alert alert-success">Estas seguro que deseas agregar el usuario "{{ usuario.username }}" al proyecto "{{ proyecto.nombre }}"?</div>
+<div class="alert alert-success">Estas seguro que deseas agregar el usuario "{{ object.usuario }}" al proyecto "{{ proyecto.nombre }}"?</div>
 
 <form method="post" class="form">
     {% csrf_token %}

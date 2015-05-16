@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^modificar/(?P<pk>\d+)$', login_required(views.Updateus.as_view()), name='modificar_us'),
     url(r'^priorizar/(?P<pk>\d+)$', login_required(views.PriorizarUs.as_view()), name='priorizar_us'),
     url(r'^buscar/', views.search, name='buscar_us'),
+    url(r'^asignar/(?P<pk>\d+)$', login_required(views.Asignacion.as_view()), name='asignar_us'),
 )

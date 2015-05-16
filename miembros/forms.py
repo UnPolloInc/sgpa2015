@@ -16,7 +16,7 @@ class MiembroForm(ModelForm):
 
     class Meta:
         model = Miembro
-        fields = ('proyecto','usuario')
+        fields = ('proyecto','usuario', 'horas_por_dia')
 
 class MiembroUpdateForm(ModelForm):
 
@@ -30,5 +30,5 @@ class MiembroUpdateForm(ModelForm):
     """
     class Meta:
         model = Miembro
-        fields = ('proyecto','usuario')
+        fields = ('proyecto','usuario', 'horas_por_dia')
 

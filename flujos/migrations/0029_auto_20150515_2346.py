@@ -7,14 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('us', '0006_auto_20150507_2027'),
+        ('flujos', '0028_auto_20150515_2337'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='us',
+            model_name='actividad',
             name='flujo',
-            field=models.ForeignKey(to='flujos.Flujos', null=True),
+            field=models.ForeignKey(to='flujos.Flujos'),
             preserve_default=True,
         ),
     ]

@@ -8,13 +8,49 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from flujos.models import Flujos
 from proyectos.models import Proyecto
+from miembros.models import Miembro
 from sprint.models import Sprint
-from us.forms import usForm, usUpdateForm, PriorizarForm
-from us.models import us
+from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm
 from usuarios.views import get_query
 import re
 from django.db.models import Q
+from us.models import us
 
+class Asignacion(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un flujo:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'us/asignar.html'
+    model = us
+    form_class = usasigForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(Asignacion, self).dispatch(*args, **kwargs)
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(Asignacion, self).get_form_kwargs(**kwargs)
+        US = us.objects.get(pk=self.kwargs['pk'])
+        sprint = Sprint.objects.get(pk=US.sprint.pk)
+        return reverse('lista_us',args=[sprint.proyecto.pk])
+
+    def get_context_data(self, **kwargs):
+        context = super(Asignacion, self).get_context_data(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=userstorie.proyecto.pk)
+        return context
+
+    def get_form(self, form_class):
+        form = super(Asignacion, self).get_form(form_class)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        form.fields['flujo'].queryset = Flujos.objects.filter(proyecto=userstorie.proyecto.pk)
+        form.fields['sprint'].queryset = Sprint.objects.filter(proyecto=userstorie.proyecto.pk)
+        form.fields['responsable'].queryset = Miembro.objects.filter(proyecto=userstorie.proyecto.pk)
+        return form
 
 class Createus(CreateView):
     """
@@ -25,7 +61,7 @@ class Createus(CreateView):
     """
     template_name = 'us/crear.html'
     form_class = usForm
-    success_url = '/us'
+    #success_url = '/us'
 
     #@user_passes_test(lambda user: user.is_superuser)
     @method_decorator(login_required)
@@ -35,16 +71,12 @@ class Createus(CreateView):
     #def get_family(self):
     #    return get_object_or_404(Family, pk=self.kwargs.get('family_pk'))
 
-    def get_form(self, form_class):
-        form = super(Createus, self).get_form(form_class)
-        form.fields['flujo'].queryset = Flujos.objects.filter(proyecto=self.kwargs['pk'])
-        form.fields['sprint'].queryset = Sprint.objects.filter(proyecto=self.kwargs['pk'])
-        return form
 
-    def get_context_data(self, **kwargs):
-        context = super(Createus, self).get_context_data(**kwargs)
-        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        return context
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(Createus, self).get_form_kwargs(**kwargs)
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['proyecto'] = proyecto.pk
+        return kwargs
 
     def get_success_url(self, **kwargs):
         kwargs = super(Createus, self).get_form_kwargs(**kwargs)
@@ -70,10 +102,8 @@ class IndexView(ListView):
 
     def get_queryset(self):
         qs = super(IndexView, self).get_queryset()
-        sprints = Sprint.objects.filter(proyecto=self.kwargs['pk'])
-        qs= us.objects.all()
-        qs.exclude(id__in=[sprint.pk for sprint in sprints])
-        return qs.order_by('prioridad')
+        return qs.filter(proyecto=self.kwargs['pk'])
+
 
 class usMixin(object):
     """
@@ -123,9 +153,15 @@ class Updateus(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(Updateus, self).get_context_data(**kwargs)
-        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
-        context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=proyecto.pk)
         return context
+
+    '''def get_context_data(self, **kwargs):
+        context = super(Updateus, self).get_context_data(**kwargs)
+        userstories = us.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=userstories.proyecto.pk)
+        return context'''
 
 
     def get_success_url(self, **kwargs):

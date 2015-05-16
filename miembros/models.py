@@ -8,7 +8,8 @@ from proyectos.models import Proyecto
 class Miembro(models.Model):
     proyecto = models.ForeignKey(Proyecto, null=True)
     usuario = models.ForeignKey(Usuario, null=True)
+    horas_por_dia = models.IntegerField(default=0, help_text= 'Horas diarias a trabajar', null= True)
 
 
     def __unicode__(self):
-       return self.usuario.username
+        return self.usuario.username
