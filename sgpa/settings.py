@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'us',
     'miembros',
     'roles',
+    'mensajes'
 )
 
 MIDDLEWARE_CLASSES = (

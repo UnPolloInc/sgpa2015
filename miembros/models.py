@@ -10,3 +10,5 @@ class Miembro(models.Model):
     usuario = models.ForeignKey(Usuario, null=True)
 
 
+    def __unicode__(self):
+       return self.usuario.username

@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^us/', include('us.urls')),
     url(r'^miembros/', include('miembros.urls')),
     url(r'^proyectos/roles/', include('roles.urls')),
-
+    url(r'^mensajes/', include('mensajes.urls')),
 
 
 )

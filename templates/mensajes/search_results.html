@@ -1,0 +1,28 @@
+{% extends "mensajes/mensajes_list.html" %}
+
+    {% block list %}
+
+    <h1>Mensajes</h1>
+<table class="table">
+     <tr>
+        <th>Destinatario</th>
+        <th>Remitente</th>
+        <th>Cuerpo del Mensaje</th>
+        <th>Fecha y hora envio</th>
+
+    </tr>
+    {% for mensaje in found_entries %}
+         <tr>
+           <td>{{ mensajes.destinatario }}</td>
+            <td>{{ mensajes.remitente}}</td>
+            <td>{{ mensajes.texto_mensaje}}</td>
+            <td>{{ mensajes.fecha_hora_creacion }}</td>
+            <td><a href="{% url 'eliminar_mensaje' mensajes.id %}" class="btn btn-sm btn-default" >Eliminar</a></td>
+        </tr>
+    {% empty %}
+<div class="alert alert-danger">La busqueda no tuvo resultados</div>
+    {% endfor %}
+</table>
+
+</ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "main/menu.html" %}
+{% block busqueda%}
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_proyecto' %}" method="get">
+        <div class="form-group">
+          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+ </form>
+
+{% endblock%}
+
+
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+        <ul class="list-group">
+            <h1>Mensajes</h1>
+                <table class="table">
+                    <tr>
+                        <th>Proyecto</th>
+                        <th>Destinatario</th>
+                        <th>Remitente</th>
+                        <th>Cuerpo del Mensaje</th>
+                        <th>Fecha y hora envio</th>
+
+                    </tr>
+                     {% for mensajes in object_list %}
+                    <tr>
+                        <td>{{ mensajes.proyecto }}</td>
+                        <td>{{ mensajes.destinatario }}</td>
+                        <td>{{ mensajes.remitente}}</td>
+                        <td>{{ mensajes.texto_mensaje}}</td>
+                        <td>{{ mensajes.fecha_hora_creacion }}</td>
+                        <td><a href="{% url 'eliminar_mensaje' mensajes.id %}" class="btn btn-sm btn-default" >Eliminar</a></td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+
+        </ul>
+      </div>
+</div>
+{% endblock %}

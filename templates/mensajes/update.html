@@ -1,0 +1,17 @@
+{% extends "main/menu.html" %}
+{% block menu %}
+{% block list %}
+<h1>Modificar Mensaje</h1>
+<form method="post" class="form">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }}<br />
+        {{ field }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
+{% endblock %}
