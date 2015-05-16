@@ -1,3 +1,4 @@
+from itertools import chain
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import request
@@ -7,8 +8,10 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from miembros.models import Miembro
 from proyectos.forms import ProyectoForm, ProyectoUpdateForm
 from proyectos.models import Proyecto
+from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
 from django.db.models import Q
@@ -45,15 +48,27 @@ class IndexView(ListView):
 
     def get_queryset(self):
         lideres = Proyecto.objects.filter(lider_proyecto=self.request.user)
-        clientes = Proyecto.objects.filter( cliente=self.request.user)
+        clientes = Proyecto.objects.filter(cliente=self.request.user)
+        miembros = Miembro.objects.filter(usuario=self.request.user)
+        qs = Proyecto.objects.all()
+
+        if self.request.user.is_superuser:
+            return Proyecto.objects.all()
+        else:
+            matches = lideres | clientes | qs.filter(id__in=[miembro.proyecto.pk for miembro in miembros])
+            return matches
+"""
         if lideres:
-            return lideres
+           return qs.filter(id__in=[miembro.proyecto.pk for miembro in miembros])
         elif clientes:
             return clientes
         elif self.request.user.is_superuser:
             return Proyecto.objects.all()
+        elif miembros:
+            return lideres
         else:
             return lideres
+"""
 
 
 
