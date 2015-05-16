@@ -74,8 +74,15 @@ class IndexView(ListView):
         return context
 
     def get_queryset(self):
-        qs = super(IndexView, self).get_queryset()
+        qs=super(IndexView, self).get_queryset()
         return qs.filter(proyecto=self.kwargs['pk'])
+        #remitentes = mensajes.objects.filter(proyecto=self.kwargs['pk']).filter(remitente=self.request.user)
+        #destinatarios = mensajes.objects.filter(proyecto=self.kwargs['pk'])
+        #destinatarios=destinatarios.filter(destinatario=self.kwargs['usuario'])
+        #clientes = mensajes.objects.filter(cliente=self.request.user)
+        #matches = remitentes
+        #return matches
+
 
 
 class MensajeMixin(object):
@@ -185,3 +192,32 @@ def search(request):
     return render_to_response('mensajes/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))
+
+
+
+class RecibidosView(ListView):
+    """
+        *Vista basada en Clase para lista de mensajes*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'mensajes_list'
+    model = mensajes
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        miembro=Miembro.objects.get(usuario=self.request.user)
+        destinatarios = mensajes.objects.filter(proyecto=self.kwargs['pk']).filter(remitente=self.request.user)
+        #destinatarios = mensajes.objects.filter(proyecto=self.kwargs['pk'])
+        #destinatarios=destinatarios.filter(destinatario=self.kwargs['usuario'])
+        #clientes = mensajes.objects.filter(cliente=self.request.user)
+        matches = remitentes
+        return matches

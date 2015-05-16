@@ -4,6 +4,7 @@ from django import forms
 from django.forms import DateField, ModelForm
 from django.contrib.admin.widgets import AdminDateWidget
 from proyectos.models import Proyecto
+from Notificaciones.views import notificar_mod_proyecto, notificar_creacion_proyecto
 
 class ProyectoForm(ModelForm):
     """
@@ -33,6 +34,16 @@ class ProyectoForm(ModelForm):
 
         return fecha_inicio
 
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        proyecto = super(ProyectoForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            proyecto.save()
+            notificar_creacion_proyecto(proyecto.lider_proyecto,proyecto)
+            notificar_creacion_proyecto(proyecto.cliente,proyecto)
+        return proyecto
+
 
 class ProyectoUpdateForm(ModelForm):
 
@@ -48,3 +59,11 @@ class ProyectoUpdateForm(ModelForm):
         model = Proyecto
         fields = ('nombre', 'lider_proyecto','descripcion', 'observaciones')
 
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        proyecto = super(ProyectoUpdateForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            proyecto.save()
+            notificar_mod_proyecto(proyecto.lider_proyecto,proyecto)
+        return proyecto

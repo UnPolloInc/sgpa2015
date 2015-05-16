@@ -132,14 +132,11 @@ flujo4.save()
 flujo5 = Flujos(nombre= '1er flujo del proyecto5', descripcion='ninguna', fecha_hora_creacion=date.today(), proyecto=proyecto5)
 flujo5.save()
  
-us1 = us(nombre='US1 para el proyecto 1', valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, sprint=sprint1,
-         flujo=flujo1)
+us1 = us(nombre='US1 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10)
 us1.save()
  
-us2 = us(nombre='US1 para el proyecto 2', valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, sprint=sprint2,
-         flujo=flujo3)
+us2 = us(nombre='US1 para el proyecto 2', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10)
 us2.save()
  
-us3 = us(nombre='US1 para el proyecto 3', valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, sprint=sprint3,
-         flujo=flujo3)
+us3 = us(nombre='US1 para el proyecto 3', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10)
 us3.save()

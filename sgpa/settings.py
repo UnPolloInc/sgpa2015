@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'us',
     'miembros',
     'roles',
-    'mensajes'
+    'mensajes',
+    'Notificaciones',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,3 +128,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
 )
+
+
+# Configuracion de mail
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sgpa2015q06@gmail.com'
+EMAIL_HOST_PASSWORD = 'sgpa2015'
+EMAIL_PORT = 587

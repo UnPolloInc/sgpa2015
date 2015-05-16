@@ -52,6 +52,7 @@ class Asignacion(UpdateView):
         form.fields['responsable'].queryset = Miembro.objects.filter(proyecto=userstorie.proyecto.pk)
         return form
 
+
 class Createus(CreateView):
     """
         *Vista Basada en Clase para crear flujos*:

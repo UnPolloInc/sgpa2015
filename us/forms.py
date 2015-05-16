@@ -2,13 +2,22 @@ from django import forms
 from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
 from us.models import us
-
+from Notificaciones.views import notificar_asignacion_us
 
 class usasigForm(ModelForm):
 
-   class Meta:
+    class Meta:
         model = us
         fields = ('sprint', 'flujo', 'responsable')
+
+    #def save(self, commit=True):
+        # Save the provided password in hashed format
+    #    us = super(usasigForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+    #    if commit:
+    #        us.save()
+    #        notificar_asignacion_us(us.responsable,us.proyecto)
+    #    return us
 
 
 class usForm(ModelForm):
