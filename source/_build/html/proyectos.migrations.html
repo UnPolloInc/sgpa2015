@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>proyectos.migrations package &mdash; documentación de SGPA2015 - 0.0.1</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de SGPA2015 - 0.0.1" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> SGPA2015</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="simple">
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SGPA2015</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>proyectos.migrations package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/proyectos.migrations.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="proyectos-migrations-package">
+<h1>proyectos.migrations package<a class="headerlink" href="#proyectos-migrations-package" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-proyectos.migrations.0001_initial">
+<span id="proyectos-migrations-0001-initial-module"></span><h2>proyectos.migrations.0001_initial module<a class="headerlink" href="#module-proyectos.migrations.0001_initial" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0001_initial.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0001_initial.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0001_initial.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0001_initial.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0001_initial.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'usuarios', u'0002_auto_20150327_2028')]</em><a class="headerlink" href="#proyectos.migrations.0001_initial.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0001_initial.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  fields=[(u'id', &lt;django.db.models.fields.AutoField&gt;), (u'nombre', &lt;django.db.models.fields.CharField&gt;), (u'descripcion', &lt;django.db.models.fields.TextField&gt;), (u'fecha_creacion', &lt;django.db.models.fields.DateField&gt;), (u'fecha_inicio', &lt;django.db.models.fields.DateField&gt;), (u'fecha_fin', &lt;django.db.models.fields.DateField&gt;), (u'estado', &lt;django.db.models.fields.CharField&gt;), (u'observaciones', &lt;django.db.models.fields.TextField&gt;), (u'lider_proyecto', &lt;django.db.models.fields.related.ForeignKey&gt;)], bases=(&lt;class 'django.db.models.base.Model'&gt;,), options={}, name=u'Proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0001_initial.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0002_auto_20150401_1238">
+<span id="proyectos-migrations-0002-auto-20150401-1238-module"></span><h2>proyectos.migrations.0002_auto_20150401_1238 module<a class="headerlink" href="#module-proyectos.migrations.0002_auto_20150401_1238" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0002_auto_20150401_1238.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0002_auto_20150401_1238.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0002_auto_20150401_1238.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0002_auto_20150401_1238.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0002_auto_20150401_1238.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0001_initial')]</em><a class="headerlink" href="#proyectos.migrations.0002_auto_20150401_1238.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0002_auto_20150401_1238.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0002_auto_20150401_1238.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0003_auto_20150409_1913">
+<span id="proyectos-migrations-0003-auto-20150409-1913-module"></span><h2>proyectos.migrations.0003_auto_20150409_1913 module<a class="headerlink" href="#module-proyectos.migrations.0003_auto_20150409_1913" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0003_auto_20150409_1913.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0003_auto_20150409_1913.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0003_auto_20150409_1913.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0003_auto_20150409_1913.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0003_auto_20150409_1913.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0002_auto_20150401_1238')]</em><a class="headerlink" href="#proyectos.migrations.0003_auto_20150409_1913.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0003_auto_20150409_1913.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0003_auto_20150409_1913.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0004_auto_20150410_2004">
+<span id="proyectos-migrations-0004-auto-20150410-2004-module"></span><h2>proyectos.migrations.0004_auto_20150410_2004 module<a class="headerlink" href="#module-proyectos.migrations.0004_auto_20150410_2004" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0004_auto_20150410_2004.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0004_auto_20150410_2004.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0004_auto_20150410_2004.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0004_auto_20150410_2004.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0004_auto_20150410_2004.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'clientes', u'0001_initial'), (u'proyectos', u'0003_auto_20150409_1913')]</em><a class="headerlink" href="#proyectos.migrations.0004_auto_20150410_2004.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0004_auto_20150410_2004.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  field=&lt;django.db.models.fields.related.ForeignKey&gt;, preserve_default=False, name=u'cliente', model_name=u'proyecto'&gt;, &lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0004_auto_20150410_2004.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0005_auto_20150411_0632">
+<span id="proyectos-migrations-0005-auto-20150411-0632-module"></span><h2>proyectos.migrations.0005_auto_20150411_0632 module<a class="headerlink" href="#module-proyectos.migrations.0005_auto_20150411_0632" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0005_auto_20150411_0632.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0005_auto_20150411_0632.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0005_auto_20150411_0632.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0005_auto_20150411_0632.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0005_auto_20150411_0632.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0004_auto_20150410_2004')]</em><a class="headerlink" href="#proyectos.migrations.0005_auto_20150411_0632.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0005_auto_20150411_0632.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0005_auto_20150411_0632.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0006_auto_20150423_2259">
+<span id="proyectos-migrations-0006-auto-20150423-2259-module"></span><h2>proyectos.migrations.0006_auto_20150423_2259 module<a class="headerlink" href="#module-proyectos.migrations.0006_auto_20150423_2259" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0006_auto_20150423_2259.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0006_auto_20150423_2259.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0006_auto_20150423_2259.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0006_auto_20150423_2259.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0006_auto_20150423_2259.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0005_auto_20150411_0632')]</em><a class="headerlink" href="#proyectos.migrations.0006_auto_20150423_2259.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0006_auto_20150423_2259.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0006_auto_20150423_2259.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0007_auto_20150424_1854">
+<span id="proyectos-migrations-0007-auto-20150424-1854-module"></span><h2>proyectos.migrations.0007_auto_20150424_1854 module<a class="headerlink" href="#module-proyectos.migrations.0007_auto_20150424_1854" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0007_auto_20150424_1854.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0007_auto_20150424_1854.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0007_auto_20150424_1854.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0007_auto_20150424_1854.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0007_auto_20150424_1854.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0006_auto_20150423_2259')]</em><a class="headerlink" href="#proyectos.migrations.0007_auto_20150424_1854.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0007_auto_20150424_1854.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0007_auto_20150424_1854.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0008_auto_20150425_0047">
+<span id="proyectos-migrations-0008-auto-20150425-0047-module"></span><h2>proyectos.migrations.0008_auto_20150425_0047 module<a class="headerlink" href="#module-proyectos.migrations.0008_auto_20150425_0047" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0008_auto_20150425_0047.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0008_auto_20150425_0047.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0008_auto_20150425_0047.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0008_auto_20150425_0047.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0008_auto_20150425_0047.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0007_auto_20150424_1854')]</em><a class="headerlink" href="#proyectos.migrations.0008_auto_20150425_0047.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0008_auto_20150425_0047.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0008_auto_20150425_0047.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0009_auto_20150426_1921">
+<span id="proyectos-migrations-0009-auto-20150426-1921-module"></span><h2>proyectos.migrations.0009_auto_20150426_1921 module<a class="headerlink" href="#module-proyectos.migrations.0009_auto_20150426_1921" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0009_auto_20150426_1921.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0009_auto_20150426_1921.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0009_auto_20150426_1921.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0009_auto_20150426_1921.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0009_auto_20150426_1921.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0008_auto_20150425_0047')]</em><a class="headerlink" href="#proyectos.migrations.0009_auto_20150426_1921.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0009_auto_20150426_1921.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0009_auto_20150426_1921.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0010_auto_20150501_1756">
+<span id="proyectos-migrations-0010-auto-20150501-1756-module"></span><h2>proyectos.migrations.0010_auto_20150501_1756 module<a class="headerlink" href="#module-proyectos.migrations.0010_auto_20150501_1756" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0010_auto_20150501_1756.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0010_auto_20150501_1756.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0010_auto_20150501_1756.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0010_auto_20150501_1756.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0010_auto_20150501_1756.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0009_auto_20150426_1921')]</em><a class="headerlink" href="#proyectos.migrations.0010_auto_20150501_1756.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0010_auto_20150501_1756.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0010_auto_20150501_1756.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0011_auto_20150502_0347">
+<span id="proyectos-migrations-0011-auto-20150502-0347-module"></span><h2>proyectos.migrations.0011_auto_20150502_0347 module<a class="headerlink" href="#module-proyectos.migrations.0011_auto_20150502_0347" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0011_auto_20150502_0347.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0011_auto_20150502_0347.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0011_auto_20150502_0347.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0011_auto_20150502_0347.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0011_auto_20150502_0347.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0010_auto_20150501_1756')]</em><a class="headerlink" href="#proyectos.migrations.0011_auto_20150502_0347.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0011_auto_20150502_0347.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0011_auto_20150502_0347.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0012_auto_20150507_1917">
+<span id="proyectos-migrations-0012-auto-20150507-1917-module"></span><h2>proyectos.migrations.0012_auto_20150507_1917 module<a class="headerlink" href="#module-proyectos.migrations.0012_auto_20150507_1917" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0012_auto_20150507_1917.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0012_auto_20150507_1917.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0012_auto_20150507_1917.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0012_auto_20150507_1917.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0012_auto_20150507_1917.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0011_auto_20150502_0347')]</em><a class="headerlink" href="#proyectos.migrations.0012_auto_20150507_1917.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0012_auto_20150507_1917.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0012_auto_20150507_1917.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0013_auto_20150512_1904">
+<span id="proyectos-migrations-0013-auto-20150512-1904-module"></span><h2>proyectos.migrations.0013_auto_20150512_1904 module<a class="headerlink" href="#module-proyectos.migrations.0013_auto_20150512_1904" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0013_auto_20150512_1904.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0013_auto_20150512_1904.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0013_auto_20150512_1904.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0013_auto_20150512_1904.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0013_auto_20150512_1904.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0012_auto_20150507_1917')]</em><a class="headerlink" href="#proyectos.migrations.0013_auto_20150512_1904.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0013_auto_20150512_1904.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0013_auto_20150512_1904.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0014_auto_20150515_2027">
+<span id="proyectos-migrations-0014-auto-20150515-2027-module"></span><h2>proyectos.migrations.0014_auto_20150515_2027 module<a class="headerlink" href="#module-proyectos.migrations.0014_auto_20150515_2027" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0014_auto_20150515_2027.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0014_auto_20150515_2027.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0014_auto_20150515_2027.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0014_auto_20150515_2027.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0014_auto_20150515_2027.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0013_auto_20150512_1904')]</em><a class="headerlink" href="#proyectos.migrations.0014_auto_20150515_2027.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0014_auto_20150515_2027.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0014_auto_20150515_2027.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations.0015_auto_20150516_0001">
+<span id="proyectos-migrations-0015-auto-20150516-0001-module"></span><h2>proyectos.migrations.0015_auto_20150516_0001 module<a class="headerlink" href="#module-proyectos.migrations.0015_auto_20150516_0001" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="proyectos.migrations.0015_auto_20150516_0001.Migration">
+<em class="property">class </em><code class="descclassname">proyectos.migrations.0015_auto_20150516_0001.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proyectos/migrations/0015_auto_20150516_0001.html#Migration"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#proyectos.migrations.0015_auto_20150516_0001.Migration" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="proyectos.migrations.0015_auto_20150516_0001.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [(u'proyectos', u'0014_auto_20150515_2027')]</em><a class="headerlink" href="#proyectos.migrations.0015_auto_20150516_0001.Migration.dependencies" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="proyectos.migrations.0015_auto_20150516_0001.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.DateField&gt;, preserve_default=True, name=u'fecha_creacion', model_name=u'proyecto'&gt;]</em><a class="headerlink" href="#proyectos.migrations.0015_auto_20150516_0001.Migration.operations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-proyectos.migrations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-proyectos.migrations" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, AlvaroRodriguez JorgeFlor Marcelo Vera.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

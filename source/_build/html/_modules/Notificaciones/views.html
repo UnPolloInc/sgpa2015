@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Notificaciones.views &mdash; documentación de SGPA2015 - 0.0.1</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de SGPA2015 - 0.0.1" href="../../index.html"/>
+        <link rel="up" title="Código de módulo" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> SGPA2015</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="simple">
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">SGPA2015</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Código de módulo</a> &raquo;</li>
+      
+    <li>Notificaciones.views</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Código fuente para Notificaciones.views</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+<span class="c"># Create your views here.</span>
+
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.core.mail</span> <span class="kn">import</span> <span class="n">send_mail</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="c">#from usuarios.models import Usuario</span>
+
+
+<div class="viewcode-block" id="notificar"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar">[documentos]</a><span class="k">def</span> <span class="nf">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar(usuarios,subj,mensaje)</span>
+<span class="sd">        Notificar</span>
+<span class="sd">        =========</span>
+
+<span class="sd">        Función encargada de realizar las notificaciones a los usuarios mediante el envió de mensajes</span>
+<span class="sd">        a los correos electronicos de cada uno de los afectados.</span>
+<span class="sd">        @param usuarios: lista de usuarios al que se le notificará algún cambio.</span>
+<span class="sd">        @param subj: Subjeto del mensaje.</span>
+<span class="sd">        @param mensaje: Mensaje explicativo.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">usuarios</span><span class="p">:</span>
+            <span class="n">mail</span><span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">email</span>
+            <span class="n">send_mail</span><span class="p">(</span><span class="n">subj</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">,</span> <span class="s">&#39;sgpa2015q06@gmail.com&#39;</span><span class="p">,[</span><span class="n">mail</span><span class="p">],</span> <span class="n">fail_silently</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mail</span><span class="o">=</span> <span class="n">usuarios</span><span class="o">.</span><span class="n">email</span>
+            <span class="n">send_mail</span><span class="p">(</span><span class="n">subj</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">,</span> <span class="s">&#39;sgpa2015q06@gmail.com&#39;</span><span class="p">,[</span><span class="n">mail</span><span class="p">],</span> <span class="n">fail_silently</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">mail</span><span class="o">=</span><span class="n">usuarios</span>
+            <span class="n">send_mail</span><span class="p">(</span><span class="n">subj</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">,</span> <span class="s">&#39;sgpa2015q06@gmail.com&#39;</span><span class="p">,[</span><span class="n">mail</span><span class="p">],</span> <span class="n">fail_silently</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="notificar_creacion_usuario"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_creacion_usuario">[documentos]</a><span class="k">def</span> <span class="nf">notificar_creacion_usuario</span><span class="p">(</span><span class="n">usuarios</span><span class="p">):</span>
+    <span class="c">#Usuario= models.ForeignKey()</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Hola </span><span class="si">%s</span><span class="s">. Se ha creado su usuario éxitosamente.Su username es </span><span class="si">%s</span><span class="s"> &#39;</span><span class="o">%</span><span class="p">(</span><span class="n">usuarios</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span><span class="n">usuarios</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Creación de cuenta sgpa2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="notificar_mod_usuario"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_mod_usuario">[documentos]</a><span class="k">def</span> <span class="nf">notificar_mod_usuario</span><span class="p">(</span><span class="n">usuario</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_mod_usuario(usuario)</span>
+<span class="sd">        Notificar modificación</span>
+<span class="sd">        ======================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique la modificación de un Usuario dentro del sistema.</span>
+<span class="sd">        @param usuario: Usuario al que se notificará.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se han modificado uno o más campos de su cuenta. Por favor consulte la proxima vez que inicie sesión&#39;</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Modificacón de cuenta sgpa2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuario</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="notificar_elim_usuario"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_elim_usuario">[documentos]</a><span class="k">def</span> <span class="nf">notificar_elim_usuario</span><span class="p">(</span><span class="n">usuario</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_elim_usuario(usuario)</span>
+<span class="sd">        Notificar Eliminación</span>
+<span class="sd">        =====================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique la eliminación de un Usuario dentro del sistema.</span>
+<span class="sd">        @param usuario: Usuario al que se notificará.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se ha eliminado su cuenta. Consulte con el administrador&#39;</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Eliminación de cuenta sgpa2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuario</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="notificar_asignacion_proyecto"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_asignacion_proyecto">[documentos]</a><span class="k">def</span> <span class="nf">notificar_asignacion_proyecto</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">proyecto</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_asignacion_proyecto(usuarios,proyecto)</span>
+<span class="sd">        Notificar Asignación</span>
+<span class="sd">        ====================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique a uno o varios usuarios la asignación al equipo de un Proyecto.</span>
+<span class="sd">        @param usuarios: Lista de usuarios asignados al Proyecto.</span>
+<span class="sd">        @param proyecto: Proyecto al que se le asignó un equipo.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se le ha agregado al equipo del sgte Proyecto </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">proyecto</span><span class="p">)</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Asignación Proyecto SGPA2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="notificar_mod_proyecto"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_mod_proyecto">[documentos]</a><span class="k">def</span> <span class="nf">notificar_mod_proyecto</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">proyecto</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_mod_proyecto(usuarios,proyecto)</span>
+<span class="sd">        Notificar Modificación</span>
+<span class="sd">        ======================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique al equipo de un Proyecto la modificación del mismo.</span>
+<span class="sd">        @param usuarios: Lista de usuarios asignados al Proyecto.</span>
+<span class="sd">        @param proyecto: Proyecto que se modificó.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se han realizado cambios en los campos del sgte Proyecto </span><span class="si">%s</span><span class="s"> que tiene asignado.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">proyecto</span><span class="p">)</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Modificación Proyecto SGPA2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="notificar_creacion_proyecto"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_creacion_proyecto">[documentos]</a><span class="k">def</span> <span class="nf">notificar_creacion_proyecto</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">proyecto</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_mod_proyecto(usuarios,proyecto)</span>
+<span class="sd">        Notificar Modificación</span>
+<span class="sd">        ======================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique al equipo de un Proyecto la modificación del mismo.</span>
+<span class="sd">        @param usuarios: Lista de usuarios asignados al Proyecto.</span>
+<span class="sd">        @param proyecto: Proyecto que se modificó.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se ha creado satisfactoriamente el proyecto </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">proyecto</span><span class="p">)</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Creacion Proyecto en SGPA2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="notificar_asignacion_us"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_asignacion_us">[documentos]</a><span class="k">def</span> <span class="nf">notificar_asignacion_us</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">proyecto</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_mod_proyecto(usuarios,proyecto)</span>
+<span class="sd">        Notificar Modificación</span>
+<span class="sd">        ======================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique al equipo de un Proyecto la modificación del mismo.</span>
+<span class="sd">        @param usuarios: Lista de usuarios asignados al Proyecto.</span>
+<span class="sd">        @param proyecto: Proyecto que se modificó.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se le ha asignado satisfactoriamente un us en el proyecto </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">proyecto</span><span class="p">)</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Asignacion de us en SGPA2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, AlvaroRodriguez JorgeFlor Marcelo Vera.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
