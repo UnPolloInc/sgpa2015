@@ -22,6 +22,7 @@
                       <th>Duracion en Dias</th>
                       <th>Observaciones</th>
                       <th>Modificar</th>
+                      <th>Listar User Stories</th>
                   </tr>
                   {% for sprint in object_list %}
                   <tr>
@@ -31,6 +32,7 @@
                       <td>{{ sprint.duracion_dias }}</td>
                       <td>{{ sprint.observaciones }}</td>
                       <td><a href="{% url 'modificar_sprint' sprint.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
+                      <td><a href="{% url 'us_listar' proyecto.id sprint.id %}" class="btn btn-sm btn-default" >Listar Us</a></td>
                   </tr>
                   {% endfor %}
                 </table>

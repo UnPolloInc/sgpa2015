@@ -7,13 +7,75 @@ from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from flujos.models import Flujos
+from miembros.models import Miembro
 from proyectos.models import Proyecto
-from sprint.forms import SprintForm, SprintUpdateForm
+from sprint.forms import SprintForm, SprintUpdateForm, usUpdateForm
 from sprint.models import Sprint
 from usuarios.views import get_query
 import re
 from django.db.models import Q
+from us.models import us
 
+class ReasignarUs(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un sprint:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'sprint/updateus.html'
+    model = us
+    form_class = usUpdateForm
+
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ReasignarUs, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ReasignarUs, self).get_context_data(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=userstorie.proyecto.pk)
+        return context
+
+    def get_form(self, form_class):
+        form = super(ReasignarUs, self).get_form(form_class)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        form.fields['flujo'].queryset = Flujos.objects.filter(proyecto=userstorie.proyecto.pk)
+        form.fields['sprint'].queryset = Sprint.objects.filter(proyecto=userstorie.proyecto.pk)
+        form.fields['responsable'].queryset = Miembro.objects.filter(proyecto=userstorie.proyecto.pk)
+        return form
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(ReasignarUs, self).get_form_kwargs(**kwargs)
+        US = us.objects.get(pk=self.kwargs['pk'])
+        return reverse('us_listar',args=[US.proyecto.pk, US.sprint.pk])
+
+
+class IndexViewUs(ListView):
+    """
+        *Vista basada en Clase para lista de sprint*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'sprint/us_list.html'
+    model = us
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexViewUs, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexViewUs, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        qs = super(IndexViewUs,self).get_queryset()
+        userstories = us.objects.filter(sprint=self.kwargs['sprint'])
+        return userstories
 
 class CreateSprint(CreateView):
     """

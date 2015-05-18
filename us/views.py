@@ -52,7 +52,6 @@ class Asignacion(UpdateView):
         form.fields['responsable'].queryset = Miembro.objects.filter(proyecto=userstorie.proyecto.pk)
         return form
 
-
 class Createus(CreateView):
     """
         *Vista Basada en Clase para crear flujos*:
@@ -103,7 +102,8 @@ class IndexView(ListView):
 
     def get_queryset(self):
         qs = super(IndexView, self).get_queryset()
-        return qs.filter(proyecto=self.kwargs['pk'])
+        userstories = us.objects.filter(proyecto=self.kwargs['pk'])
+        return userstories.exclude(flujo__isnull=False, sprint__isnull=False, responsable__isnull=False)
 
 
 class usMixin(object):
@@ -146,7 +146,7 @@ class Updateus(UpdateView):
     template_name = 'us/update.html'
     model = us
     form_class = usUpdateForm
-    success_url = '/us'
+    #success_url = '/us'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -154,22 +154,16 @@ class Updateus(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(Updateus, self).get_context_data(**kwargs)
-        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['proyecto']= Proyecto.objects.get(pk=proyecto.pk)
+        US = us.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=US.proyecto.pk)
         return context
-
-    '''def get_context_data(self, **kwargs):
-        context = super(Updateus, self).get_context_data(**kwargs)
-        userstories = us.objects.get(pk=self.kwargs['pk'])
-        context['proyecto']= Proyecto.objects.get(pk=userstories.proyecto.pk)
-        return context'''
 
 
     def get_success_url(self, **kwargs):
         kwargs = super(Updateus, self).get_form_kwargs(**kwargs)
         US = us.objects.get(pk=self.kwargs['pk'])
-        sprint = Sprint.objects.get(pk=US.sprint.pk)
-        return reverse('lista_us',args=[sprint.proyecto.pk])
+        return reverse('lista_us',args=[US.proyecto.pk])
+
 
 class PriorizarUs(UpdateView):
     """

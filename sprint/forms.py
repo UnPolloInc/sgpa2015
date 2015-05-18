@@ -6,6 +6,7 @@ from django.forms import DateField, ModelForm
 from django.contrib.admin.widgets import AdminDateWidget
 from sprint.models import Sprint
 from django.forms.widgets import HiddenInput
+from us.models import us
 
 class SprintForm(ModelForm):
     """
@@ -49,4 +50,17 @@ class SprintUpdateForm(ModelForm):
     class Meta:
         model = Sprint
         fields = ('nombre','descripcion','duracion_dias','observaciones')
+
+
+class usUpdateForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(usUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['sprint'].required = True
+        self.fields['flujo'].required = True
+        self.fields['responsable'].required = True
+
+    class Meta:
+        model = us
+        fields = ('sprint','flujo','responsable')
 

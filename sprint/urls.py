@@ -1,4 +1,4 @@
-__author__ = 'chelox'
+__author__ = 'jorgeflor'
 
 
 from django.conf.urls import patterns, url
@@ -10,5 +10,7 @@ urlpatterns = patterns('',
     url(r'^crear/(?P<pk>\d+)$', login_required(views.CreateSprint.as_view()), name='crear_sprint'), #new line
     #url(r'^borrar/(?P<pk>\d+)$', login_required(views.DeleteProyecto.as_view()), name='borrar_sprint'),
     url(r'^modificar/(?P<pk>\d+)$', login_required(views.UpdateSprint.as_view()), name='modificar_sprint'),
+    url(r'^listarus/(?P<pk>\d+)/(?P<sprint>\d+)$', login_required(views.IndexViewUs.as_view()), name='us_listar'),
+    url(r'^reasignarus/(?P<pk>\d+)$', login_required(views.ReasignarUs.as_view()), name='reasignar_us'),
     url(r'^buscar/(?P<pk>\d+)$', views.search, name='buscar_sprint'),
 )

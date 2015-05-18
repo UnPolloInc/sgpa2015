@@ -2,22 +2,19 @@ from django import forms
 from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
 from us.models import us
-from Notificaciones.views import notificar_asignacion_us
+
 
 class usasigForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(usasigForm, self).__init__(*args, **kwargs)
+        self.fields['sprint'].required = True
+        self.fields['flujo'].required = True
+        self.fields['responsable'].required = True
 
     class Meta:
         model = us
         fields = ('sprint', 'flujo', 'responsable')
-
-    #def save(self, commit=True):
-        # Save the provided password in hashed format
-    #    us = super(usasigForm, self).save(commit=False)
-        #proyecto.set_password(self.cleaned_data["password1"])
-    #    if commit:
-    #        us.save()
-    #        notificar_asignacion_us(us.responsable,us.proyecto)
-    #    return us
 
 
 class usForm(ModelForm):
@@ -38,16 +35,16 @@ class usForm(ModelForm):
 
 class usUpdateForm(ModelForm):
 
-   def __init__(self, *args, **kwargs):
-        super(usUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['flujo'].widget = HiddenInput()
-        self.fields['sprint'].widget = HiddenInput()
-        self.fields['responsable'].widget = HiddenInput()
-        self.fields['proyecto'].widget = HiddenInput()
+  # def __init__(self, *args, **kwargs):
+       # super(usUpdateForm, self).__init__(*args, **kwargs)
+        #self.fields['flujo'].widget = HiddenInput()
+        #self.fields['sprint'].widget = HiddenInput()
+        #self.fields['responsable'].widget = HiddenInput()
+        #self.fields['proyecto'].widget = HiddenInput()
 
    class Meta:
         model = us
-        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'sprint', 'flujo', 'responsable', 'proyecto')
+        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas')
 
 
 
