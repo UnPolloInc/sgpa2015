@@ -1,4 +1,5 @@
 from django.db import models
+from roles.models import Rol
 from usuarios.models import Usuario
 from proyectos.models import Proyecto
 # Create your models here.
@@ -6,10 +7,10 @@ from proyectos.models import Proyecto
 
 
 class Miembro(models.Model):
-    proyecto = models.ForeignKey(Proyecto, null=True)
-    usuario = models.ForeignKey(Usuario, null=True)
-    horas_por_dia = models.IntegerField(default=0, help_text= 'Horas diarias a trabajar', null= True)
-
+    proyecto = models.ForeignKey(Proyecto)
+    usuario = models.ForeignKey(Usuario)
+    horas_por_dia = models.IntegerField(default=0, help_text= 'Horas diarias a trabajar')
+    rol = models.ForeignKey(Rol)
 
     def __unicode__(self):
-        return self.usuario.username
+        return self.usuario.username+self.proyecto.nombre

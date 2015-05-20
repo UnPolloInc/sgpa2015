@@ -35,13 +35,6 @@ class usForm(ModelForm):
 
 class usUpdateForm(ModelForm):
 
-  # def __init__(self, *args, **kwargs):
-       # super(usUpdateForm, self).__init__(*args, **kwargs)
-        #self.fields['flujo'].widget = HiddenInput()
-        #self.fields['sprint'].widget = HiddenInput()
-        #self.fields['responsable'].widget = HiddenInput()
-        #self.fields['proyecto'].widget = HiddenInput()
-
    class Meta:
         model = us
         fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas')

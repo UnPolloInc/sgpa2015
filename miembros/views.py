@@ -5,6 +5,7 @@ from miembros.models import Miembro
 from django.utils.decorators import method_decorator
 import re
 from django.db.models import Q
+from roles.models import Rol
 from usuarios.models import Usuario
 from proyectos.models import Proyecto
 # Create your views here.
@@ -73,6 +74,8 @@ class CreateMiembro(CreateView):
         kwargs['initial']['proyecto'] = proyecto.pk
         usuario=Usuario.objects.get(pk=self.kwargs['usuario'])
         kwargs['initial']['usuario'] = usuario.pk
+        kwargs.update({'proyecto': proyecto})
+
         return kwargs
 
     def get_success_url(self, **kwargs):
