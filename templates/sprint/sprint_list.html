@@ -21,8 +21,11 @@
                       <th>Descripcion</th>
                       <th>Duracion en Dias</th>
                       <th>Observaciones</th>
+                      <th>Estado</th>
                       <th>Modificar</th>
                       <th>Listar User Stories</th>
+                      <th>Cambiar Estado de Sprint</th>
+
                   </tr>
                   {% for sprint in object_list %}
                   <tr>
@@ -31,8 +34,10 @@
                       <td>{{ sprint.descripcion }}</td>
                       <td>{{ sprint.duracion_dias }}</td>
                       <td>{{ sprint.observaciones }}</td>
+                      <td>{{ sprint.estado }}</td>
                       <td><a href="{% url 'modificar_sprint' sprint.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
-                      <td><a href="{% url 'us_listar' proyecto.id sprint.id %}" class="btn btn-sm btn-default" >Listar Us</a></td>
+                      <td><a href="{% url 'us_listar' proyecto.id sprint.id %}" class="btn btn-sm btn-default" >Sprint Back Log</a></td>
+                      <td><a href="{% url 'cambiar_estado' proyecto.id sprint.id %}" class="btn btn-sm btn-default" >Cambiar Estado</a></td>
                   </tr>
                   {% endfor %}
                 </table>

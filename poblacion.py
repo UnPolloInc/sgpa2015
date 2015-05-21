@@ -3,6 +3,7 @@ __author__ = 'chelox'
 #from django.db import models
 from usuarios.models import Usuario
 from proyectos.models import Proyecto
+from sprint.models import Estado
 from clientes.models import Cliente
 from sprint.models import Sprint
 from django.utils.datetime_safe import date
@@ -90,29 +91,38 @@ proyecto2.save()
 proyecto3.save()
 proyecto4.save()
 proyecto5.save()
- 
-sprint1 = Sprint(nombre='SprintPro1', proyecto=proyecto1, descripcion='sprint correspondiente al proyecto 1', duracion_dias= 15, observaciones='Ninguna')
+
+pendiente = Estado(estado='Pendiente')
+pendiente.save()
+
+en_ejecucion = Estado(estado= 'En ejecucion')
+en_ejecucion.save()
+
+finalizado = Estado(estado='Finalizado')
+finalizado.save()
+
+sprint1 = Sprint(nombre='SprintPro1', proyecto=proyecto1, descripcion='sprint correspondiente al proyecto 1', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint1.save()
  
-sprint2 = Sprint(nombre='Sprint2Pro1', proyecto=proyecto1, descripcion='2do sprint correspondiente al proyecto 1', duracion_dias= 15, observaciones='Ninguna')
+sprint2 = Sprint(nombre='Sprint2Pro1', proyecto=proyecto1, descripcion='2do sprint correspondiente al proyecto 1', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint2.save()
  
-sprint3 = Sprint(nombre='SprintPro2', proyecto=proyecto2, descripcion='sprint correspondiente al proyecto 2', duracion_dias= 15, observaciones='Ninguna')
+sprint3 = Sprint(nombre='SprintPro2', proyecto=proyecto2, descripcion='sprint correspondiente al proyecto 2', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint3.save()
  
-sprint4 = Sprint(nombre='2SprintPro2', proyecto=proyecto2, descripcion='2do sprint correspondiente al proyecto 2', duracion_dias= 15, observaciones='Ninguna')
+sprint4 = Sprint(nombre='2SprintPro2', proyecto=proyecto2, descripcion='2do sprint correspondiente al proyecto 2', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint4.save()
  
-sprint5 = Sprint(nombre='SprintPro3', proyecto=proyecto3, descripcion='sprint correspondiente al proyecto 3', duracion_dias= 15, observaciones='Ninguna')
+sprint5 = Sprint(nombre='SprintPro3', proyecto=proyecto3, descripcion='sprint correspondiente al proyecto 3', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint5.save()
  
-sprint6 = Sprint(nombre='2Sprint2Pro3', proyecto=proyecto3, descripcion='2do sprint correspondiente al proyecto 3', duracion_dias= 15, observaciones='Ninguna')
+sprint6 = Sprint(nombre='2Sprint2Pro3', proyecto=proyecto3, descripcion='2do sprint correspondiente al proyecto 3', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint6.save()
  
-sprint7 = Sprint(nombre='SprintPro4', proyecto=proyecto4, descripcion='sprint correspondiente al proyecto 4', duracion_dias= 15, observaciones='Ninguna')
+sprint7 = Sprint(nombre='SprintPro4', proyecto=proyecto4, descripcion='sprint correspondiente al proyecto 4', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint7.save()
  
-sprint8 = Sprint(nombre='2SprintPro4', proyecto=proyecto4, descripcion='2do sprint correspondiente al proyecto 4', duracion_dias= 15, observaciones='Ninguna')
+sprint8 = Sprint(nombre='2SprintPro4', proyecto=proyecto4, descripcion='2do sprint correspondiente al proyecto 4', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint8.save()
  
 flujo1 = Flujos(nombre= '1er flujo del proyecto1', descripcion='ninguna', fecha_hora_creacion=date.today(), proyecto=proyecto1)
@@ -132,11 +142,14 @@ flujo4.save()
 flujo5 = Flujos(nombre= '1er flujo del proyecto5', descripcion='ninguna', fecha_hora_creacion=date.today(), proyecto=proyecto5)
 flujo5.save()
  
-us1 = us(nombre='US1 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10)
+us1 = us(nombre='US1 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, duracion_horas_en_sprint=10)
 us1.save()
  
-us2 = us(nombre='US1 para el proyecto 2', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10)
+us2 = us(nombre='US1 para el proyecto 2', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, duracion_horas_en_sprint=10)
 us2.save()
  
-us3 = us(nombre='US1 para el proyecto 3', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10)
+us3 = us(nombre='US1 para el proyecto 3', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, duracion_horas_en_sprint=10)
 us3.save()
+
+
+

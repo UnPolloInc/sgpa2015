@@ -20,7 +20,7 @@ class SprintForm(ModelForm):
 
     class Meta:
         model = Sprint
-        fields = ('nombre', 'proyecto', 'descripcion', 'duracion_dias', 'observaciones')
+        fields = ('nombre', 'proyecto', 'descripcion', 'duracion_dias', 'observaciones', 'estado')
 
     def clean_duracion_dias_menor_quince(self):
         """
@@ -59,8 +59,18 @@ class usUpdateForm(ModelForm):
         self.fields['sprint'].required = True
         self.fields['flujo'].required = True
         self.fields['responsable'].required = True
+        self.fields['duracion_horas_en_sprint'].required = True
 
     class Meta:
         model = us
-        fields = ('sprint','flujo','responsable')
+        fields = ('sprint','flujo','responsable', 'duracion_horas_en_sprint')
 
+class SprintCambiarEstadoForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(SprintCambiarEstadoForm, self).__init__(*args, **kwargs)
+        self.fields['estado'].required = True
+
+    class Meta:
+        model = Sprint
+        fields = ('estado',)

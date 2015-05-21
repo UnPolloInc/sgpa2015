@@ -11,10 +11,11 @@ class usasigForm(ModelForm):
         self.fields['sprint'].required = True
         self.fields['flujo'].required = True
         self.fields['responsable'].required = True
+        self.fields['duracion_horas_en_sprint'].required = True
 
     class Meta:
         model = us
-        fields = ('sprint', 'flujo', 'responsable')
+        fields = ('sprint', 'flujo', 'responsable', 'duracion_horas_en_sprint')
 
 
 class usForm(ModelForm):
@@ -25,11 +26,12 @@ class usForm(ModelForm):
         self.fields['flujo'].widget = HiddenInput()
         self.fields['sprint'].widget = HiddenInput()
         self.fields['responsable'].widget = HiddenInput()
-        self.fields['proyecto'].widget = HiddenInput()
+        #self.fields['proyecto'].widget = HiddenInput()
+        self.fields['duracion_horas_en_sprint'].widget = HiddenInput()
 
     class Meta:
         model = us
-        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable')
+        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable', 'duracion_horas_en_sprint')
 
 
 

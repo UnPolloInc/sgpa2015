@@ -45,13 +45,13 @@ class Asignacion(UpdateView):
         return context
 
 
-def get_form(self, form_class):
-    form = super(Asignacion, self).get_form(form_class)
-    userstorie = us.objects.get(pk=self.kwargs['pk'])
-    form.fields['flujo'].queryset = Flujos.objects.filter(proyecto=userstorie.proyecto.pk)
-    form.fields['sprint'].queryset = Sprint.objects.filter(proyecto=userstorie.proyecto.pk)
-    form.fields['responsable'].queryset = Miembro.objects.filter(proyecto=userstorie.proyecto.pk)
-    return form
+    def get_form(self, form_class):
+        form = super(Asignacion, self).get_form(form_class)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        form.fields['flujo'].queryset = Flujos.objects.filter(proyecto=userstorie.proyecto.pk)
+        form.fields['sprint'].queryset = Sprint.objects.filter(proyecto=userstorie.proyecto.pk)
+        form.fields['responsable'].queryset = Miembro.objects.filter(proyecto=userstorie.proyecto.pk)
+        return form
 
 class Createus(CreateView):
     """
