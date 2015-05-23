@@ -62,9 +62,10 @@ class registroForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(registroForm, self).__init__(*args, **kwargs)
-        #self.fields['horas_dedicadas'].required = True
-        #self.fields['us'].widget = HiddenInput()
+        self.fields['horas_dedicadas'].required = True
+        self.fields['us'].widget = HiddenInput()
+        self.fields['archivo_adjunto'].required = False
 
     class Meta:
         model = registroTrabajoUs
-        fields = ('descripcion','horas_dedicadas','us')
+        fields = ('descripcion','horas_dedicadas','us','archivo_adjunto')

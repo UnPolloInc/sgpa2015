@@ -13,6 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+DEFAULT_FILE_STORAGE = 'database_files.storage.DatabaseStorage'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = (
     'roles',
     'mensajes',
     'Notificaciones',
+    'database_files',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -136,3 +138,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'sgpa2015q06@gmail.com'
 EMAIL_HOST_PASSWORD = 'sgpa2015'
 EMAIL_PORT = 587
+

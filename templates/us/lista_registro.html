@@ -21,7 +21,7 @@
         <th>Descripcion</th>
         <th>Horas dedicadas</th>
         <th>Fecha y Hora</th>
-
+        <th>Archivo Adjunto </th>
 
     </tr>
     {% for registroTrabajoUs in object_list %}
@@ -30,6 +30,8 @@
             <td>{{ registroTrabajoUs.descripcion }}</td>
             <td>{{ registroTrabajoUs.horas_dedicadas }}</td>
             <td>{{ registroTrabajoUs.fecha_hora_creacion }}</td>
+            <td>{{ registroTrabajoUs.archivo_adjunto }}</td>
+
 
     </tr>
     {% endfor %}
