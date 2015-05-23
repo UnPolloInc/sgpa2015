@@ -26,7 +26,7 @@ class MiembroForm(ModelForm):
             miembro.save()
             grupo = Group.objects.get(name=miembro.rol.name)
             grupo.user_set.add(miembro.usuario)
-            notificar_asignacion_proyecto(miembro.usuario,miembro.proyecto)
+            #notificar_asignacion_proyecto(miembro.usuario,miembro.proyecto)
         return miembro
 
 
@@ -58,6 +58,6 @@ class MiembroUpdateForm(ModelForm):
             miembro.usuario.groups.clear()
             grupo = Group.objects.get(name=miembro.rol.name)
             grupo.user_set.add(miembro.usuario)
-            notificar_asignacion_proyecto(miembro.usuario,miembro.proyecto)
+            #notificar_asignacion_proyecto(miembro.usuario,miembro.proyecto)
         return miembro
 

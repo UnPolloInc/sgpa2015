@@ -8,6 +8,18 @@ from sprint.models import Sprint
 from django.forms.widgets import HiddenInput
 from us.models import us
 
+
+class EjecutarSprintForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(EjecutarSprintForm, self).__init__(*args, **kwargs)
+        self.fields['estado'].widget = HiddenInput()
+
+    class Meta:
+        model = Sprint
+        fields = ('estado',)
+
+
 class SprintForm(ModelForm):
     """
     Clase para crear Sprint's
@@ -64,13 +76,3 @@ class usUpdateForm(ModelForm):
     class Meta:
         model = us
         fields = ('sprint','flujo','responsable', 'duracion_horas_en_sprint')
-
-class SprintCambiarEstadoForm(ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super(SprintCambiarEstadoForm, self).__init__(*args, **kwargs)
-        self.fields['estado'].required = True
-
-    class Meta:
-        model = Sprint
-        fields = ('estado',)

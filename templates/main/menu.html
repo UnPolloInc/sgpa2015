@@ -19,7 +19,9 @@
               <a href="{% url 'lista_sprint' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Sprint <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="{% url 'crear_sprint' proyecto.id %}">Crear</a></li>
-                <li><a href="{% url 'lista_sprint' proyecto.id %}">Listar</a></li>
+                <li><a href="{% url 'lista_sprint' proyecto.id %}">Pendiente</a></li>
+                <li><a href="{% url 'lista_sprint' proyecto.id %}">En ejecucion</a></li>
+                <li><a href="{% url 'lista_sprint' proyecto.id %}">Finalizado</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -42,7 +44,7 @@
             </li>
 
               <li class="dropdown">
-              <a href="{% url 'miembros_listar' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Miembros <b class="caret"></b></a>
+              <a href="{% url 'miembros_listar' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Equipo<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="{% url 'ver_usuarios' proyecto.id %}">Agregar</a></li>
                 <li><a href="{% url 'miembros_listar' proyecto.id %}">Listar</a></li>

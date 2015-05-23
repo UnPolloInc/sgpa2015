@@ -10,14 +10,14 @@ from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from flujos.models import Flujos
 from miembros.models import Miembro
 from proyectos.models import Proyecto
-from sprint.forms import SprintForm, SprintUpdateForm, usUpdateForm, SprintCambiarEstadoForm
-from sprint.models import Sprint
+from sprint.forms import SprintForm, SprintUpdateForm, usUpdateForm, EjecutarSprintForm
+from sprint.models import Sprint, Estado
 from usuarios.views import get_query
 import re
 from django.db.models import Q
 from us.models import us
 
-class CambiarEstado(UpdateView):
+class EjecutarSprint(UpdateView):
     """
         *Vista Basada en Clase para modificar un sprint:*
             +*template_name*: template a ser renderizado
@@ -25,23 +25,30 @@ class CambiarEstado(UpdateView):
             +*form_class*:Formulario para actualizar el usuario
             +*success_url*: url a ser redireccionada en caso de exito
     """
-    template_name = 'sprint/cambiarestado.html'
+    template_name = 'sprint/ejecutar_sprint.html'
     model = Sprint
-    form_class = SprintCambiarEstadoForm
+    form_class = EjecutarSprintForm
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CambiarEstado, self).dispatch(*args, **kwargs)
+        return super(EjecutarSprint, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(EjecutarSprint, self).get_form_kwargs(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['estado'] = sprint.estado.pk=2
+        return kwargs
+
 
     def get_context_data(self, **kwargs):
-        context = super(CambiarEstado, self).get_context_data(**kwargs)
+        context = super(EjecutarSprint, self).get_context_data(**kwargs)
         sprint = Sprint.objects.get(pk=self.kwargs['pk'])
         context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
         return context
 
 
     def get_success_url(self, **kwargs):
-        kwargs = super(CambiarEstado, self).get_form_kwargs(**kwargs)
+        kwargs = super(EjecutarSprint, self).get_form_kwargs(**kwargs)
         sprint = Sprint.objects.get(pk=self.kwargs['pk'])
         return reverse('lista_sprint',args=[sprint.proyecto.pk])
 
