@@ -2,6 +2,9 @@ from django.db import models
 from roles.models import Rol
 from usuarios.models import Usuario
 from proyectos.models import Proyecto
+
+
+
 # Create your models here.
 
 
@@ -14,3 +17,4 @@ class Miembro(models.Model):
 
     def __unicode__(self):
         return self.usuario.username+self.proyecto.nombre
+
