@@ -1,0 +1,44 @@
+{% extends "main/menu.html" %}
+{% block busqueda%}
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_us' %}" method="get">
+        <div class="form-group">
+          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+ </form>
+
+{% endblock%}
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ registrarTrabajoUs.us.descripcion }}</h1>
+
+<ul class="list-group">
+<h1>Registro del us</h1>
+<table class="table">
+    <tr>
+        <th>US</th>
+        <th>Descripcion</th>
+        <th>Horas dedicadas</th>
+        <th>Fecha y Hora</th>
+
+
+    </tr>
+    {% for registroTrabajoUs in object_list %}
+        <tr>
+            <td>{{ registroTrabajoUs.us }}</td>
+            <td>{{ registroTrabajoUs.descripcion }}</td>
+            <td>{{ registroTrabajoUs.horas_dedicadas }}</td>
+            <td>{{ registroTrabajoUs.fecha_hora_creacion }}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+</ul>
+
+      </div>
+</div>
+{% endblock %}
+{% block list_no_results%}
+{% endblock %}

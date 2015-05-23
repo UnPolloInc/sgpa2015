@@ -10,11 +10,12 @@ from flujos.models import Flujos
 from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
-from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm
+from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm
 from usuarios.views import get_query
 import re
 from django.db.models import Q
-from us.models import us
+from us.models import us, registroTrabajoUs
+
 
 class Asignacion(UpdateView):
     """
@@ -258,3 +259,59 @@ def search(request):
     return render_to_response('us/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))
+
+
+class createRegistro(CreateView):
+
+    """
+        *Vista Basada en Clase para crear flujos*:
+            + *template_name*: nombre del template que vamos renderizar
+            + *form_class*: formulario para crear flujos
+            + *success_url*: url en caso de exito
+    """
+    template_name = 'us/crearRegistro.html'
+    form_class = registroForm
+    #success_url = '/us'
+
+    #@user_passes_test(lambda user: user.is_superuser)
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(createRegistro, self).dispatch(*args, **kwargs)
+
+    #def get_family(self):
+    #    return get_object_or_404(Family, pk=self.kwargs.get('family_pk'))
+
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
+        #proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['us'] = self.kwargs['pk']
+        return kwargs
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
+        return reverse('lista_registro',args=[self.kwargs['proyecto'],self.kwargs['pk']])
+
+class registroView(ListView):
+    """
+        *Vista basada en Clase para lista de flujos*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'us/lista_registro.html'
+    model = registroTrabajoUs
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(registroView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(registroView, self).get_context_data(**kwargs)
+        #context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        #qs = super(registroView, self).get_queryset()
+        registros = registroTrabajoUs.objects.filter(us=self.kwargs['pk'])
+        return registros

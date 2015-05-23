@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url(r'^priorizar/(?P<pk>\d+)$', login_required(views.PriorizarUs.as_view()), name='priorizar_us'),
     url(r'^buscar/', views.search, name='buscar_us'),
     url(r'^asignar/(?P<pk>\d+)$', login_required(views.Asignacion.as_view()), name='asignar_us'),
+    url(r'^registrar/(?P<proyecto>\d+)/(?P<pk>\d+)$', login_required(views.createRegistro.as_view()), name='crearRegistro'),
+    url(r'^listarRegistro/(?P<proyecto>\d+)/(?P<pk>\d+)$', login_required(views.registroView.as_view()), name='lista_registro'),
 )

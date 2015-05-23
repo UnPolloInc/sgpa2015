@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
-from us.models import us
+from us.models import us, registroTrabajoUs
 
 
 class usasigForm(ModelForm):
@@ -55,3 +55,16 @@ class PriorizarForm(ModelForm):
         model = us
         fields = ('prioridad',)
 
+
+
+
+class registroForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(registroForm, self).__init__(*args, **kwargs)
+        #self.fields['horas_dedicadas'].required = True
+        #self.fields['us'].widget = HiddenInput()
+
+    class Meta:
+        model = registroTrabajoUs
+        fields = ('descripcion','horas_dedicadas','us')

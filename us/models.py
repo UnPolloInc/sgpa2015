@@ -8,6 +8,7 @@ from sprint.models import Sprint
 from usuarios.models import Usuario
 from miembros.models import Miembro
 from proyectos.models import Proyecto
+
 # Create your models here.
 
 class us(models.Model):
@@ -29,11 +30,13 @@ class us(models.Model):
     def __unicode__(self):
         return self.nombre
 
-"""
-    class Meta:
-        permissions = (
-            ('consultar_Proyecto', 'Puede consultar proyecto'),
-            ('consultar_Usuarios_Vinculados', 'Puede consultar usuarios vinculados'),
-        )
-"""
 
+class registroTrabajoUs(models.Model):
+    us=models.ForeignKey(us, null=False)
+    descripcion=models.TextField(max_length=200,unique=False, help_text='Introduzca una descricpion del trabajo realizado')
+    horas_dedicadas = models.IntegerField(max_length=2, help_text='Introduzca las horas dedicadas')
+    fecha_hora_creacion = models.DateTimeField(default=date.today(), auto_now_add=True, help_text='Hora de envio del mensaje', null=True)
+    archivo_adjunto= models.BinaryField()
+
+    def __unicode__(self):
+        return self.nombre
