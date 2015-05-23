@@ -22,7 +22,7 @@ class us(models.Model):
     duracion_horas_en_sprint = models.IntegerField(max_length=4, help_text='duracion de horas en el sprint', null=True, blank=True)
     sprint = models.ForeignKey(Sprint, null=True, blank=True)
     flujo = models.ForeignKey(Flujos, null=True, blank=True)
-    responsable = models.ForeignKey(Miembro, null=True, blank=True)
+    responsable = models.ForeignKey(Miembro, null=True, blank=True, on_delete=models.PROTECT)
     proyecto = models.ForeignKey(Proyecto, null=False)
 
 

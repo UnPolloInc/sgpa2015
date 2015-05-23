@@ -60,3 +60,4 @@ class MiembroUpdateForm(ModelForm):
             grupo.user_set.add(miembro.usuario)
             notificar_asignacion_proyecto(miembro.usuario,miembro.proyecto)
         return miembro
+

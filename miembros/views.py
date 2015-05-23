@@ -1,10 +1,11 @@
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template import RequestContext
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from miembros.forms import MiembroForm, MiembroUpdateForm
 from miembros.models import Miembro
 from django.utils.decorators import method_decorator
 import re
-from django.db.models import Q
+from django.db.models import Q, ProtectedError
 from roles.models import Rol
 from usuarios.models import Usuario
 from proyectos.models import Proyecto
@@ -36,8 +37,9 @@ class IndexViewVerUser(ListView):
     def get_queryset(self):
         qs = super(IndexViewVerUser,self).get_queryset()
         miembros = Miembro.objects.filter(proyecto=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         qs = Usuario.objects.all()
-        return qs.exclude(id__in=[miembro.usuario.pk for miembro in miembros])
+        return qs.exclude(id__in=[miembro.usuario.pk for miembro in miembros]).exclude(pk=proyecto.pk)
 
     def get_context_data(self, **kwargs):
         context = super(IndexViewVerUser, self).get_context_data(**kwargs)
@@ -130,7 +132,6 @@ class DeleteMiembro(MiembroMixin, DeleteView):
             + *success_url: url a ser redireccionada en caso de exito*
     """
     template_name = 'miembros/delete_confirm.html'
-    #success_url = '/miembros/configurar/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -143,6 +144,20 @@ class DeleteMiembro(MiembroMixin, DeleteView):
         context['proyecto'] = Proyecto.objects.get(pk=miembro.proyecto.pk)
         return context
 
+    def delete(self, *args, **kwargs):
+        try:
+            return super(DeleteMiembro, self).delete(
+                self, *args, **kwargs
+            )
+        except ProtectedError as e:
+            # Return the appropriate response
+            #return HttpResponseForbidden()
+            kwargs = super(DeleteMiembro, self).get_context_data(**kwargs)
+            miembro = Miembro.objects.get(pk=self.kwargs['pk'])
+            url = reverse('miembros_listar', kwargs={'pk':miembro.proyecto.pk})
+            return HttpResponseRedirect(url)
+            #
+            #return reverse('miembros_listar',args=[miembro.proyecto.pk])
 
 
     def get_success_url(self, **kwargs):
@@ -233,4 +248,6 @@ def search(request, pk):
     return render_to_response('miembros/search_results.html',
                               {'query_string': query_string, 'found_entries': found_entries, 'proyecto':proyecto},
                               context_instance=RequestContext(request))
+
+
 
