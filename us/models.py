@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.datetime_safe import date
 from django.utils import timezone
-from flujos.models import Flujos
+from flujos.models import Flujos, Actividad
 from sprint.models import Sprint
 from usuarios.models import Usuario
 from miembros.models import Miembro
@@ -11,7 +11,13 @@ from proyectos.models import Proyecto
 
 # Create your models here.
 
+
 class us(models.Model):
+    opciones_estado = (
+        ('TODO', 'To Do'),
+        ('DOING', 'Doing'),
+        ('DONE', 'Done'),
+    )
 
     nombre = models.CharField(max_length=100, unique=True)
     valor_de_negocio = models.IntegerField(max_length=2, help_text='Introduzca un valor de negocio (1 al 10)', null = False)
@@ -24,8 +30,12 @@ class us(models.Model):
     flujo = models.ForeignKey(Flujos, null=True, blank=True)
     responsable = models.ForeignKey(Miembro, null=True, blank=True, on_delete=models.PROTECT)
     proyecto = models.ForeignKey(Proyecto, null=False)
+    actividad = models.ForeignKey(Actividad, null=True)
+    estado = models.CharField(max_length=5, choices=opciones_estado, default='TODO', help_text='Estado del user story')
 
 
+    def __unicode__(self):
+        return self.nombre
 
     def __unicode__(self):
         return self.nombre

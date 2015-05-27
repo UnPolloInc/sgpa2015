@@ -9,6 +9,7 @@ from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from flujos.forms import FlujosForm, FlujosUpdateForm, ActividadForm
 from flujos.models import Flujos, Actividad
 from proyectos.models import Proyecto
+from us.models import us
 from usuarios.views import get_query
 import re
 from django.db.models import Q
@@ -248,8 +249,10 @@ class ActividadesListView(ListView):
         context['flujo'] = Flujos.objects.get(pk=self.kwargs['pk'])
         flujo = Flujos.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = Proyecto.objects.get(pk=flujo.proyecto.pk)
+        context['us_list'] = us.objects.filter(flujo=flujo)
         return context
 
     def get_queryset(self):
         qs = super(ActividadesListView, self).get_queryset()
         return qs.filter(flujo=self.kwargs['pk'])
+

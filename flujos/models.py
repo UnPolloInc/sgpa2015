@@ -29,3 +29,7 @@ class Actividad(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     orden = models.PositiveIntegerField(help_text='Introduzca el orden correspondiente de la actividad')
     flujo = models.ForeignKey(Flujos)
+
+
+    def __unicode__(self):
+        return self.nombre

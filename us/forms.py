@@ -4,6 +4,8 @@ from django.contrib.admin.widgets import AdminDateWidget
 from us.models import us, registroTrabajoUs
 
 
+
+
 class usasigForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -26,12 +28,12 @@ class usForm(ModelForm):
         self.fields['flujo'].widget = HiddenInput()
         self.fields['sprint'].widget = HiddenInput()
         self.fields['responsable'].widget = HiddenInput()
-        #self.fields['proyecto'].widget = HiddenInput()
+        self.fields['proyecto'].widget = HiddenInput()
         self.fields['duracion_horas_en_sprint'].widget = HiddenInput()
 
     class Meta:
         model = us
-        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable', 'duracion_horas_en_sprint')
+        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable', 'duracion_horas_en_sprint', 'actividad', 'estado')
 
 
 
@@ -54,8 +56,6 @@ class PriorizarForm(ModelForm):
     class Meta:
         model = us
         fields = ('prioridad',)
-
-
 
 
 class registroForm(ModelForm):
