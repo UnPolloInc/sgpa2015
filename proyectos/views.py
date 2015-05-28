@@ -123,6 +123,8 @@ class UpdateProyecto(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(UpdateProyecto, self).dispatch(*args, **kwargs)
 
+
+
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
                     normspace=re.compile(r'\s{2,}').sub):

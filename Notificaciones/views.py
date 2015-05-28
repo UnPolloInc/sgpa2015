@@ -135,3 +135,51 @@ def notificar_asignacion_us(usuarios,proyecto):
     mensaje = u'Se le ha asignado satisfactoriamente un us en el proyecto %s.' %(proyecto)
     subj = u'Asignacion de us en SGPA2015'
     notificar(usuarios,subj,mensaje)
+
+def notificar_creacion_us(usuarios,proyecto):
+    """
+        notificar_mod_proyecto(usuarios,proyecto)
+        Notificar Modificación
+        ======================
+
+        Función que prepara los datos para L{Notificar<IS2_R09.apps.Notificaciones.views.notificar>}
+        para que notifique al equipo de un Proyecto la modificación del mismo.
+        @param usuarios: Lista de usuarios asignados al Proyecto.
+        @param proyecto: Proyecto que se modificó.
+
+    """
+    mensaje = u'Se ha creado satisfactoriamente un us en el proyecto %s. donde usted es lider' %(proyecto)
+    subj = u'Creacion de us en SGPA2015'
+    notificar(usuarios,subj,mensaje)
+
+def notificar_mod_us(usuarios,proyecto):
+    """
+        notificar_mod_proyecto(usuarios,proyecto)
+        Notificar Modificación
+        ======================
+
+        Función que prepara los datos para L{Notificar<IS2_R09.apps.Notificaciones.views.notificar>}
+        para que notifique al equipo de un Proyecto la modificación del mismo.
+        @param usuarios: Lista de usuarios asignados al Proyecto.
+        @param proyecto: Proyecto que se modificó.
+
+    """
+    mensaje = u'Se ha modificado satisfactoriamente un us en el proyecto %s. donde usted es lider' %(proyecto)
+    subj = u'Modificacion de us en SGPA2015'
+    notificar(usuarios,subj,mensaje)
+
+def notificar_generico(usuarios,proyecto,mensaje,subj):
+    """
+        notificar_mod_proyecto(usuarios,proyecto)
+        Notificar Modificación
+        ======================
+
+        Función que prepara los datos para L{Notificar<IS2_R09.apps.Notificaciones.views.notificar>}
+        para que notifique al equipo de un Proyecto la modificación del mismo.
+        @param usuarios: Lista de usuarios asignados al Proyecto.
+        @param proyecto: Proyecto que se modificó.
+
+    """
+    #mensaje = u'Se ha modificado satisfactoriamente un us en el proyecto %s. donde usted es lider' %(proyecto)
+    #subj = u'Modificacion de us en SGPA2015'
+    notificar(usuarios,subj,mensaje)

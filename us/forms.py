@@ -2,6 +2,7 @@ from django import forms
 from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
 from us.models import us, registroTrabajoUs
+from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us
 
 
 
@@ -19,6 +20,16 @@ class usasigForm(ModelForm):
         model = us
         fields = ('sprint', 'flujo', 'responsable', 'duracion_horas_en_sprint')
 
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        us = super(usasigForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            us.save()
+            notificar_asignacion_us(us.responsable.usuario,us.proyecto)
+            #notificar_asignacion_us(us.proyecto.cliente,us.proyecto)
+        return us
+
 
 class usForm(ModelForm):
 
@@ -35,7 +46,15 @@ class usForm(ModelForm):
         model = us
         fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable', 'duracion_horas_en_sprint', 'actividad', 'estado')
 
-
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        us = super(usForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            us.save()
+            notificar_creacion_us(us.proyecto.lider_proyecto,us.proyecto)
+            #notificar_asignacion_us(us.proyecto.cliente,us.proyecto)
+        return us
 
 class usUpdateForm(ModelForm):
 
@@ -43,6 +62,15 @@ class usUpdateForm(ModelForm):
         model = us
         fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas')
 
+   def save(self, commit=True):
+        # Save the provided password in hashed format
+        us = super(usUpdateForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            us.save()
+            notificar_mod_us(us.proyecto.lider_proyecto,us.proyecto)
+            #notificar_asignacion_us(us.proyecto.cliente,us.proyecto)
+        return us
 
 
 class PriorizarForm(ModelForm):

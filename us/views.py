@@ -15,7 +15,7 @@ from usuarios.views import get_query
 import re
 from django.db.models import Q
 from us.models import us, registroTrabajoUs
-
+from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us
 
 class Asignacion(UpdateView):
     """
@@ -53,6 +53,17 @@ class Asignacion(UpdateView):
         form.fields['sprint'].queryset = Sprint.objects.filter(proyecto=userstorie.proyecto.pk)
         form.fields['responsable'].queryset = Miembro.objects.filter(proyecto=userstorie.proyecto.pk)
         return form
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        us = super(Asignacion, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            us.save()
+            notificar_creacion_us(us.proyecto.lider_proyecto,us.proyecto)
+            #notificar_asignacion_us(us.proyecto.cliente,us.proyecto)
+        return us
+
 
 class Createus(CreateView):
     """
