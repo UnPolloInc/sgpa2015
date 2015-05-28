@@ -9,6 +9,20 @@ from django.forms.widgets import HiddenInput
 from us.models import us
 
 
+
+
+
+class FinalizarSprintForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(FinalizarSprintForm, self).__init__(*args, **kwargs)
+        self.fields['estado'].widget = HiddenInput()
+
+    class Meta:
+        model = Sprint
+        fields = ('estado',)
+
+
 class EjecutarSprintForm(ModelForm):
 
     def __init__(self, *args, **kwargs):

@@ -1,0 +1,28 @@
+{% extends "main/principal.html" %}
+{% block menu %}
+{% block list %}
+<h1>{{ proyecto.nombre }}</h1>
+<h1>Finalizar Sprint</h1>
+<div class="alert alert-success">¿Estas seguro que desea finalizar este Sprint?</div>
+
+<form method="post" class="form">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+    <div>
+        {{ field.errors }}
+        <div class="form-group">
+
+        {{ field.errors }}
+        {{ field.label_tag }}<br />
+        {{ field }}<br />
+        </div>
+    </div>
+ {% endfor %}
+ {% for field in form.hidden_fields %}
+     <div style="display:none;">{{ field }}</div>
+ {% endfor %}
+    <input type="submit" value="Submit" />
+    <a href="{% url 'lista_sprint' proyecto.id %}" class="btn btn-sm btn-default">Cancelar</a>
+</form>
+{% endblock %}
+{% endblock %}

@@ -10,12 +10,99 @@ from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from flujos.models import Flujos
 from miembros.models import Miembro
 from proyectos.models import Proyecto
-from sprint.forms import SprintForm, SprintUpdateForm, usUpdateForm, EjecutarSprintForm
+from sprint.forms import SprintForm, SprintUpdateForm, usUpdateForm, EjecutarSprintForm, FinalizarSprintForm
 from sprint.models import Sprint, Estado
 from usuarios.views import get_query
 import re
 from django.db.models import Q
 from us.models import us
+
+class IndexViewFinalizado(ListView):
+    """
+        *Vista basada en Clase para lista de sprint*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'sprint/finalizado.html'
+    model = Sprint
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexViewFinalizado, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexViewFinalizado, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        qs = super(IndexViewFinalizado,self).get_queryset()
+        sprint = Sprint.objects.filter(proyecto=self.kwargs['pk'])
+        sp = sprint.filter(estado = 3)
+        return sp
+
+
+
+class IndexViewEnEjecucion(ListView):
+    """
+        *Vista basada en Clase para lista de sprint*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'sprint/finalizar_sprint_list.html'
+    model = Sprint
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexViewEnEjecucion, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexViewEnEjecucion, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        qs = super(IndexViewEnEjecucion,self).get_queryset()
+        sprint = Sprint.objects.filter(proyecto=self.kwargs['pk'])
+        sp = sprint.filter(estado = 2)
+        return sp
+
+
+class FinalizarSprint(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un sprint:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'sprint/finalizar_confirm.html'
+    model = Sprint
+    form_class = FinalizarSprintForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(FinalizarSprint, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(FinalizarSprint, self).get_form_kwargs(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['estado'] = sprint.estado.pk=3
+        return kwargs
+
+
+    def get_context_data(self, **kwargs):
+        context = super(FinalizarSprint, self).get_context_data(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(FinalizarSprint, self).get_form_kwargs(**kwargs)
+        sprint = Sprint.objects.get(pk=self.kwargs['pk'])
+        return reverse('lista_sprint',args=[sprint.proyecto.pk])
+
 
 class EjecutarSprint(UpdateView):
     """
@@ -161,8 +248,10 @@ class IndexView(ListView):
         return context
 
     def get_queryset(self):
-        qs = super(IndexView, self).get_queryset()
-        return qs.filter(proyecto=self.kwargs['pk'])
+        qs = super(IndexView,self).get_queryset()
+        sprint = Sprint.objects.filter(proyecto=self.kwargs['pk'])
+        sp = sprint.filter(estado = 1)
+        return sp
 
 class SprintMixin(object):
     """

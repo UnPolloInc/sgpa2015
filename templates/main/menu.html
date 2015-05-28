@@ -20,8 +20,8 @@
               <ul class="dropdown-menu">
                 <li><a href="{% url 'crear_sprint' proyecto.id %}">Crear</a></li>
                 <li><a href="{% url 'lista_sprint' proyecto.id %}">Pendiente</a></li>
-                <li><a href="{% url 'lista_sprint' proyecto.id %}">En ejecucion</a></li>
-                <li><a href="{% url 'lista_sprint' proyecto.id %}">Finalizado</a></li>
+                <li><a href="{% url 'finalizar_sprint_list' proyecto.id %}">En ejecucion</a></li>
+                <li><a href="{% url 'sprint_finalizado_list' proyecto.id %}">Hostorico</a></li>
               </ul>
             </li>
             <li class="dropdown">

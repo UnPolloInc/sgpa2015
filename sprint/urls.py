@@ -13,5 +13,8 @@ urlpatterns = patterns('',
     url(r'^listarus/(?P<pk>\d+)/(?P<sprint>\d+)$', login_required(views.IndexViewUs.as_view()), name='us_listar'),
     url(r'^reasignarus/(?P<pk>\d+)$', login_required(views.ReasignarUs.as_view()), name='reasignar_us'),
     url(r'^ejecutar_sprint/(?P<pk>\d+)$', login_required(views.EjecutarSprint.as_view()), name='ejecutar_sprint'),
+    url(r'^finalizar_sprint_list/(?P<pk>\d+)$', login_required(views.IndexViewEnEjecucion.as_view()), name='finalizar_sprint_list'),
+    url(r'^finalizado/(?P<pk>\d+)$', login_required(views.IndexViewFinalizado.as_view()), name='sprint_finalizado_list'),
+    url(r'^finalizar_confirm/(?P<pk>\d+)$', login_required(views.FinalizarSprint.as_view()), name='finalizar_confirm'),
     url(r'^buscar/(?P<pk>\d+)$', views.search, name='buscar_sprint'),
 )
