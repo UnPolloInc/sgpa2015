@@ -39,7 +39,7 @@ class IndexViewVerUser(ListView):
         miembros = Miembro.objects.filter(proyecto=self.kwargs['pk'])
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         qs = Usuario.objects.all()
-        return qs.exclude(id__in=[miembro.usuario.pk for miembro in miembros]).exclude(pk=proyecto.pk)
+        return qs.exclude(id__in=[miembro.usuario.pk for miembro in miembros]).exclude(pk=proyecto.pk).exclude(pk = proyecto.lider_proyecto)
 
     def get_context_data(self, **kwargs):
         context = super(IndexViewVerUser, self).get_context_data(**kwargs)
@@ -106,7 +106,9 @@ class IndexView(ListView):
 
     def get_queryset(self):
         qs = super(IndexView, self).get_queryset()
-        return qs.filter(proyecto=self.kwargs['pk'])
+        proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
+        return qs.filter(proyecto=proyecto).exclude(usuario=proyecto.lider_proyecto)
+
 
 class MiembroMixin(object):
     """
