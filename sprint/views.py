@@ -225,9 +225,9 @@ class CreateSprint(CreateView):
 
     def get_form_kwargs(self, **kwargs):
         kwargs = super(CreateSprint, self).get_form_kwargs(**kwargs)
-
         proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
         kwargs['initial']['proyecto'] = proyecto.pk
+        kwargs['initial']['estado'] = 1
         return kwargs
 
     def get_success_url(self, **kwargs):

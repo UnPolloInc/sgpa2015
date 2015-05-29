@@ -44,6 +44,7 @@ class SprintForm(ModelForm):
         super(SprintForm, self).__init__(*args, **kwargs)
         self.fields['nombre'].required = True
         self.fields['proyecto'].widget = HiddenInput()
+        self.fields['estado'].widget = HiddenInput()
 
 
     class Meta:
