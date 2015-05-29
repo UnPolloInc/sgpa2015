@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^buscar/(?P<pk>\d+)$', views.search, name='buscar_flujo'),
     url(r'^actividades/crear/(?P<pk>\d+)$',login_required(views.CreateActividad.as_view()), name='crear_actividad'),
     url(r'^actividades/(?P<pk>\d+)$',login_required(views.ActividadesListView.as_view()), name='lista_actividad'),
+    url(r'^listarus/(?P<pk>\d+)/(?P<flujo>\d+)$', login_required(views.IndexViewUsfl.as_view()), name='us_listar_flujos'),
 )

@@ -86,22 +86,22 @@ class ProyectoMixin(object):
 
 
 
-class DeleteProyecto(ProyectoMixin, DeleteView):
+class ConfigurarProyecto(ProyectoMixin, DeleteView):
     """
         *Vista Basada en Clase para eliminar proyectos*:
             + *template_name*: nombre del template a ser rendirizado
             + *success_url: url a ser redireccionada en caso de exito*
     """
-    template_name = 'proyectos/delete_confirm.html'
+    template_name = 'main/menu.html'
 
     #success_url = '/proyectos/flujos/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(DeleteProyecto, self).dispatch(*args, **kwargs)
+        return super(ConfigurarProyecto, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(DeleteProyecto, self).get_context_data(**kwargs)
+        context = super(ConfigurarProyecto, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
         context['lider'] = Usuario.objects.get(pk=self.request.user)

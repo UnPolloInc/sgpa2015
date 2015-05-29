@@ -1,0 +1,57 @@
+{% extends "main/menu.html" %}
+{% block busqueda%}
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_us' %}" method="get">
+        <div class="form-group">
+          <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+ </form>
+
+{% endblock%}
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+<ul class="list-group">
+<h1>User Stories del Flujo </h1>
+<table class="table">
+    <tr>
+
+        <th>Nombre</th>
+        <th>Prioridad</th>
+        <th>Historial</th>
+        <th>Duración en el sprint</th>
+        <th>Sprint</th>
+        <th>Flujo</th>
+        <th>Responsable</th>
+        <th>Priorizar</th>
+        <th>Modificar</th>
+        <th>Reasignar US</th>
+
+
+    </tr>
+    {% for us in object_list %}
+        <tr>
+            <td>{{ us.nombre }}</td>
+            <td>{{ us.prioridad }}</td>
+            <td>{{ us.historial }}</td>
+            <td>{{ us.duracion_horas_en_sprint }}</td>
+            <td>{{ us.sprint }}</td>
+            <td>{{ us.flujo }}</td>
+            <td>{{ us.responsable }}</td>
+
+
+            <td><a href="{% url 'priorizar_us' us.id %}" class="btn btn-sm btn-default" >Priorizar</a></td>
+            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
+            <td><a href="{% url 'reasignar_us' us.id %}" class="btn btn-sm btn-default" >Reasignar</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+</ul>
+
+      </div>
+</div>
+{% endblock %}
+{% block list_no_results%}
+{% endblock %}

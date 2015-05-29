@@ -10,7 +10,7 @@ from clientes.models import Cliente
 from usuarios.models import Usuario
 #from sprint.models import Sprint
 from proyectos.models import Proyecto
-
+from django.core.exceptions import ValidationError
 
 
 class Estado(models.Model):
@@ -32,6 +32,7 @@ class Sprint(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
 
 
 

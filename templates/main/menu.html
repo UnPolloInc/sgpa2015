@@ -19,7 +19,7 @@
               <a href="{% url 'lista_sprint' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Sprint <b class="caret"></b></a>
               <ul class="dropdown-menu">
                   {% if proyecto.lider_proyecto == lider %}
-                <li><a href="{% url 'crear_sprint' proyecto.id %}">Crear</a></li>
+                    <li><a href="{% url 'crear_sprint' proyecto.id %}">Crear</a></li>
                   {% endif %}
                 <li><a href="{% url 'lista_sprint' proyecto.id %}">Pendiente</a></li>
                 <li><a href="{% url 'finalizar_sprint_list' proyecto.id %}">En ejecucion</a></li>
@@ -29,15 +29,15 @@
             <li class="dropdown">
               <a href="{% url 'lista_flujo' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Flujo <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                 {% if proyecto.lider_proyecto == lider %}
-                <li><a href="{% url 'crear_flujo' proyecto.id %}">Crear</a></li>
+                {% if proyecto.lider_proyecto == lider %}
+                    <li><a href="{% url 'crear_flujo' proyecto.id %}">Crear</a></li>
                 {% endif %}
                   <li><a href="{% url 'lista_flujo' proyecto.id %}">Listar</a></li>
               </ul>
             </li>
               {% block actividades %}
               {% endblock %}
-              <!--<li><a href="#">User Stories</a></li>-->
+
 
               <li class="dropdown">
               <a href="{% url 'lista_us' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Product Back Log <b class="caret"></b></a>
@@ -54,7 +54,6 @@
                 <li><a href="{% url 'miembros_listar' proyecto.id %}">Listar</a></li>
               </ul>
             </li>
-            <!--<li><a href="#">Miembros</a></li>-->
 
                 <li class="dropdown">
               <a href="{% url 'lista_rol' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Roles <b class="caret"></b></a>

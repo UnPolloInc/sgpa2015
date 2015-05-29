@@ -7,6 +7,7 @@ from django.contrib.admin.widgets import AdminDateWidget
 from sprint.models import Sprint
 from django.forms.widgets import HiddenInput
 from us.models import us
+from django.core.exceptions import ValidationError
 
 
 
@@ -32,6 +33,7 @@ class EjecutarSprintForm(ModelForm):
     class Meta:
         model = Sprint
         fields = ('estado',)
+
 
 
 class SprintForm(ModelForm):

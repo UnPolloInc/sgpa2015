@@ -33,6 +33,7 @@
             <td><a href="{% url 'borrar_flujo' flujo.id %}" class="btn btn-primary btn-sm btn-warning" >Eliminar</a></td-->
             <td><a href="{% url 'modificar_flujo' flujo.id %}" class="btn btn-sm btn-default " >Modificar</a></td>
             <td><a href="{% url 'lista_actividad' flujo.id %}" class="btn btn-sm btn-default">Configurar</a></td>
+            <td><a href="{% url 'us_listar_flujos' proyecto.id flujo.id %}" class="btn btn-sm btn-default">User Storie</a></td>
         </tr>
     {% endfor %}
 </table>

@@ -14,6 +14,28 @@ from usuarios.views import get_query
 import re
 from django.db.models import Q
 
+class IndexViewUsfl(ListView):
+    """
+        *Vista basada en Clase para lista de sprint*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'flujos/us_list.html'
+    model = us
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexViewUsfl, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexViewUsfl, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        qs = super(IndexViewUsfl,self).get_queryset()
+        userstories = us.objects.filter(flujo=self.kwargs['flujo'])
+        return userstories
 
 class CreateFlujos(CreateView):
     """
