@@ -11,6 +11,7 @@ from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
 from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm
+from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
 from django.db.models import Q
@@ -107,7 +108,9 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = proyecto
+        context['lider'] = Usuario.objects.get(pk=proyecto.lider_proyecto)
         return context
 
     def get_queryset(self):

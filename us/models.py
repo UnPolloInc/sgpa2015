@@ -23,7 +23,7 @@ class us(models.Model):
         ('CAN', 'Cancelado'),
         ('OK', 'Aprobado')
     )
-    nombre = models.CharField(max_length=100, unique=True)
+    nombre = models.CharField(max_length=100)
     valor_de_negocio = models.IntegerField(max_length=2, help_text='Introduzca un valor de negocio (1 al 10)', null = False)
     prioridad = models.IntegerField(max_length=3, help_text= 'Introduzca alguna prioridad para el User Stories', null=False, validators=[MinValueValidator(1), MaxValueValidator(100)])
     valor_tecnico = models.IntegerField(max_length=2, help_text='Introduzca un valor técnico al User Stories', null = False)
