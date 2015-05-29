@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends "main/principal.html" %}
+{% block menu %}
+{% block list %}
+<form method="post">
+    {% csrf_token %}
+    <div class="alert alert-danger">Estas seguro que deseas eliminar el mensaje?</div>
+
+    <input type="submit" class="btn btn-default" value="Eliminar" />
+    <a href="{% url 'lista_recibidos' proyecto.id %}" class="btn btn-sm btn-default">Cancelar</a>
+</form>
+{% endblock %}
+{% endblock %}

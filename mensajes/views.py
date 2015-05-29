@@ -8,15 +8,12 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from mensajes.forms import mensajesForm, mensajesUpdateForm
-from mensajes.models import mensajes
+from mensajes.models import Mensaje
 import re
 from django.db.models import Q
 from proyectos.models import Proyecto
-from mensajes.models import mensajes
 from usuarios.models import Usuario
 from miembros.models import Miembro
-from django.contrib.auth.models import User
-
 
 class CreateMensaje(CreateView):
     """
@@ -50,38 +47,33 @@ class CreateMensaje(CreateView):
 
     def get_success_url(self, **kwargs):
         kwargs = super(CreateMensaje, self).get_form_kwargs(**kwargs)
-        return reverse('lista_mensaje',args=[self.kwargs['pk']])
+        return reverse('lista_recibidos',args=[self.kwargs['pk']])
 
 
 
 
-class IndexView(ListView):
+class EnviadosView(ListView):
     """
         *Vista basada en Clase para lista de mensajes*:
             + *template_name*: nombre del template que vamos a renderizar
             + *model*: modelo que vamos a listar.
     """
-    template_name = 'mensajes_list'
-    model = mensajes
+    template_name = 'mensajes/mensajes_list.html'
+    model = Mensaje
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(IndexView, self).dispatch(*args, **kwargs)
+        return super(EnviadosView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
+        context = super(EnviadosView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['lider'] = Usuario.objects.get(pk=self.request.user)
         return context
 
     def get_queryset(self):
-        qs=super(IndexView, self).get_queryset()
-        return qs.filter(proyecto=self.kwargs['pk'])
-        #remitentes = mensajes.objects.filter(proyecto=self.kwargs['pk']).filter(remitente=self.request.user)
-        #destinatarios = mensajes.objects.filter(proyecto=self.kwargs['pk'])
-        #destinatarios=destinatarios.filter(destinatario=self.kwargs['usuario'])
-        #clientes = mensajes.objects.filter(cliente=self.request.user)
-        #matches = remitentes
-        #return matches
+        qs=super(EnviadosView, self).get_queryset()
+        return qs.filter(proyecto=self.kwargs['pk']).filter(remitente=self.request.user)
 
 
 
@@ -90,7 +82,7 @@ class MensajeMixin(object):
         *Vista Basada en Clase para soporte de eliminacion de proyecto*:
             + *model*: modelo a ser eliminado
     """
-    model = mensajes
+    model = Mensaje
 
     def get_context_data(self, **kwargs):
         kwargs.update({'object_name':'mensajes'})
@@ -104,7 +96,7 @@ class DeleteMensaje(MensajeMixin, DeleteView):
             + *template_name*: nombre del template a ser rendirizado
             + *success_url: url a ser redireccionada en caso de exito*
     """
-    template_name = 'mensaje/delete_confirm.html'
+    template_name = 'mensajes/delete_confirm.html'
 
     #success_url = '/proyectos/flujos/'
 
@@ -114,8 +106,17 @@ class DeleteMensaje(MensajeMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(DeleteMensaje, self).get_context_data(**kwargs)
-        context['mensaje'] = mensajes.objects.get(pk=self.kwargs['pk'])
+        mensaje = Mensaje.objects.get(pk=self.kwargs['pk'])
+        context['mensaje'] = mensaje
+        context['proyecto'] = mensaje.proyecto
         return context
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(DeleteMensaje, self).get_context_data(**kwargs)
+        mensaje = Mensaje.objects.get(pk=self.kwargs['pk'])
+        proyecto = mensaje.proyecto.pk
+        return reverse('lista_recibidos', args=[proyecto])
+
 
 
 #class UpdateMensaje(UpdateView):
@@ -188,7 +189,7 @@ def search(request):
 
         entry_query = get_query(query_string, ['destinatario'])
 
-        found_entries = mensajes.objects.filter(entry_query).order_by('destinatario')
+        found_entries = Mensaje.objects.filter(entry_query).order_by('destinatario')
     return render_to_response('mensajes/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))
@@ -201,23 +202,20 @@ class RecibidosView(ListView):
             + *template_name*: nombre del template que vamos a renderizar
             + *model*: modelo que vamos a listar.
     """
-    template_name = 'mensajes_list'
-    model = mensajes
+    template_name = 'mensajes/mensajes_list.html'
+    model = Mensaje
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(IndexView, self).dispatch(*args, **kwargs)
+        return super(RecibidosView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
+        context = super(RecibidosView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['lider'] = Usuario.objects.get(pk=self.request.user)
         return context
 
     def get_queryset(self):
-        miembro=Miembro.objects.get(usuario=self.request.user)
-        destinatarios = mensajes.objects.filter(proyecto=self.kwargs['pk']).filter(remitente=self.request.user)
-        #destinatarios = mensajes.objects.filter(proyecto=self.kwargs['pk'])
-        #destinatarios=destinatarios.filter(destinatario=self.kwargs['usuario'])
-        #clientes = mensajes.objects.filter(cliente=self.request.user)
-        matches = remitentes
-        return matches
+        qs=super(RecibidosView, self).get_queryset()
+        miembro = Miembro.objects.filter(proyecto=self.kwargs['pk']).filter(usuario=self.request.user)
+        return qs.filter(proyecto=self.kwargs['pk']).filter(destinatario=miembro)

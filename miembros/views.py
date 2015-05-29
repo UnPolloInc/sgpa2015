@@ -100,7 +100,8 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = proyecto
         context['lider'] = Usuario.objects.get(pk=self.request.user)
         return context
 

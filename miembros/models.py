@@ -16,5 +16,5 @@ class Miembro(models.Model):
     rol = models.ForeignKey(Rol)
 
     def __unicode__(self):
-        return self.usuario.username+self.proyecto.nombre
+        return self.usuario.username
 
