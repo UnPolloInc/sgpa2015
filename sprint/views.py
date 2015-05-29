@@ -135,6 +135,7 @@ class EjecutarSprint(UpdateView):
         context = super(EjecutarSprint, self).get_context_data(**kwargs)
         sprint = Sprint.objects.get(pk=self.kwargs['pk'])
         context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
+        context['lider'] = Usuario.objects.get(pk=self.request.user)
         return context
 
 
