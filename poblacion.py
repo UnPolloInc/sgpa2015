@@ -1,6 +1,7 @@
 __author__ = 'chelox'
  
 #from django.db import models
+from django.contrib.auth.models import User, Group, Permission
 from usuarios.models import Usuario
 from proyectos.models import Proyecto
 from sprint.models import Estado
@@ -8,9 +9,11 @@ from clientes.models import Cliente
 from sprint.models import Sprint
 from django.utils.datetime_safe import date
 from flujos.models import Flujos
+from miembros.models import Miembro
 #from django.contrib.auth.models import User
 from django.utils.datetime_safe import date
 from us.models import us
+from roles.models import Rol
 Usuario.objects.all().delete()
 #Tipo_Item.objects.all().delete()
 #Fase.objects.all().delete()
@@ -72,19 +75,19 @@ cliente3.save()
  
 proyecto1 = Proyecto(nombre='alpha project', descripcion='este proyecto corresponde a Alvaro Rodriguez',
                      fecha_inicio= date.today(), fecha_fin=date.today(), fecha_creacion=date.today(),
-                     lider_proyecto=usuario1, cliente=cliente1)
+                     lider_proyecto=usuario1, cliente=cliente1, estado='PEN')
 proyecto2 = Proyecto(nombre='beta project', descripcion='este proyecto corresponde a Homero Simpson', cliente=cliente2,
                      fecha_inicio= date.today(), fecha_fin=date.today(), fecha_creacion=date.today(),
-                     lider_proyecto=usuario2, )
+                     lider_proyecto=usuario2,estado='PEN' )
 proyecto3 = Proyecto(nombre='gamma project', descripcion='este proyecto corresponde a Walter White',
                      fecha_inicio= date.today(),cliente=cliente3, fecha_fin=date.today(),
-                     fecha_creacion=date.today(),lider_proyecto=usuario3)
+                     fecha_creacion=date.today(),lider_proyecto=usuario3,estado='PEN')
 proyecto4 = Proyecto(nombre='delta project', descripcion='este proyecto corresponde a John Snow',
                      fecha_inicio= date.today(), fecha_fin=date.today(), fecha_creacion=date.today(),
-                     lider_proyecto=usuario4, cliente=cliente3)
+                     lider_proyecto=usuario4, cliente=cliente3,estado='PEN')
 proyecto5 = Proyecto(nombre='epsilon project', descripcion='este proyecto corresponde a Bruce Banner',
                      fecha_inicio= date.today(), fecha_fin=date.today(), fecha_creacion=date.today(),
-                     lider_proyecto=usuario5, cliente=cliente2)
+                     lider_proyecto=usuario5, cliente=cliente2,estado='PEN')
  
 proyecto1.save()
 proyecto2.save()
@@ -101,22 +104,28 @@ en_ejecucion.save()
 finalizado = Estado(estado='Finalizado')
 finalizado.save()
 
-sprint1 = Sprint(nombre='SprintPro1', proyecto=proyecto1, descripcion='sprint correspondiente al proyecto 1', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
+sprint1 = Sprint(nombre='SprintPro1', proyecto=proyecto1, descripcion='sprint correspondiente al proyecto 1',
+                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint1.save()
  
-sprint2 = Sprint(nombre='Sprint2Pro1', proyecto=proyecto1, descripcion='2do sprint correspondiente al proyecto 1', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
+sprint2 = Sprint(nombre='Sprint2Pro1', proyecto=proyecto1, descripcion='2do sprint correspondiente al proyecto 1',
+                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint2.save()
  
-sprint3 = Sprint(nombre='SprintPro2', proyecto=proyecto2, descripcion='sprint correspondiente al proyecto 2', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
+sprint3 = Sprint(nombre='SprintPro2', proyecto=proyecto2, descripcion='sprint correspondiente al proyecto 2',
+                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint3.save()
  
-sprint4 = Sprint(nombre='2SprintPro2', proyecto=proyecto2, descripcion='2do sprint correspondiente al proyecto 2', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
+sprint4 = Sprint(nombre='2SprintPro2', proyecto=proyecto2, descripcion='2do sprint correspondiente al proyecto 2',
+                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint4.save()
  
-sprint5 = Sprint(nombre='SprintPro3', proyecto=proyecto3, descripcion='sprint correspondiente al proyecto 3', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
+sprint5 = Sprint(nombre='SprintPro3', proyecto=proyecto3, descripcion='sprint correspondiente al proyecto 3',
+                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint5.save()
  
-sprint6 = Sprint(nombre='2Sprint2Pro3', proyecto=proyecto3, descripcion='2do sprint correspondiente al proyecto 3', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
+sprint6 = Sprint(nombre='2Sprint2Pro3', proyecto=proyecto3, descripcion='2do sprint correspondiente al proyecto 3',
+                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint6.save()
  
 sprint7 = Sprint(nombre='SprintPro4', proyecto=proyecto4, descripcion='sprint correspondiente al proyecto 4', duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
@@ -141,15 +150,66 @@ flujo4.save()
  
 flujo5 = Flujos(nombre= '1er flujo del proyecto5', descripcion='ninguna', fecha_hora_creacion=date.today(), proyecto=proyecto5)
 flujo5.save()
+
+rolMiembro = Rol(name='rolMiembroPro1', proyecto=proyecto1)
+#rolMiembro.permissions=[can_add_rol,can_change_rol]
+rolMiembro.save()
+miembro1 = Miembro(rol=rolMiembro,proyecto=proyecto1,usuario=usuario2,horas_por_dia=6)
+miembro1.save()
+miembro2 = Miembro(rol=rolMiembro,proyecto=proyecto1,usuario=usuario3,horas_por_dia=5)
+miembro2.save()
+miembro3 = Miembro(rol=rolMiembro, proyecto=proyecto1,usuario=usuario4,horas_por_dia=4)
+miembro3.save()
+miembro4 =Miembro(rol=rolMiembro, proyecto=proyecto2,usuario=usuario5,horas_por_dia=4)
+miembro4.save()
+miembro5 =Miembro(rol=rolMiembro, proyecto=proyecto3,usuario=usuario1,horas_por_dia=4)
+miembro5.save()
+miembro22 = Miembro(rol=rolMiembro,proyecto=proyecto2,usuario=usuario3,horas_por_dia=5)
+miembro22.save()
+miembro33 = Miembro(rol=rolMiembro, proyecto=proyecto2,usuario=usuario4,horas_por_dia=4)
+miembro33.save()
+miembro222 = Miembro(rol=rolMiembro,proyecto=proyecto3,usuario=usuario3,horas_por_dia=5)
+miembro222.save()
+miembro333 = Miembro(rol=rolMiembro, proyecto=proyecto3,usuario=usuario4,horas_por_dia=4)
+miembro333.save()
+
+us1p1 = us(nombre='US1 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN',sprint=sprint1,flujo=flujo1, responsable=miembro1)
+us1p1.save()
  
-us1 = us(nombre='US1 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, duracion_horas_en_sprint=10)
-us1.save()
- 
-us2 = us(nombre='US1 para el proyecto 2', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, duracion_horas_en_sprint=10)
-us2.save()
- 
-us3 = us(nombre='US1 para el proyecto 3', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio', duracion_horas=10, duracion_horas_en_sprint=10)
-us3.save()
+us2p1 = us(nombre='US2 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN', sprint=sprint2,flujo=flujo1, responsable=miembro2)
+us2p1.save()
+
+us3p1 = us(nombre='US3 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN',sprint=sprint2,flujo=flujo1, responsable=miembro3)
+us3p1.save()
+
+
+
+
+us1p2 = us(nombre='US1 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN',sprint=sprint2,flujo=flujo1,responsable=miembro4)
+us1p2.save()
+us2p2 = us(nombre='US2 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN',sprint=sprint3,flujo=flujo2, responsable=miembro33)
+us2p2.save()
+
+us3p2 = us(nombre='US3 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN', sprint=sprint2,flujo=flujo1, responsable=miembro22)
+us3p2.save()
+
+
+us1p3 = us(nombre='US1 para el proyecto 3', proyecto=proyecto3,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN',sprint=sprint2,flujo=flujo1, responsable=miembro333)
+us1p3.save()
+
+us2p3 = us(nombre='US2 para el proyecto 3', proyecto=proyecto3,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN',sprint=sprint2,flujo=flujo1,responsable=miembro5)
+us2p3.save()
+us3p3 = us(nombre='US3 para el proyecto 3', proyecto=proyecto3,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, historial='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=10,estado='PEN',sprint=sprint3,flujo=flujo2, responsable=miembro222)
+us3p3.save()
 
 
 
