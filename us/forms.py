@@ -41,7 +41,9 @@ class usForm(ModelForm):
         self.fields['responsable'].widget = HiddenInput()
         self.fields['proyecto'].widget = HiddenInput()
         self.fields['duracion_horas_en_sprint'].widget = HiddenInput()
-        #self.fields['actividad'].widget = HiddenInput()
+        self.fields['actividad'].widget = HiddenInput()
+        self.fields['estado'].widget = HiddenInput()
+        self.fiedsp['estado_de_aprobacion'].widget = HiddenInput()
     class Meta:
         model = us
         fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable', 'duracion_horas_en_sprint', 'actividad', 'estado')
