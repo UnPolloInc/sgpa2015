@@ -14,12 +14,15 @@ from proyectos.models import Proyecto
 
 class us(models.Model):
     opciones_estado = (
-        ('PEN','Pendiente'),
         ('TODO', 'To Do'),
         ('DOING', 'Doing'),
         ('DONE', 'Done'),
     )
-
+    opciones_aprobacion = (
+        ('PEN','Pendiente'),
+        ('CAN', 'Cancelado'),
+        ('OK', 'Aprobado')
+    )
     nombre = models.CharField(max_length=100, unique=True)
     valor_de_negocio = models.IntegerField(max_length=2, help_text='Introduzca un valor de negocio (1 al 10)', null = False)
     prioridad = models.IntegerField(max_length=3, help_text= 'Introduzca alguna prioridad para el User Stories', null=False, validators=[MinValueValidator(1), MaxValueValidator(100)])
@@ -32,8 +35,8 @@ class us(models.Model):
     responsable = models.ForeignKey(Miembro, null=True, blank=True, on_delete=models.PROTECT)
     proyecto = models.ForeignKey(Proyecto, null=False)
     actividad = models.ForeignKey(Actividad, null=True)
-    estado = models.CharField(max_length=10, choices=opciones_estado, default='PEN', help_text='Estado del user story')
-
+    estado = models.CharField(max_length=10, choices=opciones_estado, default='TODO', help_text='Estado del user story')
+    estado_de_aprobacion = models.CharField(max_length=10, choices=opciones_aprobacion, default='PEN')
 
     def __unicode__(self):
         return self.nombre
