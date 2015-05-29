@@ -14,6 +14,7 @@ from proyectos.models import Proyecto
 
 class us(models.Model):
     opciones_estado = (
+        ('PEN','Pendiente'),
         ('TODO', 'To Do'),
         ('DOING', 'Doing'),
         ('DONE', 'Done'),
@@ -31,11 +32,8 @@ class us(models.Model):
     responsable = models.ForeignKey(Miembro, null=True, blank=True, on_delete=models.PROTECT)
     proyecto = models.ForeignKey(Proyecto, null=False)
     actividad = models.ForeignKey(Actividad, null=True)
-    estado = models.CharField(max_length=5, choices=opciones_estado, default='TODO', help_text='Estado del user story')
+    estado = models.CharField(max_length=10, choices=opciones_estado, default='PEN', help_text='Estado del user story')
 
-
-    def __unicode__(self):
-        return self.nombre
 
     def __unicode__(self):
         return self.nombre
