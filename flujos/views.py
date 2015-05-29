@@ -10,6 +10,7 @@ from flujos.forms import FlujosForm, FlujosUpdateForm, ActividadForm
 from flujos.models import Flujos, Actividad
 from proyectos.models import Proyecto
 from us.models import us
+from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
 from django.db.models import Q
@@ -29,7 +30,9 @@ class IndexViewUsfl(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexViewUsfl, self).get_context_data(**kwargs)
-        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = proyecto
+        context['lider'] = Usuario.objects.get(pk=proyecto.lider_proyecto)
         return context
 
     def get_queryset(self):
@@ -84,7 +87,10 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = proyecto
+        context['lider'] = Usuario.objects.get(pk=proyecto.lider_proyecto)
+
         return context
 
     def get_queryset(self):
