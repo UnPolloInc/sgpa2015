@@ -278,6 +278,7 @@ class ActividadesListView(ListView):
         flujo = Flujos.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = Proyecto.objects.get(pk=flujo.proyecto.pk)
         context['us_list'] = us.objects.filter(flujo=flujo)
+        context['lider']= Usuario.objects.get(pk=self.request.user)
         return context
 
     def get_queryset(self):
