@@ -1,7 +1,7 @@
 {% extends "main/menu.html" %}
 {% block busqueda %}
 {% endblock%}
-              {% block actividades %}
+{% block actividades %}
             <li class="dropdown">
               <a href="{% url 'lista_actividad' flujo.id %}" class="dropdown-toggle" data-toggle="dropdown">Actividad <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -9,9 +9,7 @@
                 <li><a href="{% url 'lista_actividad' flujo.id %}">Listar</a></li>
               </ul>
             </li>
-
-              {% endblock %}
-
+{% endblock %}
 {% block list %}
 <div class="col-sm-9">
       <div class="inner cover">
@@ -21,59 +19,19 @@
               <h1>Actividades</h1>
 
 
-              <table class="table" border="1" >
+              <table class="table">
                 <tr>
-                    {% for actividad in object_list %}
-
-                    <td colspan="3" align="center"><h1>{{ actividad.nombre }}</h1></td>
-
-                  {% endfor %}
+                    <th>Nombre</th>
+                    <th>Orden</th>
 
                 </tr>
-                 <tr>
-                     {% for actividad in object_list %}
-                      <td>TODO</td><td>DOING</td><td>DONE</td>
+{% for actividad in object_list %}
+            <tr>
+                <td>{{ actividad.nombre }}</td>
+                <td>{{ actividad.orden }}</td>
 
-
-
-                     {% endfor %}
-
-                </tr>
-
-{% for us in us_list %}
-                  <tr>
-                  {% for actividad in object_list %}
-
-
-                        {% if us.actividad == actividad %}
-                        <td>
-                            {% if us.estado == 'TODO'  %}
-                                {{ us.actividad  }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if us.estado == 'DOING'  %}
-                                {{ us.actividad }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if us.estado == 'DONE' %}
-                                {{ us.actividad }}
-                            {% endif %}
-                        </td>
-                        {% else %}
-                            <td></td><td></td><td></td>
-                        {% endif %}
-
-                    {% endfor %}
- </tr>
-                  {% endfor %}
-
-
-
-
-
-
+            </tr>
+{% endfor %}
               </table>
 
 </ul>

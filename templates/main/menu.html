@@ -18,17 +18,21 @@
             <li class="dropdown">
               <a href="{% url 'lista_sprint' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Sprint <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                  {% if proyecto.lider_proyecto == lider %}
                 <li><a href="{% url 'crear_sprint' proyecto.id %}">Crear</a></li>
+                  {% endif %}
                 <li><a href="{% url 'lista_sprint' proyecto.id %}">Pendiente</a></li>
                 <li><a href="{% url 'finalizar_sprint_list' proyecto.id %}">En ejecucion</a></li>
-                <li><a href="{% url 'sprint_finalizado_list' proyecto.id %}">Hostorico</a></li>
+                <li><a href="{% url 'sprint_finalizado_list' proyecto.id %}">Historico</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="{% url 'lista_flujo' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Flujo <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                 {% if proyecto.lider_proyecto == lider %}
                 <li><a href="{% url 'crear_flujo' proyecto.id %}">Crear</a></li>
-                <li><a href="{% url 'lista_flujo' proyecto.id %}">Listar</a></li>
+                {% endif %}
+                  <li><a href="{% url 'lista_flujo' proyecto.id %}">Listar</a></li>
               </ul>
             </li>
               {% block actividades %}
@@ -42,7 +46,7 @@
                 <li><a href="{% url 'lista_us' proyecto.id %}">Listar</a></li>
               </ul>
             </li>
-
+        {% if proyecto.lider_proyecto == lider  %}
               <li class="dropdown">
               <a href="{% url 'miembros_listar' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Equipo<b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -51,13 +55,15 @@
               </ul>
             </li>
             <!--<li><a href="#">Miembros</a></li>-->
-            <li class="dropdown">
+
+                <li class="dropdown">
               <a href="{% url 'lista_rol' proyecto.id %}" class="dropdown-toggle" data-toggle="dropdown">Roles <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="{% url 'crear_rol' proyecto.id %}">Agregar</a></li>
                 <li><a href="{% url 'lista_rol' proyecto.id %}">Listar</a></li>
               </ul>
             </li>
+              {% endif %}
                <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mensajes <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -81,6 +87,7 @@
             <p class="lead" align="center">
               <!--a href="#" class="btn btn-lg btn-default">Learn more</a-->
                 {{ proyecto.descripcion }}
+
             </p>
       </div>
 </div>
