@@ -9,9 +9,11 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from clientes.models import Cliente
+from flujos.models import Flujos, Actividad
 from miembros.models import Miembro
 from proyectos.forms import ProyectoForm, ProyectoUpdateForm
 from proyectos.models import Proyecto
+from us.models import us
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
@@ -180,3 +182,42 @@ def search(request):
     return render_to_response('proyectos/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))
+
+
+class Kanban(ListView):
+    """
+        *Vista basada en Clase para lista de sprint*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'proyectos/kanban.html'
+    model = Flujos
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(Kanban, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(Kanban, self).get_context_data(**kwargs)
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = proyecto
+        context['us_list'] = us.objects.filter(proyecto=proyecto).order_by('pk')
+        flujos= Flujos.objects.filter(proyecto=proyecto)
+
+        context['actividades'] = Actividad.objects.filter(flujo__in = flujos ).order_by('pk')
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+
+        return context
+
+    def get_queryset(self):
+        qs = super(Kanban,self).get_queryset()
+        flujos = Flujos.objects.filter(proyecto=self.kwargs['pk']).order_by('pk')
+        return flujos

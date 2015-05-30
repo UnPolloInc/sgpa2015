@@ -1,0 +1,77 @@
+{% extends "main/menu.html" %}
+{% block busqueda %}
+{% endblock%}
+
+{% block list %}
+<div class="col-sm-9">
+      <div class="inner cover">
+          <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
+          <ul class="list-group">
+
+              <h1>Kanban</h1>
+
+              {% for flujo in object_list %}
+              <h1>{{ flujo.nombre }}</h1>
+              <table class="table" border="1" >
+                <tr>
+                    {% for actividad in actividades %}
+                    {% if actividad.flujo == flujo %}
+                    <td colspan="3" align="center"><h1>{{ actividad.nombre }}</h1></td>
+                    {% endif %}
+                  {% endfor %}
+
+                </tr>
+                 <tr>
+                     {% for actividad in actividades %}
+                        {% if actividad.flujo == flujo %}
+                      <td>TODO</td><td>DOING</td><td>DONE</td>
+
+{% endif %}
+
+                     {% endfor %}
+
+                </tr>
+
+                {% for us in us_list %}
+                  {% if us.flujo == flujo %}
+                  <tr>
+                  {% for actividad in actividades %}
+
+                        {% if actividad.flujo == flujo %}
+                        {% if us.actividad == actividad %}
+                        <td>
+                            {% if us.estado == 'TODO'  %}
+                                {{ us.actividad  }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if us.estado == 'DOING'  %}
+                                {{ us.actividad }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if us.estado == 'DONE' %}
+                                {{ us.actividad }}
+                            {% endif %}
+                        </td>
+                        {% else %}
+                            <td></td><td></td><td></td>
+                        {% endif %}
+{% endif %}
+                    {% endfor %}
+ </tr>
+                  {% endif %}
+                  {% endfor %}
+
+
+
+
+
+
+              </table>
+{% endfor %}
+</ul>
+      </div>
+</div>
+
+{% endblock %}

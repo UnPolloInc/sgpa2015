@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
+from flujos.models import Actividad
 from us.models import us, registroTrabajoUs
 from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us
 
@@ -25,6 +26,8 @@ class usasigForm(ModelForm):
         us = super(usasigForm, self).save(commit=False)
         #proyecto.set_password(self.cleaned_data["password1"])
         if commit:
+            actividades=Actividad.objects.filter(flujo=us.flujo).order_by('pk')
+            us.actividad=actividades[0]
             us.save()
             notificar_asignacion_us(us.responsable.usuario,us.proyecto)
             #notificar_asignacion_us(us.proyecto.cliente,us.proyecto)

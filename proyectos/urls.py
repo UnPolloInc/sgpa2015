@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^configurar/(?P<pk>\d+)$', login_required(views.ConfigurarProyecto.as_view()), name='configurar'),
     url(r'^modificar/(?P<pk>\d+)$', login_required(views.UpdateProyecto.as_view()), name='modificar_proyecto'),
     url(r'^buscar/$', views.search, name='buscar_proyecto'),
+    url(r'^kanban/(?P<pk>\d+)$', login_required(views.Kanban.as_view()), name='kanban'),
 )
