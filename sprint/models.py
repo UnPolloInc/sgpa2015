@@ -28,7 +28,7 @@ class Sprint(models.Model):
     duracion_dias = models.IntegerField(default=0, help_text='Duracion en dias', max_length=2)
     observaciones = models.TextField(max_length=140, null=True, default='No hay observaciones')
     estado = models.ForeignKey(Estado, null=True, blank=True)
-
+    capacidadTotal = models.IntegerField(null=True,blank=True)
 
     def __unicode__(self):
         return self.nombre
