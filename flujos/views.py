@@ -89,7 +89,8 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
 
         return context
 
@@ -278,7 +279,8 @@ class ActividadesListView(ListView):
         flujo = Flujos.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = Proyecto.objects.get(pk=flujo.proyecto.pk)
         context['us_list'] = us.objects.filter(flujo=flujo)
-        context['lider']= Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
     def get_queryset(self):

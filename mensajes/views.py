@@ -68,7 +68,8 @@ class EnviadosView(ListView):
     def get_context_data(self, **kwargs):
         context = super(EnviadosView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
     def get_queryset(self):
@@ -212,7 +213,8 @@ class RecibidosView(ListView):
     def get_context_data(self, **kwargs):
         context = super(RecibidosView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
     def get_queryset(self):

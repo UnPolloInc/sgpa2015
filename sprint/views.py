@@ -34,7 +34,8 @@ class IndexViewFinalizado(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexViewFinalizado, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
     def get_queryset(self):
@@ -61,7 +62,8 @@ class IndexViewEnEjecucion(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexViewEnEjecucion, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
     def get_queryset(self):
@@ -98,7 +100,8 @@ class FinalizarSprint(UpdateView):
         context = super(FinalizarSprint, self).get_context_data(**kwargs)
         sprint = Sprint.objects.get(pk=self.kwargs['pk'])
         context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
 
@@ -135,7 +138,8 @@ class EjecutarSprint(UpdateView):
         context = super(EjecutarSprint, self).get_context_data(**kwargs)
         sprint = Sprint.objects.get(pk=self.kwargs['pk'])
         context['proyecto']= Proyecto.objects.get(pk=sprint.proyecto.pk)
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
 
@@ -197,7 +201,8 @@ class IndexViewUs(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexViewUs, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
     def get_queryset(self):
@@ -251,7 +256,8 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        context['lider'] = self.request.user
+        context['cliente'] = self.request.user
         return context
 
     def get_queryset(self):

@@ -63,6 +63,8 @@
               </ul>
             </li>
               {% endif %}
+
+              {% if proyecto.cliente != cliente %}
                <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mensajes <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -71,6 +73,11 @@
                 <li><a href="{% url 'lista_recibidos' proyecto.id %}">Recibidos</a></li>
               </ul>
             </li>
+              {% endif %}
+
+
+              <li><a href="#">Burdownchart</a></li>
+
             <li><a href="{% url 'lista_proyecto' %}">Atras</a></li>
           </ul>
 

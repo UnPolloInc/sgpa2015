@@ -2,12 +2,13 @@ from itertools import chain
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import request
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, get_object_or_404
 
 # Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from clientes.models import Cliente
 from miembros.models import Miembro
 from proyectos.forms import ProyectoForm, ProyectoUpdateForm
 from proyectos.models import Proyecto
@@ -57,20 +58,6 @@ class IndexView(ListView):
         else:
             matches = lideres | clientes | qs.filter(id__in=[miembro.proyecto.pk for miembro in miembros])
             return matches
-"""
-        if lideres:
-           return qs.filter(id__in=[miembro.proyecto.pk for miembro in miembros])
-        elif clientes:
-            return clientes
-        elif self.request.user.is_superuser:
-            return Proyecto.objects.all()
-        elif miembros:
-            return lideres
-        else:
-            return lideres
-"""
-
-
 
 
 class ProyectoMixin(object):
@@ -104,7 +91,16 @@ class ConfigurarProyecto(ProyectoMixin, DeleteView):
         context = super(ConfigurarProyecto, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
-        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+
         return context
 
 
