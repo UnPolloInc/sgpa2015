@@ -17,7 +17,7 @@ sys.path.append('/home/chelox/PycharmProjects/sgpa2015')
 #path = settings.PATH
 #if path not in sys.path:
     #sys.path.append(path)
-os.environ['DJANGO_SETTINGS_MODULE']= 'sgpa.settings'
+os.environ['DJANGO_SETTINGS_MODULE']= 'sgpa.settings_produccion'
 os.environ.setdefault('LANG', "en_US.UTF-8")
 os.environ.setdefault("LC_ALL", "en_US.UTF-8")
 

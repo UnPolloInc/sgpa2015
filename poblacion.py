@@ -13,6 +13,7 @@ from miembros.models import Miembro
 #from django.contrib.auth.models import User
 from django.utils.datetime_safe import date
 from us.models import us
+from flujos.models import Actividad
 from roles.models import Rol
 Usuario.objects.all().delete()
 #Tipo_Item.objects.all().delete()
@@ -219,6 +220,8 @@ miembro222 = Miembro(rol=develop,proyecto=proyecto3,usuario=usuario3,horas_por_d
 miembro222.save()
 miembro333 = Miembro(rol=develop, proyecto=proyecto3,usuario=usuario4,horas_por_dia=4)
 miembro333.save()
+
+
 
 
 us1 = us(nombre='US1 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',

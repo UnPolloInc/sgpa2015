@@ -13,6 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+DEFAULT_FILE_STORAGE = 'database_files.storage.DatabaseStorage'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -24,7 +25,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,7 +45,11 @@ INSTALLED_APPS = (
     'flujos',
     'sprint',
     'us',
+    'miembros',
+    'roles',
+    'mensajes',
     'Notificaciones',
+    'database_files',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,11 +97,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-#/home/chelox/PycharmProjects/sgpa2015
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT='/home/chelox/PycharmProjects/sgpa2015/sgpa/'
+STATIC_ROOT='/home/alforro/PycharmProjects/sgpa2015/static/'
 STATIC_URL = '/static/'
 #para que django pueda encontrar los templates.
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
@@ -126,9 +131,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
 )
 
+
 # Configuracion de mail
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'sgpa2015q06@gmail.com'
 EMAIL_HOST_PASSWORD = 'sgpa2015'
 EMAIL_PORT = 587
+
