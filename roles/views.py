@@ -8,6 +8,7 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
 import re
+from clientes.models import Cliente
 from proyectos.models import Proyecto
 from roles.forms import RolForm, RolUpdateForm
 from roles.models import Rol
@@ -62,8 +63,15 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
         return context
 
     def get_queryset(self):

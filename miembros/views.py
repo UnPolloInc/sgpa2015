@@ -1,6 +1,7 @@
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template import RequestContext
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from clientes.models import Cliente
 from miembros.forms import MiembroForm, MiembroUpdateForm
 from miembros.models import Miembro
 from django.utils.decorators import method_decorator
@@ -44,9 +45,17 @@ class IndexViewVerUser(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexViewVerUser, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
         return context
+
 
 
 
@@ -103,8 +112,15 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
         return context
 
     def get_queryset(self):

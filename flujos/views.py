@@ -6,6 +6,7 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from clientes.models import Cliente
 from flujos.forms import FlujosForm, FlujosUpdateForm, ActividadForm
 from flujos.models import Flujos, Actividad
 from proyectos.models import Proyecto
@@ -32,7 +33,16 @@ class IndexViewUsfl(ListView):
         context = super(IndexViewUsfl, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
-        context['lider'] = Usuario.objects.get(pk=proyecto.lider_proyecto)
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+
         return context
 
     def get_queryset(self):
@@ -89,8 +99,15 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
 
         return context
 
@@ -279,8 +296,16 @@ class ActividadesListView(ListView):
         flujo = Flujos.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = Proyecto.objects.get(pk=flujo.proyecto.pk)
         context['us_list'] = us.objects.filter(flujo=flujo)
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+
         return context
 
     def get_queryset(self):

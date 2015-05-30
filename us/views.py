@@ -6,6 +6,7 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from clientes.models import Cliente
 from flujos.models import Flujos
 from proyectos.models import Proyecto
 from miembros.models import Miembro
@@ -110,8 +111,15 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
         return context
 
     def get_queryset(self):

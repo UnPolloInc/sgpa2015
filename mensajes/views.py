@@ -7,6 +7,7 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from clientes.models import Cliente
 from mensajes.forms import mensajesForm, mensajesUpdateForm
 from mensajes.models import Mensaje
 import re
@@ -68,8 +69,15 @@ class EnviadosView(ListView):
     def get_context_data(self, **kwargs):
         context = super(EnviadosView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
         return context
 
     def get_queryset(self):
@@ -213,8 +221,15 @@ class RecibidosView(ListView):
     def get_context_data(self, **kwargs):
         context = super(RecibidosView, self).get_context_data(**kwargs)
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['lider'] = self.request.user
-        context['cliente'] = self.request.user
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
         return context
 
     def get_queryset(self):
