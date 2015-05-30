@@ -291,15 +291,11 @@ class createRegistro(CreateView):
     """
     template_name = 'us/crearRegistro.html'
     form_class = registroForm
-    #success_url = '/us'
 
-    #@user_passes_test(lambda user: user.is_superuser)
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(createRegistro, self).dispatch(*args, **kwargs)
 
-    #def get_family(self):
-    #    return get_object_or_404(Family, pk=self.kwargs.get('family_pk'))
 
 
     def get_form_kwargs(self, **kwargs):
