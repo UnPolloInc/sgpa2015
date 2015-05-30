@@ -16,9 +16,12 @@ class RolForm(ModelForm):
 
         super(RolForm, self).__init__(*args, **kwargs)
         self.fields['proyecto'].widget = HiddenInput()
-        if pass_a_Q_object:
+        permissions=['Can add us','Can add miembro','Can add rol','Can change rol','Can add sprint', 'Can add flujo','Can change flujo', 'Can add actividad',
+                     'Can change actividad', 'Can add registro trabajo us',]
+        self.fields['permissions'].queryset = Permission.objects.filter(name__in=permissions)
+        """if pass_a_Q_object:
             self.fields['permissions'].queryset = Permission.objects.filter(pass_a_Q_object)
-
+        """
 
     class Meta:
         model = Rol
@@ -39,7 +42,15 @@ class RolUpdateForm(ModelForm):
     """
     permissions = forms.ModelMultipleChoiceField(Permission.objects.all(), widget=forms.CheckboxSelectMultiple)
 
+    def __init__( self, pass_a_Q_object=None, *args, **kwargs ):
+
+        super(RolUpdateForm, self).__init__(*args, **kwargs)
+
+        permissions=['Can add us','Can add miembro','Can add rol','Can change rol','Can add sprint', 'Can add flujo','Can change flujo', 'Can add actividad',
+                     'Can change actividad', 'Can add registro trabajo us',]
+        self.fields['permissions'].queryset = Permission.objects.filter(name__in=permissions)
+
     class Meta:
         model = Rol
-        fields = ('name', 'permissions')
+        fields = ('name', 'permissions', )
 
