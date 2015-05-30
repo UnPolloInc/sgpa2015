@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import request
+from django.http import request, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
@@ -15,7 +15,7 @@ from sprint.models import Sprint, Estado
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
-from django.db.models import Q
+from django.db.models import Q, ProtectedError
 from us.models import us
 
 class IndexViewFinalizado(ListView):

@@ -29,12 +29,20 @@ class EjecutarSprintForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EjecutarSprintForm, self).__init__(*args, **kwargs)
         self.fields['estado'].widget = HiddenInput()
-
+        self.fields['proyecto'].widget = HiddenInput()
     class Meta:
         model = Sprint
-        fields = ('estado',)
+        fields = ('proyecto', 'estado',)
 
-
+    def clean_estado(self):
+        data = self.cleaned_data['estado']
+        proyecto=self.cleaned_data['proyecto']
+        sprint = Sprint.objects.filter(pk=proyecto.pk).filter(estado=2)
+        if sprint != None:
+            raise forms.ValidationError("Actualmente hay otro sprint en ejecucion.")
+        # Always return the cleaned data, whether you have changed it or
+        # not.
+        return data
 
 class SprintForm(ModelForm):
     """
