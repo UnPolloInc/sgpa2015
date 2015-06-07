@@ -5,6 +5,9 @@ from django.utils.datetime_safe import date
 from clientes.models import Cliente
 from usuarios.models import Usuario
 # Create your models here.
+
+
+
 class Proyecto(models.Model):
     opciones_estado = (
         ('PEN', 'Pendiente'),
@@ -20,6 +23,7 @@ class Proyecto(models.Model):
     fecha_fin = models.DateField(help_text='Fecha estimada de finalizacion', null=True)
     estado = models.CharField(max_length=3, choices=opciones_estado, default='PEN', help_text='Estado del proyecto')
     observaciones = models.TextField(max_length=140, null=True, default='No hay observaciones')
+
 
     def __unicode__(self):
         return self.nombre

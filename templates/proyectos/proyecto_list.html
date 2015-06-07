@@ -23,9 +23,14 @@
         <th>Fecha de Finalizacion</th>
         <th>Estado</th>
         <th>Observaciones</th>
-        <th>Configurar</th>
-        <th>Modificar</th>
+        {%  if user.is_superuser %}
 
+            {% else %}
+            <th>Configurar</th>
+        {% endif %}
+{%  if user.is_superuser %}
+        <th>Modificar</th>
+{% endif %}
     </tr>
     {% for proyecto in object_list %}
         <tr>
@@ -37,8 +42,15 @@
             <td>{{ proyecto.fecha_fin }}</td>
             <td>{{ proyecto.estado }}</td>
             <td>{{ proyecto.observaciones }}</td>
+            {%  if user.is_superuser %}
+
+            {% else %}
             <td><a href="{% url 'configurar' proyecto.id %}" class="btn btn-sm btn-default" >Configurar</a></td>
+            {% endif %}
+            {%  if user.is_superuser %}
+
             <td><a href="{% url 'modificar_proyecto' proyecto.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
+        {% endif %}
 
         </tr>
     {% endfor %}
