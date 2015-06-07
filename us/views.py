@@ -11,13 +11,91 @@ from flujos.models import Flujos
 from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
-from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm
+from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
 from django.db.models import Q
 from us.models import us, registroTrabajoUs
 from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us
+
+class Aprobar(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un sprint:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'us/aprobar_us.html'
+    model = us
+    form_class = AprobarForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(Aprobar, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(Aprobar, self).get_form_kwargs(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['estado_de_aprobacion'] = 'OK'
+        return kwargs
+
+
+    def get_context_data(self, **kwargs):
+        context = super(Aprobar, self).get_context_data(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=userstorie.proyecto.pk)
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(Aprobar, self).get_form_kwargs(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        return reverse('lista_us',args=[userstorie.proyecto.pk])
+
+
+class IndexViewAprobados(ListView):
+    """
+        *Vista basada en Clase para lista de flujos*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'us/aprobado_list.html'
+    model = us
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexViewAprobados, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexViewAprobados, self).get_context_data(**kwargs)
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = proyecto
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+        return context
+
+    def get_queryset(self):
+        qs = super(IndexViewAprobados, self).get_queryset()
+        userstories = us.objects.filter(proyecto=self.kwargs['pk'])
+        return userstories.filter(flujo__isnull=True, sprint__isnull=True, responsable__isnull=True, estado_de_aprobacion='OK')
 
 class Asignacion(UpdateView):
     """
@@ -125,7 +203,7 @@ class IndexView(ListView):
     def get_queryset(self):
         qs = super(IndexView, self).get_queryset()
         userstories = us.objects.filter(proyecto=self.kwargs['pk'])
-        return userstories.exclude(flujo__isnull=False, sprint__isnull=False, responsable__isnull=False)
+        return userstories.filter(flujo__isnull=True, sprint__isnull=True, responsable__isnull=True, estado_de_aprobacion='PEN')
 
 
 class usMixin(object):

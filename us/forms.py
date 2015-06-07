@@ -6,6 +6,17 @@ from us.models import us, registroTrabajoUs
 from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us, notificar_generico
 
 
+class AprobarForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(AprobarForm, self).__init__(*args, **kwargs)
+        self.fields['estado_de_aprobacion'].widget = HiddenInput()
+        self.fields['proyecto'].widget = HiddenInput()
+    class Meta:
+        model = us
+        fields = ('proyecto', 'estado_de_aprobacion',)
+
+
 class usasigForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -63,7 +74,7 @@ class usUpdateForm(ModelForm):
 
    class Meta:
         model = us
-        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'descripcion', 'duracion_horas')
+        fields = ('nombre','valor_de_negocio', 'prioridad', 'valor_tecnico', 'descripcion', 'duracion_horas', 'estado_de_aprobacion',)
 
    def save(self, commit=True):
         # Save the provided password in hashed format

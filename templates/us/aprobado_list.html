@@ -14,17 +14,20 @@
           <h1 class="cover-heading" align="center">{{ proyecto.nombre }}</h1>
 
 <ul class="list-group">
-<h1>Product Back Log (pendiente de aprobación)</h1>
+<h1>Product Back Log (aprobados)</h1>
 <table class="table">
     <tr>
 
         <th>Nombre</th>
         <th>Prioridad</th>
-        <th>Descripción</th>
+        <th>Descripcion</th>
         <th>Tiempo estimado</th>
+        <th>Sprint</th>
+        <th>Flujo</th>
+        <th>Responsable</th>
         <th>Priorizar</th>
         <th>Modificar</th>
-        <th>Aprobar</th>
+        <th>Asignar US</th>
 
 
     </tr>
@@ -34,10 +37,16 @@
             <td>{{ us.prioridad }}</td>
             <td>{{ us.descripcion }}</td>
             <td>{{ us.duracion_horas }}</td>
+            <td>{{ us.sprint }}</td>
+            <td>{{ us.flujo }}</td>
+            <td>{{ us.responsable }}</td>
+
+
+
 
             <td><a href="{% url 'priorizar_us' us.id %}" class="btn btn-sm btn-default" >Priorizar</a></td>
             <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
-            <td><a href="{% url 'aprobar_us' us.id %}" class="btn btn-sm btn-default" >Aprobar</a></td>
+            <td><a href="{% url 'asignar_us' us.id %}" class="btn btn-sm btn-default" >Asignar</a></td>
         </tr>
     {% endfor %}
 </table>

@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^registrar/(?P<proyecto>\d+)/(?P<pk>\d+)$', login_required(views.createRegistro.as_view()), name='crearRegistro'),
     url(r'^listarRegistro/(?P<proyecto>\d+)/(?P<pk>\d+)$', login_required(views.registroView.as_view()), name='lista_registro'),
     url(r'^estado/(?P<pk>\d+)$', login_required(views.CambiarEstadoUs.as_view()), name='cambiar_estado'),
+    url(r'^aprobados/(?P<pk>\d+)$', login_required(views.IndexViewAprobados.as_view()), name='aprobado_us'),
+    url(r'^aprobar/(?P<pk>\d+)$', login_required(views.Aprobar.as_view()), name='aprobar_us'),
 )
 
 
