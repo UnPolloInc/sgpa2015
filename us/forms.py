@@ -3,9 +3,7 @@ from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
 from flujos.models import Actividad
 from us.models import us, registroTrabajoUs
-from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us
-
-
+from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us, notificar_generico
 
 
 class usasigForm(ModelForm):
@@ -102,3 +100,36 @@ class registroForm(ModelForm):
     class Meta:
         model = registroTrabajoUs
         fields = ('descripcion','horas_dedicadas','us','archivo_adjunto')
+
+
+
+class CambiarEstadoUsForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CambiarEstadoUsForm, self).__init__(*args, **kwargs)
+        self.fields['estado'].widget = HiddenInput()
+
+    class Meta:
+        model = us
+        fields = ('estado',)
+
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        us = super(CambiarEstadoUsForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            if us.estado == 'TODO':
+                us.estado = 'DOING'
+            elif us.estado == 'DOING':
+                us.estado = 'DONE'
+            elif us.estado == 'DONE':
+                try:
+                    actividad = Actividad.objects.filter(orden = us.actividad.orden+1)
+                    us.actividad=actividad.get(flujo=us.flujo)
+                    us.estado='TODO'
+                except:
+                    #falta que el lider pueda finalizar el user storie aca.
+                    us.save()
+            us.save()
+        return us

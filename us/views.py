@@ -11,7 +11,7 @@ from flujos.models import Flujos
 from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
-from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm
+from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
@@ -331,3 +331,34 @@ class registroView(ListView):
         #qs = super(registroView, self).get_queryset()
         registros = registroTrabajoUs.objects.filter(us=self.kwargs['pk'])
         return registros
+
+class CambiarEstadoUs(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un flujo:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'us/update.html'
+    model = us
+    form_class = CambiarEstadoUsForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CambiarEstadoUs, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(CambiarEstadoUs, self).get_context_data(**kwargs)
+        Us = us.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
+        context['proyecto']= proyecto
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(CambiarEstadoUs, self).get_form_kwargs(**kwargs)
+        Us = us.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
+        return reverse('kanban',args=[proyecto.pk])
+
