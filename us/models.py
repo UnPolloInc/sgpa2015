@@ -45,7 +45,7 @@ class us(models.Model):
 class registroTrabajoUs(models.Model):
     us=models.ForeignKey(us, null=False)
     descripcion=models.TextField(max_length=200,unique=False, help_text='Introduzca una descricpion del trabajo realizado')
-    horas_dedicadas = models.IntegerField(max_length=2, help_text='Introduzca las horas dedicadas')
+    horas_dedicadas = models.IntegerField(max_length=2, help_text='Introduzca las horas dedicadas',validators=[MinValueValidator(0),])
     fecha_hora_creacion = models.DateTimeField(default=date.today(), auto_now_add=True, help_text='Hora de envio del mensaje', null=True)
     #archivo_adjunto= models.BinaryFi`eld()
     archivo_adjunto = models.FileField(null=True)

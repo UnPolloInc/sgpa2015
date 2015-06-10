@@ -384,7 +384,7 @@ class createRegistro(CreateView):
 
     def get_success_url(self, **kwargs):
         kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
-        return reverse('lista_registro',args=[self.kwargs['proyecto'],self.kwargs['pk']])
+        return reverse('kanban',args=[self.kwargs['proyecto']])
 
 class registroView(ListView):
     """
