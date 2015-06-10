@@ -110,7 +110,7 @@ class registroForm(ModelForm):
 
     class Meta:
         model = registroTrabajoUs
-        fields = ('descripcion','horas_dedicadas','us','archivo_adjunto')
+        fields = ('descripcion','horas_dedicadas','us','archivo_adjunto',)
 
 
 

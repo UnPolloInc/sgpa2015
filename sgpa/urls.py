@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-#from secret import urls
+from django.conf.urls.static import static
+from sgpa import settings
 
 urlpatterns = patterns('',
     # Examples:
@@ -21,4 +22,4 @@ urlpatterns = patterns('',
     url(r'^mensajes/', include('mensajes.urls')),
 
 
-)
+)+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

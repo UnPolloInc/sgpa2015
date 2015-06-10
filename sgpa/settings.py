@@ -13,7 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-DEFAULT_FILE_STORAGE = 'database_files.storage.DatabaseStorage'
+#DEFAULT_FILE_STORAGE = 'database_files.storage.DatabaseStorage'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -25,7 +25,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -139,3 +139,7 @@ EMAIL_HOST_USER = 'sgpa2015q06@gmail.com'
 EMAIL_HOST_PASSWORD = 'sgpa2015'
 EMAIL_PORT = 587
 
+# Para los archivos
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'userfiles')
+MEDIA_URL = '/files/'  # Note they don't have to be identical names

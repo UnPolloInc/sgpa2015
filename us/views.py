@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, render_to_response
@@ -5,7 +6,7 @@ from django.shortcuts import render, render_to_response
 # Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView, FormView
 from clientes.models import Cliente
 from flujos.models import Flujos
 from proyectos.models import Proyecto
@@ -358,34 +359,6 @@ def search(request):
                           { 'query_string': query_string, 'found_entries': found_entries },
                           context_instance=RequestContext(request))
 
-
-class createRegistro(CreateView):
-
-    """
-        *Vista Basada en Clase para crear flujos*:
-            + *template_name*: nombre del template que vamos renderizar
-            + *form_class*: formulario para crear flujos
-            + *success_url*: url en caso de exito
-    """
-    template_name = 'us/crearRegistro.html'
-    form_class = registroForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(createRegistro, self).dispatch(*args, **kwargs)
-
-
-
-    def get_form_kwargs(self, **kwargs):
-        kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
-        #proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
-        kwargs['initial']['us'] = self.kwargs['pk']
-        return kwargs
-
-    def get_success_url(self, **kwargs):
-        kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
-        return reverse('kanban',args=[self.kwargs['proyecto']])
-
 class registroView(ListView):
     """
         *Vista basada en Clase para lista de flujos*:
@@ -409,6 +382,31 @@ class registroView(ListView):
         #qs = super(registroView, self).get_queryset()
         registros = registroTrabajoUs.objects.filter(us=self.kwargs['pk'])
         return registros
+
+class createRegistro(FormView):
+
+    form_class = registroForm
+    template_name = "us/crearRegistro.html"
+
+    def form_valid(self, form):
+        form.save(commit=True)
+        messages.success(self.request, 'File uploaded!')
+        return super(createRegistro, self).form_valid(form)
+
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(createRegistro, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
+        #proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['us'] = self.kwargs['pk']
+        return kwargs
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
+        return reverse('kanban',args=[self.kwargs['proyecto']])
 
 class CambiarEstadoUs(UpdateView):
     """

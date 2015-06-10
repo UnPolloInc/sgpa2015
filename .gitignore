@@ -55,3 +55,4 @@ target/
 
 ## Directory-based project format:
 .idea/
+userfiles/*
