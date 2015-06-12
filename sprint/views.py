@@ -1,9 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import request, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect
-
-# Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
@@ -18,7 +15,9 @@ from usuarios.views import get_query
 import re
 from django.db.models import Q, ProtectedError
 from us.models import us
-
+import random
+import datetime
+import time
 class IndexViewFinalizado(ListView):
     """
         *Vista basada en Clase para lista de sprint*:
@@ -409,3 +408,28 @@ def search(request,pk):
     return render_to_response('sprint/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries, 'proyecto': proyecto },
                           context_instance=RequestContext(request))
+
+
+def olaquease(request):
+    """
+    lineChart page
+    """
+    start_time = int(time.mktime(datetime.datetime(2012, 6, 1).timetuple()) * 1000)
+    nb_element = 100
+    xdata = range(nb_element)
+    xdata = map(lambda x: start_time + x * 1000000000, xdata)
+    ydata = [i + random.randint(1, 10) for i in range(nb_element)]
+    ydata2 = map(lambda x: x * 2, ydata)
+
+    tooltip_date = "%d %b %Y %H:%M:%S %p"
+    extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"},
+                   "date_format": tooltip_date}
+    chartdata = {'x': xdata,
+                 'name1': 'series 1', 'y1': ydata, 'extra1': extra_serie,
+                 'name2': 'series 2', 'y2': ydata2, 'extra2': extra_serie}
+    charttype = "lineChart"
+    data = {
+        'charttype': charttype,
+        'chartdata': chartdata
+    }
+    return render_to_response('piechart.html', data)

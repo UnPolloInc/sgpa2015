@@ -18,7 +18,7 @@ class Proyecto(models.Model):
     lider_proyecto = models.ForeignKey(Usuario, related_name='Lider')
     cliente = models.ForeignKey(Cliente, related_name='Cliente')
     descripcion = models.TextField(max_length=140, help_text='Introduzca una breve reseña del proyecto', null=True)
-    fecha_creacion = models.DateField(default=date.today(),auto_now_add=True, help_text='Fecha de creacion del Proyecto', null=True)
+    fecha_creacion = models.DateField(default=date.today(), help_text='Fecha de creacion del Proyecto', null=True)
     fecha_inicio = models.DateField(help_text='Fecha de inicio del Proyecto', null=True)
     fecha_fin = models.DateField(help_text='Fecha estimada de finalizacion', null=True)
     estado = models.CharField(max_length=3, choices=opciones_estado, default='PEN', help_text='Estado del proyecto')

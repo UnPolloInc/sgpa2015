@@ -1,0 +1,12 @@
+{% extends "main/principal.html" %}
+
+{% load nvd3_tags %}
+{% block head_xtrem %}
+{% load_chart charttype chartdata "linechart_container" %}
+{% endblock %}
+{% block menu %}
+{% block list %}
+    <h1>Burdown Chart</h1>
+    {% include_container "linechart_container" 400 600 %}
+{% endblock %}
+{% endblock %}

@@ -12,11 +12,11 @@ from proyectos.models import Proyecto
 # Create your models here.
 
 class Mensaje(models.Model):
-    proyecto = models.ForeignKey(Proyecto, unique=False, related_name='proyecto al cual corresponden el remitente y destinatario')
-    remitente = models.ForeignKey(Usuario, unique=False,help_text='quien envia', related_name='el miembro que envia')
-    destinatario = models.ForeignKey(Miembro, unique=False,help_text='a quien envia', related_name='el o los miembros que recibiran')
+    proyecto = models.ForeignKey(Proyecto, unique=False)
+    remitente = models.ForeignKey(Usuario, unique=False)
+    destinatario = models.ForeignKey(Miembro, unique=False,help_text='a quien envia')
     texto_mensaje = models.TextField(max_length=1000, help_text='Escriba aqui su mensaje', null=True)
-    fecha_hora_creacion = models.DateTimeField(default=date.today(), auto_now_add=True, help_text='Hora de envio del mensaje', null=True)
+    fecha_hora_creacion = models.DateTimeField(default=date.today(), help_text='Hora de envio del mensaje', null=True)
 
     def __unicode__(self):
        return self.remitente.usuario.username

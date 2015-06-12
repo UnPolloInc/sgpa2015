@@ -50,6 +50,8 @@ INSTALLED_APPS = (
     'mensajes',
     'Notificaciones',
     'database_files',
+    'djangobower',
+    'django_nvd3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,11 +103,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT='/home/alforro/PycharmProjects/sgpa2015/static/'
+#STATIC_ROOT=[os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT='/home/jorge/PycharmProjects/sgpa2015/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
 #para que django pueda encontrar los templates.
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-
+BOWER_COMPONENTS_ROOT = '/home/jorge/PycharmProjects/sgpa2015/components'
+BOWER_INSTALLED_APPS = (
+    'd3',
+    'nvd3',
+)
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".

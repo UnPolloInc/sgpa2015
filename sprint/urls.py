@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^finalizado/(?P<pk>\d+)$', login_required(views.IndexViewFinalizado.as_view()), name='sprint_finalizado_list'),
     url(r'^finalizar_confirm/(?P<pk>\d+)$', login_required(views.FinalizarSprint.as_view()), name='finalizar_confirm'),
     url(r'^buscar/(?P<pk>\d+)$', views.search, name='buscar_sprint'),
+    url(r'^chart_xtrem/$', views.olaquease, name='xtrem'),
 )
