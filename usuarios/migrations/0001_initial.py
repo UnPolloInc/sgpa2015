@@ -15,8 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Usuario',
             fields=[
-                ('user_ptr', models.OneToOneField(parent_link=True, auto_created=True, to=settings.AUTH_USER_MODEL)),
-                ('codigo', models.AutoField(serialize=False, primary_key=True)),
+                ('user_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('telefono', models.PositiveIntegerField(default=0, blank=True)),
                 ('cedula', models.PositiveIntegerField(default=0)),
                 ('direccion', models.CharField(max_length=50, blank=True)),

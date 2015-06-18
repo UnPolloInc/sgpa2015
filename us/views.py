@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -402,6 +403,7 @@ class createRegistro(FormView):
         kwargs = super(createRegistro, self).get_form_kwargs(**kwargs)
         #proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         kwargs['initial']['us'] = self.kwargs['pk']
+        kwargs['initial']['fecha_hora_creacion']= date.today()
         return kwargs
 
     def get_success_url(self, **kwargs):
@@ -437,4 +439,3 @@ class CambiarEstadoUs(UpdateView):
         Us = us.objects.get(pk=self.kwargs['pk'])
         proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
         return reverse('kanban',args=[proyecto.pk])
-

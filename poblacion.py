@@ -12,7 +12,7 @@ from flujos.models import Flujos
 from miembros.models import Miembro
 #from django.contrib.auth.models import User
 from django.utils.datetime_safe import date
-from us.models import us
+from us.models import us, registroTrabajoUs
 from flujos.models import Actividad
 from roles.models import Rol
 Usuario.objects.all().delete()
@@ -110,12 +110,12 @@ proyecto2 = Proyecto(nombre='beta project', descripcion='este proyecto correspon
                      fecha_inicio= date.today(), fecha_fin=date.today(), fecha_creacion=date.today(),
                      lider_proyecto=usuario2,estado='INI' )
 proyecto2.save()
-sprint2 = Sprint(nombre='Sprint 2 Pro 2', proyecto=proyecto2, descripcion='2do sprint correspondiente al proyecto 1',
+sprint2 = Sprint(nombre='Sprint 2 Pro 2', proyecto=proyecto2, descripcion='2do sprint correspondiente al proyecto 2',
                  duracion_dias= 20, observaciones='Ninguna', estado=en_ejecucion)
 sprint2.save()
 
-sprint3 = Sprint(nombre='Sprint 3 Pro 2', proyecto=proyecto2, descripcion='sprint 3 correspondiente al proyecto 1',
-                 duracion_dias= 15, observaciones='Ninguna', estado=en_ejecucion)
+sprint3 = Sprint(nombre='Sprint 3 Pro 2', proyecto=proyecto2, descripcion='sprint 3 correspondiente al proyecto 2',
+                 duracion_dias= 15, observaciones='Ninguna', estado=finalizado)
 sprint3.save()
 
 flujo1 = Flujos(nombre= 'primer flujo del proyecto2', descripcion='ninguna', fecha_hora_creacion=date.today(), proyecto=proyecto2)
@@ -161,7 +161,26 @@ us3p2 = us(nombre='US3 para el proyecto 2', proyecto=proyecto2,valor_de_negocio=
          estado_de_aprobacion='PEN')
 us3p2.save()
 
+reg1= registroTrabajoUs(us=us1p2, descripcion='primer registro', horas_dedicadas=5, fecha_hora_creacion='2015-6-6 16:30',archivo_adjunto=None)
+reg1.save()
+reg2= registroTrabajoUs(us=us1p2, descripcion='segundo registro', horas_dedicadas=3, fecha_hora_creacion='2015-6-7 16:30',archivo_adjunto=None)
+reg2.save()
+reg3= registroTrabajoUs(us=us1p2, descripcion='tercer registro', horas_dedicadas=6, fecha_hora_creacion='2015-6-8 16:30',archivo_adjunto=None)
+reg3.save()
 
+reg1= registroTrabajoUs(us=us2p2, descripcion='primer registro', horas_dedicadas=8, fecha_hora_creacion='2015-6-6 16:30',archivo_adjunto=None)
+reg1.save()
+reg2= registroTrabajoUs(us=us2p2, descripcion='segundo registro', horas_dedicadas=3, fecha_hora_creacion='2015-6-7 16:30',archivo_adjunto=None)
+reg2.save()
+reg3= registroTrabajoUs(us=us2p2, descripcion='tercer registro', horas_dedicadas=6, fecha_hora_creacion='2015-6-8 16:30',archivo_adjunto=None)
+reg3.save()
+
+reg1= registroTrabajoUs(us=us3p2, descripcion='primer registro', horas_dedicadas=6, fecha_hora_creacion='2015-6-6 16:30',archivo_adjunto=None)
+reg1.save()
+reg2= registroTrabajoUs(us=us3p2, descripcion='segundo registro', horas_dedicadas=4, fecha_hora_creacion='2015-6-7 16:30',archivo_adjunto=None)
+reg2.save()
+reg3= registroTrabajoUs(us=us3p2, descripcion='tercer registro', horas_dedicadas=6, fecha_hora_creacion='2015-6-9 16:30',archivo_adjunto=None)
+reg3.save()
 ## Proyecto Numero 3 'Gamma' ESTADO FINALIZADO ##############################################################################
 
 proyecto3 = Proyecto(nombre='gamma project', descripcion='este proyecto corresponde a Walter White',
@@ -193,20 +212,20 @@ sprint4 = Sprint(nombre='2 Sprint Pro 2', proyecto=proyecto2, descripcion='2do s
 sprint4.save()
  
 sprint5 = Sprint(nombre='SprintPro3', proyecto=proyecto3, descripcion='sprint correspondiente al proyecto 3',
-                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
+                 duracion_dias= 15, observaciones='Ninguna', estado=finalizado)
 sprint5.save()
  
 sprint6 = Sprint(nombre='2 Sprint Pro3', proyecto=proyecto3, descripcion='2do sprint correspondiente al proyecto 3',
-                 duracion_dias= 15, observaciones='Ninguna', estado=en_ejecucion)
+                 duracion_dias= 15, observaciones='Ninguna', estado=finalizado)
 sprint6.save()
  
-sprint7 = Sprint(nombre='3 Sprint Pro 4', proyecto=proyecto3, descripcion='3er sprint correspondiente al proyecto 3',
-                 duracion_dias= 15, observaciones='Ninguna', estado=finalizado)
-sprint7.save()
+#sprint7 = Sprint(nombre='3 Sprint Pro 3', proyecto=proyecto3, descripcion='3er sprint correspondiente al proyecto 3',
+#                 duracion_dias= 15, observaciones='Ninguna', estado=finalizado)
+#sprint7.save()
  
-sprint8 = Sprint(nombre='2SprintPro4', proyecto=proyecto3, descripcion='4to sprint correspondiente al proyecto 3',
-                 duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
-sprint8.save()
+#sprint8 = Sprint(nombre='4 SprintPro 3', proyecto=proyecto3, descripcion='4to sprint correspondiente al proyecto 3',
+#                 duracion_dias= 15, observaciones='Ninguna', estado=finalizado)
+#sprint8.save()
  
 
  
@@ -281,7 +300,7 @@ actividad5=Actividad(nombre='Post-Desarrollo',orden=2,flujo=flujo5)
 actividad5.save()
 
 
-us1 = us(nombre='US1 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
+us1 = us(nombre='US1 para el proyecto 2',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
          duracion_horas=10, duracion_horas_en_sprint=10,sprint=sprint4, responsable=miembro33, proyecto=proyecto2,
          estado='TODO', actividad=actividad1,flujo=flujo2,estado_de_aprobacion='OK')
 us1.save()

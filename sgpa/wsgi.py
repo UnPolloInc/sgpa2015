@@ -28,3 +28,5 @@ os.environ.setdefault("LC_ALL", "en_US.UTF-8")
 #obtenemos la aplicacion
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
+
+

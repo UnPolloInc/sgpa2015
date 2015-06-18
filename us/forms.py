@@ -107,10 +107,11 @@ class registroForm(ModelForm):
         self.fields['horas_dedicadas'].required = True
         self.fields['us'].widget = HiddenInput()
         self.fields['archivo_adjunto'].required = False
-
+        self.fields['fecha_hora_creacion'].widget = HiddenInput()
     class Meta:
         model = registroTrabajoUs
-        fields = ('descripcion','horas_dedicadas','us','archivo_adjunto',)
+        fields = ('descripcion','horas_dedicadas','us','archivo_adjunto','fecha_hora_creacion')
+
 
 
 
