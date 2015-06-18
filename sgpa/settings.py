@@ -104,7 +104,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 #STATIC_ROOT=[os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT='/home/chelox/PycharmProjects/sgpa2015/static/'
+#STATIC_ROOT='/home/jorge/PycharmProjects/sgpa2015/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
@@ -115,7 +115,8 @@ STATICFILES_FINDERS = (
 )
 #para que django pueda encontrar los templates.
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-BOWER_COMPONENTS_ROOT = '/home/chelox/PycharmProjects/sgpa2015/components'
+BOWER_COMPONENTS_ROOT = '/home/alforro/PycharmProjects/sgpa2015/components'
+#BOWER_COMPONENTS_ROOT = str([os.path.join(BASE_DIR, 'components')])
 BOWER_INSTALLED_APPS = (
     'd3',
     'nvd3',

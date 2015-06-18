@@ -410,26 +410,30 @@ def search(request,pk):
                           context_instance=RequestContext(request))
 
 
-def olaquease(request):
+def olaquease(request,pk):
     """
     lineChart page
     """
-    start_time = int(time.mktime(datetime.datetime(2012, 6, 1).timetuple()) * 1000)
-    nb_element = 100
-    xdata = range(nb_element)
-    xdata = map(lambda x: start_time + x * 1000000000, xdata)
-    ydata = [i + random.randint(1, 10) for i in range(nb_element)]
-    ydata2 = map(lambda x: x * 2, ydata)
+    sprint = Sprint.objects.get(pk=pk)
+    nb_element = sprint.duracion_dias
+    miembros = Miembro.objects.filter(proyecto=sprint.proyecto)
+    horas_estimadas=0
+    for miembro in miembros:
+        horas_estimadas+=miembro.horas_por_dia
+    xdata =[i + 1 for i in range(nb_element)]
+    ydata= [horas_estimadas*(nb_element-i) for i in range(nb_element)]
+    #ydata = [i + random.randint(1, 10) for i in range(nb_element)]
+    ydata2 = map(lambda x: x , ydata)
 
-    tooltip_date = "%d %b %Y %H:%M:%S %p"
-    extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"},
-                   "date_format": tooltip_date}
+
+    extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"},}
     chartdata = {'x': xdata,
-                 'name1': 'series 1', 'y1': ydata, 'extra1': extra_serie,
-                 'name2': 'series 2', 'y2': ydata2, 'extra2': extra_serie}
+                 'name1': 'Tiempo Estimado', 'y1': ydata, 'extra1': extra_serie,
+                 'name2': 'Tiempo Real', 'y2': ydata2, 'extra2': extra_serie}
     charttype = "lineChart"
     data = {
         'charttype': charttype,
-        'chartdata': chartdata
+        'chartdata': chartdata,
     }
     return render_to_response('piechart.html', data)
+
