@@ -410,7 +410,7 @@ def search(request,pk):
                           context_instance=RequestContext(request))
 
 
-def olaquease(request,pk):
+def burndown_chart_sprint(request,pk):
     """
     lineChart page
     """
@@ -437,3 +437,35 @@ def olaquease(request,pk):
     }
     return render_to_response('piechart.html', data)
 
+class BurndownSprintList(ListView):
+    """
+        *Vista basada en Clase para lista de sprint*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'sprint/burndown_sprint_list.html'
+    model = Sprint
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(BurndownSprintList, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(BurndownSprintList, self).get_context_data(**kwargs)
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+        return context
+
+
+    def get_queryset(self):
+        qs = super(BurndownSprintList,self).get_queryset()
+        sprint = Sprint.objects.filter(proyecto=self.kwargs['pk']).order_by('pk')
+        return sprint
