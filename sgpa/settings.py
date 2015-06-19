@@ -115,7 +115,8 @@ STATICFILES_FINDERS = (
 )
 #para que django pueda encontrar los templates.
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-BOWER_COMPONENTS_ROOT = '/home/chelox/PycharmProjects/sgpa2015/components'
+#BOWER_COMPONENTS_ROOT = '/home/chelox/PycharmProjects/sgpa2015/components'
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 #BOWER_COMPONENTS_ROOT = str([os.path.join(BASE_DIR, 'components')])
 BOWER_INSTALLED_APPS = (
     'd3',
