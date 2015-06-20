@@ -29,7 +29,7 @@ then
     echo -e "ERROR: No se pudo copiar el directorio /home/chelox/PycharmProjects/sgpa2015 a /var/www/sgpa2015"
     exit 1
 fi
-sudo chown -R chelox:chelox /var/www/*
+sudo chown -R www-data:www-data /var/www/*
 sudo chmod -R 777 /var/www/*
 if [ "$?" -ne 0 ]
 then
