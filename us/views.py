@@ -482,5 +482,5 @@ class CancelarUs(UpdateView):
     def get_success_url(self, **kwargs):
         kwargs = super(CancelarUs, self).get_form_kwargs(**kwargs)
         userstorie = us.objects.get(pk=self.kwargs['pk'])
-        return reverse('lista_us',args=[userstorie.proyecto.pk])
+        return reverse('kanban',args=[userstorie.proyecto.pk])
 

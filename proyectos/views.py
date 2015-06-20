@@ -201,7 +201,7 @@ class Kanban(ListView):
         context = super(Kanban, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['proyecto'] = proyecto
-        context['us_list'] = us.objects.filter(proyecto=proyecto).order_by('pk')
+        context['us_list'] = us.objects.filter(proyecto=proyecto).order_by('pk').exclude(estado_de_aprobacion='CAN')
         flujos= Flujos.objects.filter(proyecto=proyecto)
 
         context['actividades'] = Actividad.objects.filter(flujo__in = flujos ).order_by('pk')
