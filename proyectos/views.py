@@ -205,6 +205,7 @@ class Kanban(ListView):
         flujos= Flujos.objects.filter(proyecto=proyecto)
 
         context['actividades'] = Actividad.objects.filter(flujo__in = flujos ).order_by('pk')
+
         try:
             context['lider'] = Usuario.objects.get(pk=self.request.user)
         except:

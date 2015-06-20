@@ -2,6 +2,7 @@ from django import forms
 from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
 from flujos.models import Actividad
+from proyectos.models import Proyecto
 from us.models import us, registroTrabajoUs
 from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us, notificar_generico
 
@@ -151,6 +152,9 @@ class CambiarEstadoUsForm(ModelForm):
                     us.estado='TODO'
                 except:
                     #falta que el lider pueda finalizar el user storie aca.
+#                    proyecto = Proyecto.objects.get(pk=us.proyecto.pk)
+ #                   if self.request.user == proyecto.lider_proyecto:
+                    us.estado_de_aprobacion='FIN'
                     us.save()
             us.save()
         return us
