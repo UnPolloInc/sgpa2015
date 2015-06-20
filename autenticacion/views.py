@@ -10,7 +10,7 @@ def index(request):
     :param request: Recibe un request HTTP
     :return: la pagina principal si la autenticacion tuvo exito
     """
-    return render(request, 'main/principal.html',{ 'user': request.user})
+    return render(request, 'main/principal.html',{'user': request.user})
 
 
 def logout_view(request):

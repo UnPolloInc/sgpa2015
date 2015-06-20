@@ -14,7 +14,7 @@ from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
 from django.db.models import Q, ProtectedError
-from us.models import us
+from us.models import us, registroTrabajoUs
 import random
 import datetime
 import time
@@ -409,7 +409,7 @@ def search(request,pk):
                           { 'query_string': query_string, 'found_entries': found_entries, 'proyecto': proyecto },
                           context_instance=RequestContext(request))
 
-
+@login_required
 def burndown_chart_sprint(request,pk):
     """
     lineChart page
@@ -423,9 +423,8 @@ def burndown_chart_sprint(request,pk):
     xdata =[i + 1 for i in range(nb_element)]
     ydata= [horas_estimadas*(nb_element-i) for i in range(nb_element)]
     #ydata = [i + random.randint(1, 10) for i in range(nb_element)]
-    ydata2 = map(lambda x: x , ydata)
-
-
+    #ydata2 = map(lambda x: x , ydata)
+    ydata2 = generar_horas_trabajadas(pk, ydata,horas_estimadas*sprint.duracion_dias)
     extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"},}
     chartdata = {'x': xdata,
                  'name1': 'Tiempo Estimado', 'y1': ydata, 'extra1': extra_serie,
@@ -434,8 +433,10 @@ def burndown_chart_sprint(request,pk):
     data = {
         'charttype': charttype,
         'chartdata': chartdata,
+        'proyecto': sprint.proyecto,
+        'sprint': sprint,
     }
-    return render_to_response('piechart.html', data)
+    return render_to_response('piechart.html',data , context_instance=RequestContext(request))
 
 class BurndownSprintList(ListView):
     """
@@ -469,3 +470,25 @@ class BurndownSprintList(ListView):
         qs = super(BurndownSprintList,self).get_queryset()
         sprint = Sprint.objects.filter(proyecto=self.kwargs['pk']).order_by('pk')
         return sprint
+
+def generar_horas_trabajadas(pk,ydata,horas_estimadas):
+    sprint = Sprint.objects.get(pk=pk)
+    user_stories = us.objects.filter(sprint=pk)
+    registros=[]
+    for user_story in user_stories:
+        registros+=registroTrabajoUs.objects.filter(us=user_story)
+    registros=sorted(registros,key=registroTrabajoUs.getKey)
+    fecha_inicial=registros[0].fecha_hora_creacion
+    horas_reales=range(sprint.duracion_dias)
+    horas_disponibles=horas_estimadas
+    for i in range(sprint.duracion_dias):
+        registros=[]
+        for user_story in user_stories:
+            registros+=registroTrabajoUs.objects.filter(us=user_story).filter(fecha_hora_creacion=fecha_inicial)
+        horas=0
+        for registro in registros:
+            horas=horas+ registro.horas_dedicadas
+        horas_reales[i]=horas_disponibles
+        horas_disponibles-=horas
+        fecha_inicial=fecha_inicial+ datetime.timedelta(days=1)
+    return [horas_reales[i] for i in range(sprint.duracion_dias)]

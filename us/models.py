@@ -50,4 +50,6 @@ class registroTrabajoUs(models.Model):
     archivo_adjunto = models.FileField(null=False, blank=False,upload_to='.')
 
     def __unicode__(self):
-        return self.nombre
+        return self.us
+    def getKey(self):
+        return self.fecha_hora_creacion
