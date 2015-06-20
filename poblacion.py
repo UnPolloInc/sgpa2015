@@ -117,12 +117,12 @@ acti2.save()
 acti3=Actividad(nombre='Desarrollo.',orden=3,flujo=flujo11)
 acti3.save()
 
-sprint1 = Sprint(nombre='primer sprint del proyecto alpha', proyecto=proyecto1, descripcion='sprint correspondiente al proyecto 1',
-                 duracion_dias= 7, observaciones='Ninguna', estado=en_ejecucion)
+sprint1 = Sprint(nombre='primer sprint del proyecto alpha', proyecto=proyecto1, descripcion='primer sprint correspondiente al proyecto 1',
+                 duracion_dias= 7, observaciones='Ninguna', estado=pendiente)
 sprint1.save()
 
-sprint11 = Sprint(nombre='segundo sprint del proyecto alpha', proyecto=proyecto1, descripcion='sprint correspondiente al proyecto 1',
-                 duracion_dias= 7, observaciones='Ninguna', estado=en_ejecucion)
+sprint11 = Sprint(nombre='segundo sprint del proyecto alpha', proyecto=proyecto1, descripcion='segundo sprint correspondiente al proyecto 1',
+                 duracion_dias= 7, observaciones='Ninguna', estado=pendiente)
 sprint11.save()
 
 desarrollador = Rol(name='desarrollador', proyecto=proyecto1,)
@@ -142,18 +142,34 @@ miembro3.save()
 
 us1p1 = us(nombre='US1 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
          duracion_horas=10, duracion_horas_en_sprint=10,sprint=sprint1,flujo=flujo11, responsable=miembro1, proyecto=proyecto1,
-         estado='TODO', actividad=acti1,estado_de_aprobacion='FIN')
+         estado='TODO', actividad=acti1,estado_de_aprobacion='OK')
 us1p1.save()
 
 us2p1 = us(nombre='US2 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
-         duracion_horas=10, duracion_horas_en_sprint=10, sprint=sprint1,flujo=flujo11, responsable=miembro2,
+         duracion_horas=10, duracion_horas_en_sprint=18, sprint=sprint1,flujo=flujo11, responsable=miembro2,
          proyecto=proyecto1, estado='TODO', actividad=acti1,estado_de_aprobacion='OK')
 us2p1.save()
 
 us3p1 = us(nombre='US3 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
-         duracion_horas=10, duracion_horas_en_sprint=10,estado='TODO',sprint=sprint1,flujo=flujo11, responsable=miembro3,
+         duracion_horas=10, duracion_horas_en_sprint=30,estado='TODO',sprint=sprint1,flujo=flujo11, responsable=miembro3,
          estado_de_aprobacion='OK',actividad=acti1)
 us3p1.save()
+
+us4p1 = us(nombre='US4 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=25,sprint=sprint11,flujo=flujo11, responsable=miembro1, proyecto=proyecto1,
+         estado='TODO', actividad=acti1,estado_de_aprobacion='OK')
+us4p1.save()
+
+us5p1 = us(nombre='US5 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=15, sprint=sprint11,flujo=flujo11, responsable=miembro2,
+         proyecto=proyecto1, estado='TODO', actividad=acti1,estado_de_aprobacion='OK')
+us5p1.save()
+
+us6p1 = us(nombre='US6 para el proyecto 1', proyecto=proyecto1,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
+         duracion_horas=10, duracion_horas_en_sprint=20,estado='TODO',sprint=sprint11,flujo=flujo11, responsable=miembro3,
+         estado_de_aprobacion='OK',actividad=acti1)
+us6p1.save()
+
 
 ## Proyecto Numero 2 "Betha" ESTADO INICIADO ##############################################################################
 
@@ -169,7 +185,7 @@ sprint2 = Sprint(nombre='segundo sprint del proyecto betha', proyecto=proyecto2,
 sprint2.save()
 
 sprint3 = Sprint(nombre='tercer sprint del proyecto betha', proyecto=proyecto2, descripcion='sprint 3 correspondiente al proyecto 2',
-                 duracion_dias= 15, observaciones='Ninguna', estado=en_ejecucion)
+                duracion_dias= 15, observaciones='Ninguna', estado=pendiente)
 sprint3.save()
 
 
@@ -205,30 +221,30 @@ actividad333.save()
 
 
 us1p2 = us(nombre='US1 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
-         duracion_horas=10, duracion_horas_en_sprint=50,actividad=actividad11,sprint=sprint2,flujo=flujo1,responsable=miembro4,
-         estado_de_aprobacion='OK',estado='TODO')
+         duracion_horas=10, duracion_horas_en_sprint=50,actividad=actividad22,sprint=sprint2,flujo=flujo1,responsable=miembro4,
+         estado_de_aprobacion='OK',estado='DOING')
 us1p2.save()
 us2p2 = us(nombre='US2 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
-         duracion_horas=10, duracion_horas_en_sprint=50,actividad=actividad22,sprint=sprint3,flujo=flujo1, responsable=miembro33,
-         estado_de_aprobacion='OK',estado='TODO')
+         duracion_horas=10, duracion_horas_en_sprint=50,actividad=actividad11,sprint=sprint2,flujo=flujo1, responsable=miembro33,
+         estado_de_aprobacion='OK',estado='DOING')
 us2p2.save()
 
 us3p2 = us(nombre='US3 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
-         duracion_horas=10, duracion_horas_en_sprint=40, actividad=actividad11,sprint=sprint2,flujo=flujo1, responsable=miembro22,
-         estado_de_aprobacion='OK',estado='TODO')
+         duracion_horas=10, duracion_horas_en_sprint=40, actividad=actividad22,sprint=sprint2,flujo=flujo1, responsable=miembro22,
+         estado_de_aprobacion='OK',estado='DONE')
 us3p2.save()
 
 us4p2 = us(nombre='US4 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
          duracion_horas=10, duracion_horas_en_sprint=10, actividad=actividad333,sprint=sprint2,flujo=flujo2,responsable=miembro4,
-         estado_de_aprobacion='OK',estado='TODO')
+         estado_de_aprobacion='OK',estado='DOING')
 us4p2.save()
 us5p2 = us(nombre='US5 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
-         duracion_horas=10, duracion_horas_en_sprint=10, actividad=actividad333,sprint=sprint2,flujo=flujo2,responsable=miembro22,
+         duracion_horas=10, duracion_horas_en_sprint=10, actividad=actividad22,sprint=sprint2,flujo=flujo2,responsable=miembro22,
          estado_de_aprobacion='OK',estado='TODO')
 us5p2.save()
 us6p2 = us(nombre='US6 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
          duracion_horas=10, duracion_horas_en_sprint=10, actividad=actividad333,sprint=sprint2,flujo=flujo2,responsable=miembro33,
-         estado_de_aprobacion='OK',estado='TODO')
+         estado_de_aprobacion='OK',estado='DOING')
 us6p2.save()
 us7p2 = us(nombre='US7 para el proyecto 2', proyecto=proyecto2,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
          duracion_horas=10, duracion_horas_en_sprint=10, actividad=actividad333,sprint=sprint2,flujo=flujo2,responsable=miembro33,
