@@ -484,3 +484,35 @@ class CancelarUs(UpdateView):
         userstorie = us.objects.get(pk=self.kwargs['pk'])
         return reverse('kanban',args=[userstorie.proyecto.pk])
 
+class IndexViewRelease(ListView):
+    """
+        *Vista basada en Clase para lista de flujos*:
+            + *template_name*: nombre del template que vamos a renderizar
+            + *model*: modelo que vamos a listar.
+    """
+    template_name = 'us/release.html'
+    model = us
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexViewRelease, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexViewRelease, self).get_context_data(**kwargs)
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = proyecto
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+        return context
+
+    def get_queryset(self):
+        qs = super(IndexViewRelease, self).get_queryset()
+        userstories = us.objects.filter(proyecto=self.kwargs['pk'])
+        return userstories.filter(estado_de_aprobacion='FIN')

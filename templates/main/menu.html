@@ -45,6 +45,7 @@
                 <li><a href="{% url 'crear_us' proyecto.id %}">Agregar</a></li>
                 <li><a href="{% url 'lista_us' proyecto.id %}">Pendiente de Aprobación</a></li>
                 <li><a href="{% url 'aprobado_us' proyecto.id %}">Aprobados</a></li>
+                <li><a href="{% url 'release_us' proyecto.id %}">Release</a></li>
               </ul>
             </li>
         {% if proyecto.lider_proyecto == lider  %}

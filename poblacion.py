@@ -142,7 +142,7 @@ miembro3.save()
 
 us1p1 = us(nombre='US1 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
          duracion_horas=10, duracion_horas_en_sprint=10,sprint=sprint1,flujo=flujo11, responsable=miembro1, proyecto=proyecto1,
-         estado='TODO', actividad=acti1,estado_de_aprobacion='OK')
+         estado='TODO', actividad=acti1,estado_de_aprobacion='FIN')
 us1p1.save()
 
 us2p1 = us(nombre='US2 para el proyecto 1',valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
