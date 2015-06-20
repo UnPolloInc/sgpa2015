@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^estado/(?P<pk>\d+)$', login_required(views.CambiarEstadoUs.as_view()), name='cambiar_estado'),
     url(r'^aprobados/(?P<pk>\d+)$', login_required(views.IndexViewAprobados.as_view()), name='aprobado_us'),
     url(r'^aprobar/(?P<pk>\d+)$', login_required(views.Aprobar.as_view()), name='aprobar_us'),
+    url(r'^cancelar/(?P<pk>\d+)$', login_required(views.CancelarUs.as_view()), name='cancelar_us'),
 
 )
 

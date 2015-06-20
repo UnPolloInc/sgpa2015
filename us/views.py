@@ -12,7 +12,8 @@ from flujos.models import Flujos
 from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
-from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm
+from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm, \
+    CancelarForm
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
@@ -437,4 +438,49 @@ class CambiarEstadoUs(UpdateView):
         Us = us.objects.get(pk=self.kwargs['pk'])
         proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
         return reverse('kanban',args=[proyecto.pk])
+
+
+class CancelarUs(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un sprint:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'us/cancelar_us.html'
+    model = us
+    form_class = CancelarForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CancelarUs, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(CancelarUs, self).get_form_kwargs(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['estado_de_aprobacion'] = 'CAN'
+        return kwargs
+
+
+    def get_context_data(self, **kwargs):
+        context = super(CancelarUs, self).get_context_data(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        context['proyecto']= Proyecto.objects.get(pk=userstorie.proyecto.pk)
+        try:
+            context['lider'] = Usuario.objects.get(pk=self.request.user)
+        except:
+            context['lider'] = None
+
+        try:
+            context['cliente'] = Cliente.objects.get(pk = self.request.user)
+        except:
+            context['cliente'] = None
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(CancelarUs, self).get_form_kwargs(**kwargs)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        return reverse('lista_us',args=[userstorie.proyecto.pk])
 

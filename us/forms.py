@@ -16,6 +16,16 @@ class AprobarForm(ModelForm):
         model = us
         fields = ('proyecto', 'estado_de_aprobacion',)
 
+class CancelarForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CancelarForm, self).__init__(*args, **kwargs)
+        self.fields['estado_de_aprobacion'].widget = HiddenInput()
+        self.fields['proyecto'].widget = HiddenInput()
+    class Meta:
+        model = us
+        fields = ('proyecto', 'estado_de_aprobacion',)
+
 
 class usasigForm(ModelForm):
 
