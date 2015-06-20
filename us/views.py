@@ -376,12 +376,12 @@ class registroView(ListView):
     def get_context_data(self, **kwargs):
         context = super(registroView, self).get_context_data(**kwargs)
         #context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['proyecto'])
         return context
 
     def get_queryset(self):
         #qs = super(registroView, self).get_queryset()
-        registros = registroTrabajoUs.objects.filter(us=self.kwargs['pk'])
+        registros = registroTrabajoUs.objects.filter(us=self.kwargs['us'])
         return registros
 
 class createRegistro(FormView):

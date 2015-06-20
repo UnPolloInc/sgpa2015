@@ -424,7 +424,11 @@ def burndown_chart_sprint(request,pk):
     ydata= [horas_estimadas*(nb_element-i) for i in range(nb_element)]
     #ydata = [i + random.randint(1, 10) for i in range(nb_element)]
     #ydata2 = map(lambda x: x , ydata)
-    ydata2 = generar_horas_trabajadas(pk, ydata,horas_estimadas*sprint.duracion_dias)
+    try:
+        ydata2 = generar_horas_trabajadas(pk, ydata,horas_estimadas*sprint.duracion_dias)
+    except:
+        ydata2 = ydata
+
     extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"},}
     chartdata = {'x': xdata,
                  'name1': 'Tiempo Estimado', 'y1': ydata, 'extra1': extra_serie,
