@@ -13,7 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-DEFAULT_FILE_STORAGE = 'database_files.storage.DatabaseStorage'
+#DEFAULT_FILE_STORAGE = 'database_files.storage.DatabaseStorage'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -25,7 +25,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -50,6 +50,8 @@ INSTALLED_APPS = (
     'mensajes',
     'Notificaciones',
     'database_files',
+    'djangobower',
+    'django_nvd3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,11 +103,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT='/home/alforro/PycharmProjects/sgpa2015/static/'
+#STATIC_ROOT=[os.path.join(BASE_DIR, 'static')]
+#STATIC_ROOT='/home/jorge/PycharmProjects/sgpa2015/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
 #para que django pueda encontrar los templates.
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-
+#BOWER_COMPONENTS_ROOT = '/home/chelox/PycharmProjects/sgpa2015/components'
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+#BOWER_COMPONENTS_ROOT = str([os.path.join(BASE_DIR, 'components')])
+BOWER_INSTALLED_APPS = (
+    'd3',
+    'nvd3',
+)
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -139,3 +155,17 @@ EMAIL_HOST_USER = 'sgpa2015q06@gmail.com'
 EMAIL_HOST_PASSWORD = 'sgpa2015'
 EMAIL_PORT = 587
 
+# Para los archivos
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'userfiles')
+MEDIA_URL = '/files/'  # Note they don't have to be identical names
+
+
+# Formato para fechas
+DATE_INPUT_FORMATS = (
+    '%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', # '2006-10-25', '10/25/2006', '10/25/06'
+    '%b %d %Y', '%b %d, %Y',            # 'Oct 25 2006', 'Oct 25, 2006'
+    '%d %b %Y', '%d %b, %Y',            # '25 Oct 2006', '25 Oct, 2006'
+    '%B %d %Y', '%B %d, %Y',            # 'October 25 2006', 'October 25, 2006'
+    '%d %B %Y', '%d %B, %Y',            # '25 October 2006', '25 October, 2006'
+)
