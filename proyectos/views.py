@@ -11,7 +11,7 @@ from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from clientes.models import Cliente
 from flujos.models import Flujos, Actividad
 from miembros.models import Miembro
-from proyectos.forms import ProyectoForm, ProyectoUpdateForm
+from proyectos.forms import ProyectoForm, ProyectoUpdateForm, ProyectoIniciarForm
 from proyectos.models import Proyecto
 from us.models import us
 from usuarios.models import Usuario
@@ -222,3 +222,31 @@ class Kanban(ListView):
         qs = super(Kanban,self).get_queryset()
         flujos = Flujos.objects.filter(proyecto=self.kwargs['pk']).order_by('pk')
         return flujos
+
+class IniciarProyecto(UpdateView):
+    """
+        *Vista Basada en Clase para iniciar un proyecto:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'proyectos/iniciar.html'
+    model = Proyecto
+    form_class = ProyectoIniciarForm
+    #success_url = '/proyectos/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IniciarProyecto, self).dispatch(*args, **kwargs)
+
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(IniciarProyecto, self).get_form_kwargs(**kwargs)
+        kwargs['initial']['estado'] = 'INI'
+        return kwargs
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(IniciarProyecto, self).get_form_kwargs(**kwargs)
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return reverse('configurar',args=[proyecto.pk])

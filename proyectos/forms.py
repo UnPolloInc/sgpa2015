@@ -1,7 +1,7 @@
 __author__ = 'alforro'
 
 from django import forms
-from django.forms import DateField, ModelForm
+from django.forms import DateField, ModelForm, HiddenInput
 from django.contrib.admin.widgets import AdminDateWidget
 from proyectos.models import Proyecto
 from Notificaciones.views import notificar_mod_proyecto, notificar_creacion_proyecto
@@ -62,6 +62,33 @@ class ProyectoUpdateForm(ModelForm):
     def save(self, commit=True):
         # Save the provided password in hashed format
         proyecto = super(ProyectoUpdateForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            proyecto.save()
+            notificar_mod_proyecto(proyecto.lider_proyecto,proyecto)
+        return proyecto
+
+class ProyectoIniciarForm(ModelForm):
+
+    """
+    Clase para iniciar proyectos.
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args,
+**kwargs)
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+    """
+    def __init__(self, *args, **kwargs):
+        super(ProyectoIniciarForm, self).__init__(*args, **kwargs)
+        self.fields['estado'].widget = HiddenInput()
+
+    class Meta:
+        model = Proyecto
+        fields = ('estado',)
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        proyecto = super(ProyectoIniciarForm, self).save(commit=False)
         #proyecto.set_password(self.cleaned_data["password1"])
         if commit:
             proyecto.save()

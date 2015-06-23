@@ -44,7 +44,9 @@
             <td>{{ proyecto.observaciones }}</td>
             {%  if user.is_superuser %}
 
-            {% else %}
+            {% elif proyecto.estado == 'PEN' %}
+            <td><a href="{% url 'iniciar_proyecto' proyecto.id %}" class="btn btn-sm btn-default" >Iniciar</a></td>
+            {% elif proyecto.estado == 'INI' %}
             <td><a href="{% url 'configurar' proyecto.id %}" class="btn btn-sm btn-default" >Configurar</a></td>
             {% endif %}
             {%  if user.is_superuser %}
