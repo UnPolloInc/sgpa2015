@@ -38,7 +38,7 @@ class EjecutarSprintForm(ModelForm):
         data = self.cleaned_data['estado']
         proyecto=self.cleaned_data['proyecto']
         sprint = Sprint.objects.filter(pk=proyecto.pk).filter(estado=2)
-        if sprint != None:
+        if sprint is None:
             raise forms.ValidationError("Actualmente hay otro sprint en ejecucion.")
         # Always return the cleaned data, whether you have changed it or
         # not.

@@ -122,6 +122,7 @@ BOWER_INSTALLED_APPS = (
     'd3',
     'nvd3',
 )
+
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -159,6 +160,10 @@ EMAIL_PORT = 587
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'userfiles')
 MEDIA_URL = '/files/'  # Note they don't have to be identical names
+WKHTMLTOPDF_CMD = '/usr/bin/wkhtmltopdf.sh'
+WKHTMLTOPDF_CMD_OPTIONS = {
+   'quiet':True,
+}
 
 # Formato para fechas
 DATE_INPUT_FORMATS = (

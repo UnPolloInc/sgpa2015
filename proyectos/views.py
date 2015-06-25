@@ -13,6 +13,7 @@ from flujos.models import Flujos, Actividad
 from miembros.models import Miembro
 from proyectos.forms import ProyectoForm, ProyectoUpdateForm, ProyectoIniciarForm
 from proyectos.models import Proyecto
+from sprint.models import Sprint
 from us.models import us
 from usuarios.models import Usuario
 from usuarios.views import get_query
@@ -250,3 +251,50 @@ class IniciarProyecto(UpdateView):
         kwargs = super(IniciarProyecto, self).get_form_kwargs(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         return reverse('configurar',args=[proyecto.pk])
+
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+
+def some_view(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    proyectos = Proyecto.objects.all()
+    sprint  = Sprint.objects.filter(estado=2)
+    miembros = Miembro.objects.all()
+    p.drawString(210, 800, "1 - Cantidad de Trabajos en curso por equipo.")
+    proyecto_ini = Proyecto.objects.filter(estado = 'INI')
+    #user_storie = us.Objects.all()
+    j=750
+    for proyecto in proyecto_ini:
+                p.setFont('Helvetica', 8)
+                p.drawString(100, j, proyecto.nombre)
+                equipo = Miembro.objects.filter(proyecto=proyecto.pk)
+                sprints = Sprint.objects.filter(proyecto = proyecto.pk).filter(estado=2)
+
+                for sp in sprints:
+                    user_story = us.objects.filter(sprint = sp.pk)
+
+                j = j-20
+                for eq in equipo:
+                    p.drawString(120, j, '* ' + eq.usuario.username)
+                    j=j-20
+                    for hu in user_story:
+                        if hu.responsable.usuario.username == eq.usuario.username:
+                            p.drawString(140, j, '- ' + hu.nombre)
+                            j=j-20
+
+
+
+
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+    return response
