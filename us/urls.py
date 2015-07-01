@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^aprobar/(?P<pk>\d+)$', login_required(views.Aprobar.as_view()), name='aprobar_us'),
     url(r'^cancelar/(?P<pk>\d+)$', login_required(views.CancelarUs.as_view()), name='cancelar_us'),
     url(r'^release/(?P<pk>\d+)$', login_required(views.IndexViewRelease.as_view()), name='release_us'),
+    url(r'^retroceder/(?P<pk>\d+)$', login_required(views.RetrocederEstadoUs.as_view()), name='retroceder'),
+
 
 )
 
