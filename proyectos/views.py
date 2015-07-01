@@ -266,33 +266,32 @@ def reporte_pdf(request, pk):
     sprint  = Sprint.objects.filter(estado=2)
     miembros = Miembro.objects.all()
     p.drawString(210, 800, "1 - Cantidad de Trabajos en curso por equipo.")
-    proyecto_ini = Proyecto.objects.filter(estado = 'INI')
+    proyecto = Proyecto.objects.get(pk=pk)
     user_storie = us.objects.all()
     j=750
-    for proyecto in proyecto_ini:
-                p.setFont('Helvetica', 8)
-                p.drawString(100, j, proyecto.nombre)
-                equipo = Miembro.objects.filter(proyecto=proyecto.pk)
-                sprints = Sprint.objects.filter(proyecto = proyecto.pk).filter(estado=2)
-
-                for sp in sprints:
-                    user_story = us.objects.filter(sprint = sp.pk)
-
-                j = j-20
-                for eq in equipo:
-                    p.drawString(120, j, '* ' + eq.usuario.username)
-                    j=j-20
-                    for hu in user_story:
-                        if hu.responsable.usuario.username == eq.usuario.username:
-                            p.drawString(140, j, '- ' + hu.nombre)
-                            j=j-20
+    p.setFont('Helvetica', 8)
+    p.drawString(100, j, proyecto.nombre)
+    equipo = Miembro.objects.filter(proyecto=proyecto.pk)
+    sprints = Sprint.objects.filter(proyecto = proyecto.pk).filter(estado=2)
+    j = j-20
+    for sp in sprints:
+          user_story = us.objects.filter(sprint = sp.pk)
+          p.drawString(120, j, sp.nombre)
+          j = j-20
+          for eq in equipo:
+              p.drawString(140, j, '* ' + eq.usuario.username)
+              j=j-20
+              for hu in user_story:
+                  if hu.responsable.usuario.username == eq.usuario.username:
+                        p.drawString(160, j, '- ' + hu.nombre)
+                        j=j-20
 
     p.showPage()
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
     proyectos = Proyecto.objects.all()
     miembros = Miembro.objects.all()
-    p.drawString(210, 800, "2 - Cantidad de Trabajos por usuario, pendiente, en curso y finalizado.")
+    p.drawString(200, 800, "2 - Cantidad de Trabajos por usuario, pendiente, en curso y finalizado.")
     j=750
 
     for usuario_system in miembros :
@@ -304,46 +303,8 @@ def reporte_pdf(request, pk):
                             p.drawString(140, j, '- ' + hu.nombre)
                             j=j-20
 
+    p.showPage()
 
-    # Close the PDF object cleanly, and we're done.
-    p.save()
-    return response
-
-
-'''def pdf_por_usuario(request, pk):
-    # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Informe_por_usuario.pdf"'
-
-    # Create the PDF object, using the response object as its "file."
-    p = canvas.Canvas(response)
-
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-    proyectos = Proyecto.objects.all()
-    miembros = Miembro.objects.all()
-    p.drawString(210, 800, "2 - Cantidad de Trabajos por usuario, pendiente, en curso y finalizado.")
-    j=750
-
-    for usuario_system in miembros :
-                p.setFont('Helvetica', 8)
-                p.drawString(100, j, usuario_system.usuario.username + ': ' + usuario_system.proyecto.nombre + '  Estado:' + usuario_system.proyecto.estado)
-                user_story = us.objects.filter(responsable = usuario_system)
-                j = j-20
-                for hu in user_story:
-                            p.drawString(140, j, '- ' + hu.nombre)
-                            j=j-20
-
-def pdf_por_actividad(request):
-    # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Informe_por_actividad.pdf"'
-
-    # Create the PDF object, using the response object as its "file."
-    p = canvas.Canvas(response)
-
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
     proyectos = Proyecto.objects.all()
     p.drawString(210, 800, "3 - Lista de Actividades para completar un proyecto.")
     j=750
@@ -361,90 +322,8 @@ def pdf_por_actividad(request):
                             p.drawString(140, j, str(a.orden) + ': ' + a.nombre)
                             j = j-20
 
-
-
-
-
-    # Close the PDF object cleanly, and we're done.
     p.save()
     return response
-
-
-def pdf_del_product_backlog(request):
-    # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Informe_del_product_backlog.pdf"'
-
-    # Create the PDF object, using the response object as its "file."
-    p = canvas.Canvas(response)
-
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-    proyectos = Proyecto.objects.all()
-    p.drawString(210, 800, "5 - Product BackLog por proyectos .")
-    j=750
-
-    for proyect in proyectos :
-                p.setFont('Helvetica', 8)
-                p.drawString(100, j, proyect.nombre)
-                user_story = us.objects.filter(proyecto = proyect.pk).order_by('prioridad')
-                j = j-20
-                for u in user_story:
-                        p.drawString(120, j, u.nombre)
-                        j = j-20
-
-
-
-
-
-
-    # Close the PDF object cleanly, and we're done.
-    p.save()
-    return response
-
-
-def pdf_del_sprint_backlog(request):
-    # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Informe_del_sprint_backlog.pdf"'
-
-    # Create the PDF object, using the response object as its "file."
-    p = canvas.Canvas(response)
-
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-    proyectos = Proyecto.objects.all()
-    p.drawString(210, 800, "5 - Sprint BackLog por proyectos .")
-    j=750
-
-    for proyect in proyectos :
-                p.setFont('Helvetica', 8)
-                p.drawString(100, j, proyect.nombre)
-                sprints = Sprint.objects.filter(proyecto = proyect.pk)
-                j = j-20
-                for s in sprints:
-                        p.drawString(120, j, s.nombre)
-                        user_story = us.objects.filter(sprint = s.pk)
-                        j = j-20
-                        for hu in user_story:
-                            p.drawString(120, j, hu.nombre + hu.responsable.usuario.username)
-                            j = j-20
-
-
-
-
-
-
-    # Close the PDF object cleanly, and we're done.
-    p.save()
-    return response
-'''
-
-
-
-
-
-
 
 
 
