@@ -116,7 +116,7 @@
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/miembros/forms.html#MiembroForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#miembros.forms.MiembroForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="miembros.forms.MiembroForm.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('proyecto', 'usuario', 'horas_por_dia')</em><a class="headerlink" href="#miembros.forms.MiembroForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('proyecto', 'usuario', 'horas_por_dia', 'rol')</em><a class="headerlink" href="#miembros.forms.MiembroForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -129,7 +129,7 @@
 
 <dl class="attribute">
 <dt id="miembros.forms.MiembroForm.base_fields">
-<code class="descclassname">MiembroForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f8627ffd6d0&gt;), ('usuario', &lt;django.forms.models.ModelChoiceField object at 0x7f8627ffdd50&gt;), ('horas_por_dia', &lt;django.forms.fields.IntegerField object at 0x7f862803d190&gt;)])</em><a class="headerlink" href="#miembros.forms.MiembroForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">MiembroForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f970d3497d0&gt;), ('usuario', &lt;django.forms.models.ModelChoiceField object at 0x7f970d349710&gt;), ('horas_por_dia', &lt;django.forms.fields.IntegerField object at 0x7f970d349490&gt;), ('rol', &lt;django.forms.models.ModelChoiceField object at 0x7f970d349f50&gt;)])</em><a class="headerlink" href="#miembros.forms.MiembroForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -169,7 +169,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/miembros/forms.html#MiembroUpdateForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#miembros.forms.MiembroUpdateForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="miembros.forms.MiembroUpdateForm.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('proyecto', 'usuario', 'horas_por_dia')</em><a class="headerlink" href="#miembros.forms.MiembroUpdateForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('horas_por_dia',)</em><a class="headerlink" href="#miembros.forms.MiembroUpdateForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -182,7 +182,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 <dl class="attribute">
 <dt id="miembros.forms.MiembroUpdateForm.base_fields">
-<code class="descclassname">MiembroUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f862803d1d0&gt;), ('usuario', &lt;django.forms.models.ModelChoiceField object at 0x7f862803d290&gt;), ('horas_por_dia', &lt;django.forms.fields.IntegerField object at 0x7f8628375f90&gt;)])</em><a class="headerlink" href="#miembros.forms.MiembroUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">MiembroUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('horas_por_dia', &lt;django.forms.fields.IntegerField object at 0x7f970d3496d0&gt;)])</em><a class="headerlink" href="#miembros.forms.MiembroUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -195,14 +195,19 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <code class="descclassname">MiembroUpdateForm.</code><code class="descname">media</code><a class="headerlink" href="#miembros.forms.MiembroUpdateForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="miembros.forms.MiembroUpdateForm.save">
+<code class="descclassname">MiembroUpdateForm.</code><code class="descname">save</code><span class="sig-paren">(</span><em>commit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/miembros/forms.html#MiembroUpdateForm.save"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#miembros.forms.MiembroUpdateForm.save" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
-<div class="section" id="miembros-models-module">
-<h2>miembros.models module<a class="headerlink" href="#miembros-models-module" title="Enlazar permanentemente con este título">¶</a></h2>
-<span class="target" id="module-miembros.models"></span><dl class="class">
+<div class="section" id="module-miembros.models">
+<span id="miembros-models-module"></span><h2>miembros.models module<a class="headerlink" href="#module-miembros.models" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
 <dt id="miembros.models.Miembro">
-<em class="property">class </em><code class="descclassname">miembros.models.</code><code class="descname">Miembro</code><span class="sig-paren">(</span><em>id</em>, <em>proyecto_id</em>, <em>usuario_id</em>, <em>horas_por_dia</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/miembros/models.html#Miembro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#miembros.models.Miembro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="descclassname">miembros.models.</code><code class="descname">Miembro</code><span class="sig-paren">(</span><em>id</em>, <em>proyecto_id</em>, <em>usuario_id</em>, <em>horas_por_dia</em>, <em>rol_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/miembros/models.html#Miembro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#miembros.models.Miembro" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
 <dl class="exception">
 <dt id="miembros.models.Miembro.DoesNotExist">
@@ -217,6 +222,11 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="miembros.models.Miembro.mensaje_set">
+<code class="descclassname">Miembro.</code><code class="descname">mensaje_set</code><a class="headerlink" href="#miembros.models.Miembro.mensaje_set" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="miembros.models.Miembro.objects">
 <code class="descclassname">Miembro.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#miembros.models.Miembro.objects" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
@@ -224,6 +234,16 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dl class="attribute">
 <dt id="miembros.models.Miembro.proyecto">
 <code class="descclassname">Miembro.</code><code class="descname">proyecto</code><a class="headerlink" href="#miembros.models.Miembro.proyecto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="miembros.models.Miembro.rol">
+<code class="descclassname">Miembro.</code><code class="descname">rol</code><a class="headerlink" href="#miembros.models.Miembro.rol" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="miembros.models.Miembro.us_set">
+<code class="descclassname">Miembro.</code><code class="descname">us_set</code><a class="headerlink" href="#miembros.models.Miembro.us_set" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -295,6 +315,11 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </ul>
 </dd>
 </dl>
+<dl class="method">
+<dt id="miembros.views.DeleteMiembro.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/miembros/views.html#DeleteMiembro.delete"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#miembros.views.DeleteMiembro.delete" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="miembros.views.DeleteMiembro.dispatch">
 <code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/miembros/views.html#DeleteMiembro.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#miembros.views.DeleteMiembro.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>

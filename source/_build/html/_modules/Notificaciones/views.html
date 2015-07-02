@@ -235,6 +235,54 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se le ha asignado satisfactoriamente un us en el proyecto </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">proyecto</span><span class="p">)</span>
     <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Asignacion de us en SGPA2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="notificar_creacion_us"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_creacion_us">[documentos]</a><span class="k">def</span> <span class="nf">notificar_creacion_us</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">proyecto</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_mod_proyecto(usuarios,proyecto)</span>
+<span class="sd">        Notificar Modificación</span>
+<span class="sd">        ======================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique al equipo de un Proyecto la modificación del mismo.</span>
+<span class="sd">        @param usuarios: Lista de usuarios asignados al Proyecto.</span>
+<span class="sd">        @param proyecto: Proyecto que se modificó.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se ha creado satisfactoriamente un us en el proyecto </span><span class="si">%s</span><span class="s">. donde usted es lider&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">proyecto</span><span class="p">)</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Creacion de us en SGPA2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="notificar_mod_us"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_mod_us">[documentos]</a><span class="k">def</span> <span class="nf">notificar_mod_us</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">proyecto</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_mod_proyecto(usuarios,proyecto)</span>
+<span class="sd">        Notificar Modificación</span>
+<span class="sd">        ======================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique al equipo de un Proyecto la modificación del mismo.</span>
+<span class="sd">        @param usuarios: Lista de usuarios asignados al Proyecto.</span>
+<span class="sd">        @param proyecto: Proyecto que se modificó.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mensaje</span> <span class="o">=</span> <span class="s">u&#39;Se ha modificado satisfactoriamente un us en el proyecto </span><span class="si">%s</span><span class="s">. donde usted es lider&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">proyecto</span><span class="p">)</span>
+    <span class="n">subj</span> <span class="o">=</span> <span class="s">u&#39;Modificacion de us en SGPA2015&#39;</span>
+    <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="notificar_generico"><a class="viewcode-back" href="../../Notificaciones.html#Notificaciones.views.notificar_generico">[documentos]</a><span class="k">def</span> <span class="nf">notificar_generico</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">proyecto</span><span class="p">,</span><span class="n">mensaje</span><span class="p">,</span><span class="n">subj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        notificar_mod_proyecto(usuarios,proyecto)</span>
+<span class="sd">        Notificar Modificación</span>
+<span class="sd">        ======================</span>
+
+<span class="sd">        Función que prepara los datos para L{Notificar&lt;IS2_R09.apps.Notificaciones.views.notificar&gt;}</span>
+<span class="sd">        para que notifique al equipo de un Proyecto la modificación del mismo.</span>
+<span class="sd">        @param usuarios: Lista de usuarios asignados al Proyecto.</span>
+<span class="sd">        @param proyecto: Proyecto que se modificó.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c">#mensaje = u&#39;Se ha modificado satisfactoriamente un us en el proyecto %s. donde usted es lider&#39; %(proyecto)</span>
+    <span class="c">#subj = u&#39;Modificacion de us en SGPA2015&#39;</span>
     <span class="n">notificar</span><span class="p">(</span><span class="n">usuarios</span><span class="p">,</span><span class="n">subj</span><span class="p">,</span><span class="n">mensaje</span><span class="p">)</span></div>
 </pre></div>
 

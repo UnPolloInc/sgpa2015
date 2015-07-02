@@ -122,14 +122,14 @@
 <dl class="attribute">
 <dt id="mensajes.forms.mensajesForm.Meta.model">
 <code class="descname">model</code><a class="headerlink" href="#mensajes.forms.mensajesForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>alias de <a class="reference internal" href="#module-mensajes" title="mensajes"><code class="xref py py-class docutils literal"><span class="pre">mensajes</span></code></a></p>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Mensaje</span></code></p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="attribute">
 <dt id="mensajes.forms.mensajesForm.base_fields">
-<code class="descclassname">mensajesForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f86280a11d0&gt;), ('remitente', &lt;django.forms.models.ModelChoiceField object at 0x7f86280a1290&gt;), ('destinatario', &lt;django.forms.models.ModelChoiceField object at 0x7f86280a1450&gt;), ('texto_mensaje', &lt;django.forms.fields.CharField object at 0x7f86280a1610&gt;)])</em><a class="headerlink" href="#mensajes.forms.mensajesForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">mensajesForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f970cd59450&gt;), ('remitente', &lt;django.forms.models.ModelChoiceField object at 0x7f970cd59a50&gt;), ('destinatario', &lt;django.forms.models.ModelChoiceField object at 0x7f970ccbfd10&gt;), ('texto_mensaje', &lt;django.forms.fields.CharField object at 0x7f970cc54b90&gt;)])</em><a class="headerlink" href="#mensajes.forms.mensajesForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -166,14 +166,14 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dl class="attribute">
 <dt id="mensajes.forms.mensajesUpdateForm.Meta.model">
 <code class="descname">model</code><a class="headerlink" href="#mensajes.forms.mensajesUpdateForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>alias de <a class="reference internal" href="#module-mensajes" title="mensajes"><code class="xref py py-class docutils literal"><span class="pre">mensajes</span></code></a></p>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Mensaje</span></code></p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="attribute">
 <dt id="mensajes.forms.mensajesUpdateForm.base_fields">
-<code class="descclassname">mensajesUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('remitente', &lt;django.forms.models.ModelChoiceField object at 0x7f86280a1810&gt;), ('destinatario', &lt;django.forms.models.ModelChoiceField object at 0x7f86280a18d0&gt;), ('texto_mensaje', &lt;django.forms.fields.CharField object at 0x7f86280a1a90&gt;)])</em><a class="headerlink" href="#mensajes.forms.mensajesUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">mensajesUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('remitente', &lt;django.forms.models.ModelChoiceField object at 0x7f970cf74450&gt;), ('destinatario', &lt;django.forms.models.ModelChoiceField object at 0x7f970cf74d90&gt;), ('texto_mensaje', &lt;django.forms.fields.CharField object at 0x7f970cf74e10&gt;)])</em><a class="headerlink" href="#mensajes.forms.mensajesUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -192,39 +192,39 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <div class="section" id="module-mensajes.models">
 <span id="mensajes-models-module"></span><h2>mensajes.models module<a class="headerlink" href="#module-mensajes.models" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="class">
-<dt id="mensajes.models.mensajes">
-<em class="property">class </em><code class="descclassname">mensajes.models.</code><code class="descname">mensajes</code><span class="sig-paren">(</span><em>id</em>, <em>proyecto_id</em>, <em>remitente_id</em>, <em>destinatario_id</em>, <em>texto_mensaje</em>, <em>fecha_hora_creacion</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/models.html#mensajes"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.models.mensajes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.models.Mensaje">
+<em class="property">class </em><code class="descclassname">mensajes.models.</code><code class="descname">Mensaje</code><span class="sig-paren">(</span><em>id</em>, <em>proyecto_id</em>, <em>remitente_id</em>, <em>destinatario_id</em>, <em>texto_mensaje</em>, <em>fecha_hora_creacion</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/models.html#Mensaje"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.models.Mensaje" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
 <dl class="exception">
-<dt id="mensajes.models.mensajes.DoesNotExist">
-<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#mensajes.models.mensajes.DoesNotExist" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.models.Mensaje.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#mensajes.models.Mensaje.DoesNotExist" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="exception">
-<dt id="mensajes.models.mensajes.MultipleObjectsReturned">
-<em class="property">exception </em><code class="descclassname">mensajes.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#mensajes.models.mensajes.MultipleObjectsReturned" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.models.Mensaje.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Mensaje.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#mensajes.models.Mensaje.MultipleObjectsReturned" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mensajes.models.mensajes.destinatario">
-<code class="descclassname">mensajes.</code><code class="descname">destinatario</code><a class="headerlink" href="#mensajes.models.mensajes.destinatario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.models.Mensaje.destinatario">
+<code class="descclassname">Mensaje.</code><code class="descname">destinatario</code><a class="headerlink" href="#mensajes.models.Mensaje.destinatario" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="mensajes.models.mensajes.objects">
-<code class="descclassname">mensajes.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#mensajes.models.mensajes.objects" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.models.Mensaje.objects">
+<code class="descclassname">Mensaje.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#mensajes.models.Mensaje.objects" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="mensajes.models.mensajes.proyecto">
-<code class="descclassname">mensajes.</code><code class="descname">proyecto</code><a class="headerlink" href="#mensajes.models.mensajes.proyecto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.models.Mensaje.proyecto">
+<code class="descclassname">Mensaje.</code><code class="descname">proyecto</code><a class="headerlink" href="#mensajes.models.Mensaje.proyecto" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="mensajes.models.mensajes.remitente">
-<code class="descclassname">mensajes.</code><code class="descname">remitente</code><a class="headerlink" href="#mensajes.models.mensajes.remitente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.models.Mensaje.remitente">
+<code class="descclassname">Mensaje.</code><code class="descname">remitente</code><a class="headerlink" href="#mensajes.models.Mensaje.remitente" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -306,16 +306,21 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#DeleteMensaje.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.DeleteMensaje.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="mensajes.views.DeleteMensaje.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#DeleteMensaje.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.DeleteMensaje.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="mensajes.views.DeleteMensaje.template_name">
-<code class="descname">template_name</code><em class="property"> = 'mensaje/delete_confirm.html'</em><a class="headerlink" href="#mensajes.views.DeleteMensaje.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">template_name</code><em class="property"> = 'mensajes/delete_confirm.html'</em><a class="headerlink" href="#mensajes.views.DeleteMensaje.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="mensajes.views.IndexView">
-<em class="property">class </em><code class="descclassname">mensajes.views.</code><code class="descname">IndexView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#IndexView"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.IndexView" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.views.EnviadosView">
+<em class="property">class </em><code class="descclassname">mensajes.views.</code><code class="descname">EnviadosView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#EnviadosView"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.EnviadosView" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
 <dl class="docutils">
 <dt><em>Vista basada en Clase para lista de mensajes</em>:</dt>
@@ -326,29 +331,29 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </dd>
 </dl>
 <dl class="method">
-<dt id="mensajes.views.IndexView.dispatch">
-<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#IndexView.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.IndexView.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.views.EnviadosView.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#EnviadosView.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.EnviadosView.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="mensajes.views.IndexView.get_context_data">
-<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#IndexView.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.IndexView.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.views.EnviadosView.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#EnviadosView.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.EnviadosView.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="mensajes.views.IndexView.get_queryset">
-<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#IndexView.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.IndexView.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.views.EnviadosView.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mensajes/views.html#EnviadosView.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#mensajes.views.EnviadosView.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="mensajes.views.IndexView.model">
-<code class="descname">model</code><a class="headerlink" href="#mensajes.views.IndexView.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>alias de <a class="reference internal" href="#module-mensajes" title="mensajes"><code class="xref py py-class docutils literal"><span class="pre">mensajes</span></code></a></p>
+<dt id="mensajes.views.EnviadosView.model">
+<code class="descname">model</code><a class="headerlink" href="#mensajes.views.EnviadosView.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Mensaje</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mensajes.views.IndexView.template_name">
-<code class="descname">template_name</code><em class="property"> = 'mensajes_list'</em><a class="headerlink" href="#mensajes.views.IndexView.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="mensajes.views.EnviadosView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'mensajes/mensajes_list.html'</em><a class="headerlink" href="#mensajes.views.EnviadosView.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -372,7 +377,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dl class="attribute">
 <dt id="mensajes.views.MensajeMixin.model">
 <code class="descname">model</code><a class="headerlink" href="#mensajes.views.MensajeMixin.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>alias de <a class="reference internal" href="#module-mensajes" title="mensajes"><code class="xref py py-class docutils literal"><span class="pre">mensajes</span></code></a></p>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Mensaje</span></code></p>
 </dd></dl>
 
 </dd></dl>
@@ -407,12 +412,12 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dl class="attribute">
 <dt id="mensajes.views.RecibidosView.model">
 <code class="descname">model</code><a class="headerlink" href="#mensajes.views.RecibidosView.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>alias de <a class="reference internal" href="#module-mensajes" title="mensajes"><code class="xref py py-class docutils literal"><span class="pre">mensajes</span></code></a></p>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Mensaje</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="mensajes.views.RecibidosView.template_name">
-<code class="descname">template_name</code><em class="property"> = 'mensajes_list'</em><a class="headerlink" href="#mensajes.views.RecibidosView.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">template_name</code><em class="property"> = 'mensajes/mensajes_list.html'</em><a class="headerlink" href="#mensajes.views.RecibidosView.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

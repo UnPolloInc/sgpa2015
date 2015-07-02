@@ -108,16 +108,14 @@
 <span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">RequestContext</span>
 <span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
 <span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">CreateView</span><span class="p">,</span> <span class="n">ListView</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">,</span> <span class="n">UpdateView</span>
+<span class="kn">from</span> <span class="nn">clientes.models</span> <span class="kn">import</span> <span class="n">Cliente</span>
 <span class="kn">from</span> <span class="nn">mensajes.forms</span> <span class="kn">import</span> <span class="n">mensajesForm</span><span class="p">,</span> <span class="n">mensajesUpdateForm</span>
-<span class="kn">from</span> <span class="nn">mensajes.models</span> <span class="kn">import</span> <span class="n">mensajes</span>
+<span class="kn">from</span> <span class="nn">mensajes.models</span> <span class="kn">import</span> <span class="n">Mensaje</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
 <span class="kn">from</span> <span class="nn">proyectos.models</span> <span class="kn">import</span> <span class="n">Proyecto</span>
-<span class="kn">from</span> <span class="nn">mensajes.models</span> <span class="kn">import</span> <span class="n">mensajes</span>
 <span class="kn">from</span> <span class="nn">usuarios.models</span> <span class="kn">import</span> <span class="n">Usuario</span>
 <span class="kn">from</span> <span class="nn">miembros.models</span> <span class="kn">import</span> <span class="n">Miembro</span>
-<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
-
 
 <div class="viewcode-block" id="CreateMensaje"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.CreateMensaje">[documentos]</a><span class="k">class</span> <span class="nc">CreateMensaje</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -151,38 +149,41 @@
 </div>
 <div class="viewcode-block" id="CreateMensaje.get_success_url"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.CreateMensaje.get_success_url">[documentos]</a>    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CreateMensaje</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;lista_mensaje&#39;</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">]])</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;lista_recibidos&#39;</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">]])</span>
 
 
 
 </div></div>
-<div class="viewcode-block" id="IndexView"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.IndexView">[documentos]</a><span class="k">class</span> <span class="nc">IndexView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<div class="viewcode-block" id="EnviadosView"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.EnviadosView">[documentos]</a><span class="k">class</span> <span class="nc">EnviadosView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        *Vista basada en Clase para lista de mensajes*:</span>
 <span class="sd">            + *template_name*: nombre del template que vamos a renderizar</span>
 <span class="sd">            + *model*: modelo que vamos a listar.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;mensajes_list&#39;</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">mensajes</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;mensajes/mensajes_list.html&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Mensaje</span>
 
     <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
-<div class="viewcode-block" id="IndexView.dispatch"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.IndexView.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="viewcode-block" id="EnviadosView.dispatch"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.EnviadosView.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">EnviadosView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="IndexView.get_context_data"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.IndexView.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="viewcode-block" id="EnviadosView.get_context_data"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.EnviadosView.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">EnviadosView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">context</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cliente</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">return</span> <span class="n">context</span>
 </div>
-<div class="viewcode-block" id="IndexView.get_queryset"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.IndexView.get_queryset">[documentos]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">qs</span><span class="o">=</span><span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
-        <span class="c">#remitentes = mensajes.objects.filter(proyecto=self.kwargs[&#39;pk&#39;]).filter(remitente=self.request.user)</span>
-        <span class="c">#destinatarios = mensajes.objects.filter(proyecto=self.kwargs[&#39;pk&#39;])</span>
-        <span class="c">#destinatarios=destinatarios.filter(destinatario=self.kwargs[&#39;usuario&#39;])</span>
-        <span class="c">#clientes = mensajes.objects.filter(cliente=self.request.user)</span>
-        <span class="c">#matches = remitentes</span>
-        <span class="c">#return matches</span>
+<div class="viewcode-block" id="EnviadosView.get_queryset"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.EnviadosView.get_queryset">[documentos]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">qs</span><span class="o">=</span><span class="nb">super</span><span class="p">(</span><span class="n">EnviadosView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">remitente</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
 
 
 </div></div>
@@ -191,7 +192,7 @@
 <span class="sd">        *Vista Basada en Clase para soporte de eliminacion de proyecto*:</span>
 <span class="sd">            + *model*: modelo a ser eliminado</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">mensajes</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Mensaje</span>
 
 <div class="viewcode-block" id="MensajeMixin.get_context_data"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.MensajeMixin.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&#39;object_name&#39;</span><span class="p">:</span><span class="s">&#39;mensajes&#39;</span><span class="p">})</span>
@@ -205,7 +206,7 @@
 <span class="sd">            + *template_name*: nombre del template a ser rendirizado</span>
 <span class="sd">            + *success_url: url a ser redireccionada en caso de exito*</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;mensaje/delete_confirm.html&#39;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;mensajes/delete_confirm.html&#39;</span>
 
     <span class="c">#success_url = &#39;/proyectos/flujos/&#39;</span>
 
@@ -215,8 +216,17 @@
 </div>
 <div class="viewcode-block" id="DeleteMensaje.get_context_data"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.DeleteMensaje.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DeleteMensaje</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">context</span><span class="p">[</span><span class="s">&#39;mensaje&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mensajes</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="n">mensaje</span> <span class="o">=</span> <span class="n">Mensaje</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="n">context</span><span class="p">[</span><span class="s">&#39;mensaje&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mensaje</span>
+        <span class="n">context</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mensaje</span><span class="o">.</span><span class="n">proyecto</span>
         <span class="k">return</span> <span class="n">context</span>
+</div>
+<div class="viewcode-block" id="DeleteMensaje.get_success_url"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.DeleteMensaje.get_success_url">[documentos]</a>    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DeleteMensaje</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">mensaje</span> <span class="o">=</span> <span class="n">Mensaje</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="n">proyecto</span> <span class="o">=</span> <span class="n">mensaje</span><span class="o">.</span><span class="n">proyecto</span><span class="o">.</span><span class="n">pk</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;lista_recibidos&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">proyecto</span><span class="p">])</span>
+
 
 
 <span class="c">#class UpdateMensaje(UpdateView):</span></div>
@@ -289,7 +299,7 @@
 
         <span class="n">entry_query</span> <span class="o">=</span> <span class="n">get_query</span><span class="p">(</span><span class="n">query_string</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;destinatario&#39;</span><span class="p">])</span>
 
-        <span class="n">found_entries</span> <span class="o">=</span> <span class="n">mensajes</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">entry_query</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;destinatario&#39;</span><span class="p">)</span>
+        <span class="n">found_entries</span> <span class="o">=</span> <span class="n">Mensaje</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">entry_query</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;destinatario&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;mensajes/search_results.html&#39;</span><span class="p">,</span>
                           <span class="p">{</span> <span class="s">&#39;query_string&#39;</span><span class="p">:</span> <span class="n">query_string</span><span class="p">,</span> <span class="s">&#39;found_entries&#39;</span><span class="p">:</span> <span class="n">found_entries</span> <span class="p">},</span>
                           <span class="n">context_instance</span><span class="o">=</span><span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
@@ -302,26 +312,31 @@
 <span class="sd">            + *template_name*: nombre del template que vamos a renderizar</span>
 <span class="sd">            + *model*: modelo que vamos a listar.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;mensajes_list&#39;</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">mensajes</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;mensajes/mensajes_list.html&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Mensaje</span>
 
     <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
 <div class="viewcode-block" id="RecibidosView.dispatch"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.RecibidosView.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">RecibidosView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="RecibidosView.get_context_data"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.RecibidosView.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">RecibidosView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">context</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cliente</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">return</span> <span class="n">context</span>
 </div>
 <div class="viewcode-block" id="RecibidosView.get_queryset"><a class="viewcode-back" href="../../mensajes.html#mensajes.views.RecibidosView.get_queryset">[documentos]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">miembro</span><span class="o">=</span><span class="n">Miembro</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">usuario</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
-        <span class="n">destinatarios</span> <span class="o">=</span> <span class="n">mensajes</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">remitente</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
-        <span class="c">#destinatarios = mensajes.objects.filter(proyecto=self.kwargs[&#39;pk&#39;])</span>
-        <span class="c">#destinatarios=destinatarios.filter(destinatario=self.kwargs[&#39;usuario&#39;])</span>
-        <span class="c">#clientes = mensajes.objects.filter(cliente=self.request.user)</span>
-        <span class="n">matches</span> <span class="o">=</span> <span class="n">remitentes</span>
-        <span class="k">return</span> <span class="n">matches</span></div></div>
+        <span class="n">qs</span><span class="o">=</span><span class="nb">super</span><span class="p">(</span><span class="n">RecibidosView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="n">miembro</span> <span class="o">=</span> <span class="n">Miembro</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">usuario</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">destinatario</span><span class="o">=</span><span class="n">miembro</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>

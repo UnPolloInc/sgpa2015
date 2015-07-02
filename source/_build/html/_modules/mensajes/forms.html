@@ -105,7 +105,8 @@
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span> <span class="nn">django.forms</span> <span class="kn">import</span> <span class="n">DateField</span><span class="p">,</span> <span class="n">ModelForm</span><span class="p">,</span> <span class="n">HiddenInput</span>
 <span class="kn">from</span> <span class="nn">django.contrib.admin.widgets</span> <span class="kn">import</span> <span class="n">AdminDateWidget</span>
-<span class="kn">from</span> <span class="nn">mensajes.models</span> <span class="kn">import</span> <span class="n">mensajes</span>
+<span class="kn">from</span> <span class="nn">mensajes.models</span> <span class="kn">import</span>  <span class="n">Mensaje</span>
+
 
 <div class="viewcode-block" id="mensajesForm"><a class="viewcode-back" href="../../mensajes.html#mensajes.forms.mensajesForm">[documentos]</a><span class="k">class</span> <span class="nc">mensajesForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
 
@@ -115,7 +116,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;remitente&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
 
 <div class="viewcode-block" id="mensajesForm.Meta"><a class="viewcode-back" href="../../mensajes.html#mensajes.forms.mensajesForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">mensajes</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Mensaje</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;proyecto&#39;</span><span class="p">,</span><span class="s">&#39;remitente&#39;</span><span class="p">,</span><span class="s">&#39;destinatario&#39;</span><span class="p">,</span><span class="s">&#39;texto_mensaje&#39;</span><span class="p">)</span>
 
 
@@ -129,22 +130,8 @@
 <span class="sd">        self.fields[&#39;last_name&#39;].required = True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="mensajesUpdateForm.Meta"><a class="viewcode-back" href="../../mensajes.html#mensajes.forms.mensajesUpdateForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">mensajes</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Mensaje</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;remitente&#39;</span><span class="p">,</span><span class="s">&#39;destinatario&#39;</span><span class="p">,</span><span class="s">&#39;texto_mensaje&#39;</span><span class="p">)</span>
-
-
-
-<span class="c">#class PriorizarForm(ModelForm):</span>
-
-<span class="c">#    &quot;&quot;&quot;def __init__(self, *args, **kwargs):</span>
-<span class="c">#        super(ModelForm, self).__init__(*args,</span>
-<span class="c">#**kwargs)</span>
-<span class="c">#        self.fields[&#39;first_name&#39;].required = True</span>
-<span class="c">#        self.fields[&#39;last_name&#39;].required = True</span>
-<span class="c">#    &quot;&quot;&quot;</span>
-<span class="c">#    class Meta:</span>
-<span class="c">#        model = us</span>
-<span class="c">#        fields = (&#39;prioridad&#39;,)</span>
 </pre></div></div></div>
 
           </div>

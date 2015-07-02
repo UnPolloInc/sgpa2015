@@ -102,23 +102,57 @@
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span> <span class="nn">django.forms</span> <span class="kn">import</span> <span class="n">DateField</span><span class="p">,</span> <span class="n">ModelForm</span><span class="p">,</span> <span class="n">HiddenInput</span>
 <span class="kn">from</span> <span class="nn">django.contrib.admin.widgets</span> <span class="kn">import</span> <span class="n">AdminDateWidget</span>
-<span class="kn">from</span> <span class="nn">us.models</span> <span class="kn">import</span> <span class="n">us</span>
-<span class="kn">from</span> <span class="nn">Notificaciones.views</span> <span class="kn">import</span> <span class="n">notificar_asignacion_us</span>
+<span class="kn">from</span> <span class="nn">flujos.models</span> <span class="kn">import</span> <span class="n">Actividad</span>
+<span class="kn">from</span> <span class="nn">proyectos.models</span> <span class="kn">import</span> <span class="n">Proyecto</span>
+<span class="kn">from</span> <span class="nn">us.models</span> <span class="kn">import</span> <span class="n">us</span><span class="p">,</span> <span class="n">registroTrabajoUs</span>
+<span class="kn">from</span> <span class="nn">Notificaciones.views</span> <span class="kn">import</span> <span class="n">notificar_asignacion_us</span><span class="p">,</span> <span class="n">notificar_creacion_us</span><span class="p">,</span> <span class="n">notificar_mod_us</span><span class="p">,</span> <span class="n">notificar_generico</span>
 
+
+<div class="viewcode-block" id="AprobarForm"><a class="viewcode-back" href="../../us.html#us.forms.AprobarForm">[documentos]</a><span class="k">class</span> <span class="nc">AprobarForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AprobarForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;estado_de_aprobacion&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+<div class="viewcode-block" id="AprobarForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.AprobarForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">us</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;proyecto&#39;</span><span class="p">,</span> <span class="s">&#39;estado_de_aprobacion&#39;</span><span class="p">,)</span>
+</div></div>
+<div class="viewcode-block" id="CancelarForm"><a class="viewcode-back" href="../../us.html#us.forms.CancelarForm">[documentos]</a><span class="k">class</span> <span class="nc">CancelarForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CancelarForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;estado_de_aprobacion&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+<div class="viewcode-block" id="CancelarForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.CancelarForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">us</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;proyecto&#39;</span><span class="p">,</span> <span class="s">&#39;estado_de_aprobacion&#39;</span><span class="p">,)</span>
+
+</div></div>
 <div class="viewcode-block" id="usasigForm"><a class="viewcode-back" href="../../us.html#us.forms.usasigForm">[documentos]</a><span class="k">class</span> <span class="nc">usasigForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">usasigForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;sprint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;flujo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;responsable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;duracion_horas_en_sprint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span>
 
 <div class="viewcode-block" id="usasigForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.usasigForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">us</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;sprint&#39;</span><span class="p">,</span> <span class="s">&#39;flujo&#39;</span><span class="p">,</span> <span class="s">&#39;responsable&#39;</span><span class="p">)</span>
-
-    <span class="c">#def save(self, commit=True):</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;sprint&#39;</span><span class="p">,</span> <span class="s">&#39;flujo&#39;</span><span class="p">,</span> <span class="s">&#39;responsable&#39;</span><span class="p">,</span> <span class="s">&#39;duracion_horas_en_sprint&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="usasigForm.save"><a class="viewcode-back" href="../../us.html#us.forms.usasigForm.save">[documentos]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="c"># Save the provided password in hashed format</span>
-    <span class="c">#    us = super(usasigForm, self).save(commit=False)</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">usasigForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
         <span class="c">#proyecto.set_password(self.cleaned_data[&quot;password1&quot;])</span>
-    <span class="c">#    if commit:</span>
-    <span class="c">#        us.save()</span>
-    <span class="c">#        notificar_asignacion_us(us.responsable,us.proyecto)</span>
-    <span class="c">#    return us</span>
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="n">actividades</span><span class="o">=</span><span class="n">Actividad</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flujo</span><span class="o">=</span><span class="n">us</span><span class="o">.</span><span class="n">flujo</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;pk&#39;</span><span class="p">)</span>
+            <span class="n">us</span><span class="o">.</span><span class="n">actividad</span><span class="o">=</span><span class="n">actividades</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">us</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">notificar_asignacion_us</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">responsable</span><span class="o">.</span><span class="n">usuario</span><span class="p">,</span><span class="n">us</span><span class="o">.</span><span class="n">proyecto</span><span class="p">)</span>
+            <span class="c">#notificar_asignacion_us(us.proyecto.cliente,us.proyecto)</span>
+        <span class="k">return</span> <span class="n">us</span>
 
 </div></div>
 <div class="viewcode-block" id="usForm"><a class="viewcode-back" href="../../us.html#us.forms.usForm">[documentos]</a><span class="k">class</span> <span class="nc">usForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
@@ -130,26 +164,39 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;sprint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;responsable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;duracion_horas_en_sprint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;actividad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;estado_de_aprobacion&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
 <div class="viewcode-block" id="usForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.usForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">us</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;nombre&#39;</span><span class="p">,</span><span class="s">&#39;valor_de_negocio&#39;</span><span class="p">,</span> <span class="s">&#39;prioridad&#39;</span><span class="p">,</span> <span class="s">&#39;valor_tecnico&#39;</span><span class="p">,</span> <span class="s">&#39;historial&#39;</span><span class="p">,</span> <span class="s">&#39;duracion_horas&#39;</span><span class="p">,</span> <span class="s">&#39;proyecto&#39;</span><span class="p">,</span> <span class="s">&#39;flujo&#39;</span><span class="p">,</span> <span class="s">&#39;sprint&#39;</span><span class="p">,</span> <span class="s">&#39;responsable&#39;</span><span class="p">)</span>
-
-
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;nombre&#39;</span><span class="p">,</span><span class="s">&#39;valor_de_negocio&#39;</span><span class="p">,</span> <span class="s">&#39;prioridad&#39;</span><span class="p">,</span> <span class="s">&#39;valor_tecnico&#39;</span><span class="p">,</span> <span class="s">&#39;descripcion&#39;</span><span class="p">,</span> <span class="s">&#39;duracion_horas&#39;</span><span class="p">,</span> <span class="s">&#39;proyecto&#39;</span><span class="p">,</span> <span class="s">&#39;flujo&#39;</span><span class="p">,</span> <span class="s">&#39;sprint&#39;</span><span class="p">,</span> <span class="s">&#39;responsable&#39;</span><span class="p">,</span> <span class="s">&#39;duracion_horas_en_sprint&#39;</span><span class="p">,</span> <span class="s">&#39;actividad&#39;</span><span class="p">,</span> <span class="s">&#39;estado&#39;</span><span class="p">,</span> <span class="s">&#39;estado_de_aprobacion&#39;</span><span class="p">,)</span>
+</div>
+<div class="viewcode-block" id="usForm.save"><a class="viewcode-back" href="../../us.html#us.forms.usForm.save">[documentos]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="c"># Save the provided password in hashed format</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">usForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="c">#proyecto.set_password(self.cleaned_data[&quot;password1&quot;])</span>
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="n">us</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">notificar_creacion_us</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">proyecto</span><span class="o">.</span><span class="n">lider_proyecto</span><span class="p">,</span><span class="n">us</span><span class="o">.</span><span class="n">proyecto</span><span class="p">)</span>
+            <span class="c">#notificar_asignacion_us(us.proyecto.cliente,us.proyecto)</span>
+        <span class="k">return</span> <span class="n">us</span>
 </div></div>
 <div class="viewcode-block" id="usUpdateForm"><a class="viewcode-back" href="../../us.html#us.forms.usUpdateForm">[documentos]</a><span class="k">class</span> <span class="nc">usUpdateForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
 
-   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">usUpdateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;flujo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;sprint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;responsable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
-
 <div class="viewcode-block" id="usUpdateForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.usUpdateForm.Meta">[documentos]</a>   <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">us</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;nombre&#39;</span><span class="p">,</span><span class="s">&#39;valor_de_negocio&#39;</span><span class="p">,</span> <span class="s">&#39;prioridad&#39;</span><span class="p">,</span> <span class="s">&#39;valor_tecnico&#39;</span><span class="p">,</span> <span class="s">&#39;historial&#39;</span><span class="p">,</span> <span class="s">&#39;duracion_horas&#39;</span><span class="p">,</span> <span class="s">&#39;sprint&#39;</span><span class="p">,</span> <span class="s">&#39;flujo&#39;</span><span class="p">,</span> <span class="s">&#39;responsable&#39;</span><span class="p">,</span> <span class="s">&#39;proyecto&#39;</span><span class="p">)</span>
-
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;nombre&#39;</span><span class="p">,</span><span class="s">&#39;valor_de_negocio&#39;</span><span class="p">,</span> <span class="s">&#39;prioridad&#39;</span><span class="p">,</span> <span class="s">&#39;valor_tecnico&#39;</span><span class="p">,</span> <span class="s">&#39;descripcion&#39;</span><span class="p">,</span> <span class="s">&#39;duracion_horas&#39;</span><span class="p">,</span> <span class="s">&#39;estado_de_aprobacion&#39;</span><span class="p">,)</span>
+</div>
+<div class="viewcode-block" id="usUpdateForm.save"><a class="viewcode-back" href="../../us.html#us.forms.usUpdateForm.save">[documentos]</a>   <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="c"># Save the provided password in hashed format</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">usUpdateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="c">#proyecto.set_password(self.cleaned_data[&quot;password1&quot;])</span>
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="n">us</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">notificar_mod_us</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">proyecto</span><span class="o">.</span><span class="n">lider_proyecto</span><span class="p">,</span><span class="n">us</span><span class="o">.</span><span class="n">proyecto</span><span class="p">)</span>
+            <span class="c">#notificar_asignacion_us(us.proyecto.cliente,us.proyecto)</span>
+        <span class="k">return</span> <span class="n">us</span>
 
 </div></div>
 <div class="viewcode-block" id="PriorizarForm"><a class="viewcode-back" href="../../us.html#us.forms.PriorizarForm">[documentos]</a><span class="k">class</span> <span class="nc">PriorizarForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
@@ -163,7 +210,56 @@
 <div class="viewcode-block" id="PriorizarForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.PriorizarForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">us</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;prioridad&#39;</span><span class="p">,)</span>
-</pre></div></div></div>
+
+</div></div>
+<div class="viewcode-block" id="registroForm"><a class="viewcode-back" href="../../us.html#us.forms.registroForm">[documentos]</a><span class="k">class</span> <span class="nc">registroForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">registroForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;horas_dedicadas&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;us&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;archivo_adjunto&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="bp">False</span>
+
+<div class="viewcode-block" id="registroForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.registroForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">registroTrabajoUs</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;descripcion&#39;</span><span class="p">,</span><span class="s">&#39;horas_dedicadas&#39;</span><span class="p">,</span><span class="s">&#39;us&#39;</span><span class="p">,</span><span class="s">&#39;archivo_adjunto&#39;</span><span class="p">,)</span>
+
+
+</div></div>
+<div class="viewcode-block" id="CambiarEstadoUsForm"><a class="viewcode-back" href="../../us.html#us.forms.CambiarEstadoUsForm">[documentos]</a><span class="k">class</span> <span class="nc">CambiarEstadoUsForm</span><span class="p">(</span><span class="n">ModelForm</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CambiarEstadoUsForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
+
+<div class="viewcode-block" id="CambiarEstadoUsForm.Meta"><a class="viewcode-back" href="../../us.html#us.forms.CambiarEstadoUsForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">us</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;estado&#39;</span><span class="p">,)</span>
+
+</div>
+<div class="viewcode-block" id="CambiarEstadoUsForm.save"><a class="viewcode-back" href="../../us.html#us.forms.CambiarEstadoUsForm.save">[documentos]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="c"># Save the provided password in hashed format</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CambiarEstadoUsForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="c">#proyecto.set_password(self.cleaned_data[&quot;password1&quot;])</span>
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">us</span><span class="o">.</span><span class="n">estado</span> <span class="o">==</span> <span class="s">&#39;TODO&#39;</span><span class="p">:</span>
+                <span class="n">us</span><span class="o">.</span><span class="n">estado</span> <span class="o">=</span> <span class="s">&#39;DOING&#39;</span>
+            <span class="k">elif</span> <span class="n">us</span><span class="o">.</span><span class="n">estado</span> <span class="o">==</span> <span class="s">&#39;DOING&#39;</span><span class="p">:</span>
+                <span class="n">us</span><span class="o">.</span><span class="n">estado</span> <span class="o">=</span> <span class="s">&#39;DONE&#39;</span>
+            <span class="k">elif</span> <span class="n">us</span><span class="o">.</span><span class="n">estado</span> <span class="o">==</span> <span class="s">&#39;DONE&#39;</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">actividad</span> <span class="o">=</span> <span class="n">Actividad</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">orden</span> <span class="o">=</span> <span class="n">us</span><span class="o">.</span><span class="n">actividad</span><span class="o">.</span><span class="n">orden</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">us</span><span class="o">.</span><span class="n">actividad</span><span class="o">=</span><span class="n">actividad</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">flujo</span><span class="o">=</span><span class="n">us</span><span class="o">.</span><span class="n">flujo</span><span class="p">)</span>
+                    <span class="n">us</span><span class="o">.</span><span class="n">estado</span><span class="o">=</span><span class="s">&#39;TODO&#39;</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="c">#falta que el lider pueda finalizar el user storie aca.</span>
+<span class="c">#                    proyecto = Proyecto.objects.get(pk=us.proyecto.pk)</span>
+ <span class="c">#                   if self.request.user == proyecto.lider_proyecto:</span>
+                    <span class="n">us</span><span class="o">.</span><span class="n">estado_de_aprobacion</span><span class="o">=</span><span class="s">&#39;FIN&#39;</span>
+                    <span class="n">us</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">us</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">us</span></div></div>
+</pre></div>
 
           </div>
           <footer>

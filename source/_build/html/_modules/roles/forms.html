@@ -117,9 +117,12 @@
 
         <span class="nb">super</span><span class="p">(</span><span class="n">RolForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">HiddenInput</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">pass_a_Q_object</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;permissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Permission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pass_a_Q_object</span><span class="p">)</span>
-
+        <span class="n">permissions</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Can add us&#39;</span><span class="p">,</span><span class="s">&#39;Can add miembro&#39;</span><span class="p">,</span><span class="s">&#39;Can add rol&#39;</span><span class="p">,</span><span class="s">&#39;Can change rol&#39;</span><span class="p">,</span><span class="s">&#39;Can add sprint&#39;</span><span class="p">,</span> <span class="s">&#39;Can add flujo&#39;</span><span class="p">,</span><span class="s">&#39;Can change flujo&#39;</span><span class="p">,</span> <span class="s">&#39;Can add actividad&#39;</span><span class="p">,</span>
+                     <span class="s">&#39;Can change actividad&#39;</span><span class="p">,</span> <span class="s">&#39;Can add registro trabajo us&#39;</span><span class="p">,]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;permissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Permission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__in</span><span class="o">=</span><span class="n">permissions</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;if pass_a_Q_object:</span>
+<span class="sd">            self.fields[&#39;permissions&#39;].queryset = Permission.objects.filter(pass_a_Q_object)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RolForm.Meta"><a class="viewcode-back" href="../../roles.html#roles.forms.RolForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Rol</span>
@@ -140,9 +143,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">permissions</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelMultipleChoiceField</span><span class="p">(</span><span class="n">Permission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">CheckboxSelectMultiple</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">pass_a_Q_object</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">RolUpdateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">permissions</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Can add us&#39;</span><span class="p">,</span><span class="s">&#39;Can add miembro&#39;</span><span class="p">,</span><span class="s">&#39;Can add rol&#39;</span><span class="p">,</span><span class="s">&#39;Can change rol&#39;</span><span class="p">,</span><span class="s">&#39;Can add sprint&#39;</span><span class="p">,</span> <span class="s">&#39;Can add flujo&#39;</span><span class="p">,</span><span class="s">&#39;Can change flujo&#39;</span><span class="p">,</span> <span class="s">&#39;Can add actividad&#39;</span><span class="p">,</span>
+                     <span class="s">&#39;Can change actividad&#39;</span><span class="p">,</span> <span class="s">&#39;Can add registro trabajo us&#39;</span><span class="p">,]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;permissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Permission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__in</span><span class="o">=</span><span class="n">permissions</span><span class="p">)</span>
+
 <div class="viewcode-block" id="RolUpdateForm.Meta"><a class="viewcode-back" href="../../roles.html#roles.forms.RolUpdateForm.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Rol</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;permissions&#39;</span><span class="p">)</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;permissions&#39;</span><span class="p">,</span> <span class="p">)</span>
 </pre></div></div></div>
 
           </div>

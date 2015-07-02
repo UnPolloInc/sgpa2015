@@ -108,6 +108,85 @@
 <div class="section" id="module-sprint.forms">
 <span id="sprint-forms-module"></span><h2>sprint.forms module<a class="headerlink" href="#module-sprint.forms" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="class">
+<dt id="sprint.forms.EjecutarSprintForm">
+<em class="property">class </em><code class="descclassname">sprint.forms.</code><code class="descname">EjecutarSprintForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/forms.html#EjecutarSprintForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.EjecutarSprintForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="sprint.forms.EjecutarSprintForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/sprint/forms.html#EjecutarSprintForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.EjecutarSprintForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="sprint.forms.EjecutarSprintForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('proyecto', 'estado')</em><a class="headerlink" href="#sprint.forms.EjecutarSprintForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.EjecutarSprintForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.forms.EjecutarSprintForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Sprint</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.EjecutarSprintForm.base_fields">
+<code class="descclassname">EjecutarSprintForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f970cae2d10&gt;), ('estado', &lt;django.forms.models.ModelChoiceField object at 0x7f970cae2bd0&gt;)])</em><a class="headerlink" href="#sprint.forms.EjecutarSprintForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.forms.EjecutarSprintForm.clean_estado">
+<code class="descclassname">EjecutarSprintForm.</code><code class="descname">clean_estado</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/forms.html#EjecutarSprintForm.clean_estado"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.EjecutarSprintForm.clean_estado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.EjecutarSprintForm.declared_fields">
+<code class="descclassname">EjecutarSprintForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#sprint.forms.EjecutarSprintForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.EjecutarSprintForm.media">
+<code class="descclassname">EjecutarSprintForm.</code><code class="descname">media</code><a class="headerlink" href="#sprint.forms.EjecutarSprintForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sprint.forms.FinalizarSprintForm">
+<em class="property">class </em><code class="descclassname">sprint.forms.</code><code class="descname">FinalizarSprintForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/forms.html#FinalizarSprintForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.FinalizarSprintForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="sprint.forms.FinalizarSprintForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/sprint/forms.html#FinalizarSprintForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.FinalizarSprintForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="sprint.forms.FinalizarSprintForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('estado',)</em><a class="headerlink" href="#sprint.forms.FinalizarSprintForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.FinalizarSprintForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.forms.FinalizarSprintForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Sprint</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.FinalizarSprintForm.base_fields">
+<code class="descclassname">FinalizarSprintForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('estado', &lt;django.forms.models.ModelChoiceField object at 0x7f970cae2990&gt;)])</em><a class="headerlink" href="#sprint.forms.FinalizarSprintForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.FinalizarSprintForm.declared_fields">
+<code class="descclassname">FinalizarSprintForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#sprint.forms.FinalizarSprintForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.FinalizarSprintForm.media">
+<code class="descclassname">FinalizarSprintForm.</code><code class="descname">media</code><a class="headerlink" href="#sprint.forms.FinalizarSprintForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="sprint.forms.SprintForm">
 <em class="property">class </em><code class="descclassname">sprint.forms.</code><code class="descname">SprintForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/forms.html#SprintForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.SprintForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
@@ -117,7 +196,7 @@
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/sprint/forms.html#SprintForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.SprintForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="sprint.forms.SprintForm.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('nombre', 'proyecto', 'descripcion', 'duracion_dias', 'observaciones')</em><a class="headerlink" href="#sprint.forms.SprintForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('nombre', 'proyecto', 'descripcion', 'duracion_dias', 'observaciones', 'estado')</em><a class="headerlink" href="#sprint.forms.SprintForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -130,7 +209,7 @@
 
 <dl class="attribute">
 <dt id="sprint.forms.SprintForm.base_fields">
-<code class="descclassname">SprintForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f86276fbb90&gt;), ('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f86276fbc50&gt;), ('descripcion', &lt;django.forms.fields.CharField object at 0x7f86276fbe10&gt;), ('duracion_dias', &lt;django.forms.fields.IntegerField object at 0x7f86276fbed0&gt;), ('observaciones', &lt;django.forms.fields.CharField object at 0x7f86276fbf50&gt;)])</em><a class="headerlink" href="#sprint.forms.SprintForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">SprintForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f970cae2610&gt;), ('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f970cae2450&gt;), ('descripcion', &lt;django.forms.fields.CharField object at 0x7f970cae2090&gt;), ('duracion_dias', &lt;django.forms.fields.IntegerField object at 0x7f970cae2510&gt;), ('observaciones', &lt;django.forms.fields.CharField object at 0x7f970cae23d0&gt;), ('estado', &lt;django.forms.models.ModelChoiceField object at 0x7f970cae2210&gt;)])</em><a class="headerlink" href="#sprint.forms.SprintForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -184,7 +263,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 <dl class="attribute">
 <dt id="sprint.forms.SprintUpdateForm.base_fields">
-<code class="descclassname">SprintUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f8627709190&gt;), ('descripcion', &lt;django.forms.fields.CharField object at 0x7f8627709250&gt;), ('duracion_dias', &lt;django.forms.fields.IntegerField object at 0x7f8627709350&gt;), ('observaciones', &lt;django.forms.fields.CharField object at 0x7f86277093d0&gt;)])</em><a class="headerlink" href="#sprint.forms.SprintUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">SprintUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f970cab1190&gt;), ('descripcion', &lt;django.forms.fields.CharField object at 0x7f970cab1350&gt;), ('duracion_dias', &lt;django.forms.fields.IntegerField object at 0x7f970cab1390&gt;), ('observaciones', &lt;django.forms.fields.CharField object at 0x7f970cab1650&gt;)])</em><a class="headerlink" href="#sprint.forms.SprintUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -199,12 +278,77 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="sprint.forms.usUpdateForm">
+<em class="property">class </em><code class="descclassname">sprint.forms.</code><code class="descname">usUpdateForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/forms.html#usUpdateForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.usUpdateForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="sprint.forms.usUpdateForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/sprint/forms.html#usUpdateForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.forms.usUpdateForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="sprint.forms.usUpdateForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('sprint', 'flujo', 'responsable', 'duracion_horas_en_sprint')</em><a class="headerlink" href="#sprint.forms.usUpdateForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.usUpdateForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.forms.usUpdateForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="us.html#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.usUpdateForm.base_fields">
+<code class="descclassname">usUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('sprint', &lt;django.forms.models.ModelChoiceField object at 0x7f970cab1a10&gt;), ('flujo', &lt;django.forms.models.ModelChoiceField object at 0x7f970cab1a90&gt;), ('responsable', &lt;django.forms.models.ModelChoiceField object at 0x7f970cab1890&gt;), ('duracion_horas_en_sprint', &lt;django.forms.fields.IntegerField object at 0x7f970cab1410&gt;)])</em><a class="headerlink" href="#sprint.forms.usUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.usUpdateForm.declared_fields">
+<code class="descclassname">usUpdateForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#sprint.forms.usUpdateForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.forms.usUpdateForm.media">
+<code class="descclassname">usUpdateForm.</code><code class="descname">media</code><a class="headerlink" href="#sprint.forms.usUpdateForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-sprint.models">
 <span id="sprint-models-module"></span><h2>sprint.models module<a class="headerlink" href="#module-sprint.models" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="class">
+<dt id="sprint.models.Estado">
+<em class="property">class </em><code class="descclassname">sprint.models.</code><code class="descname">Estado</code><span class="sig-paren">(</span><em>id</em>, <em>estado</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/models.html#Estado"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.models.Estado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<dl class="exception">
+<dt id="sprint.models.Estado.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#sprint.models.Estado.DoesNotExist" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="sprint.models.Estado.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Estado.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#sprint.models.Estado.MultipleObjectsReturned" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.models.Estado.objects">
+<code class="descclassname">Estado.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#sprint.models.Estado.objects" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.models.Estado.sprint_set">
+<code class="descclassname">Estado.</code><code class="descname">sprint_set</code><a class="headerlink" href="#sprint.models.Estado.sprint_set" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="sprint.models.Sprint">
-<em class="property">class </em><code class="descclassname">sprint.models.</code><code class="descname">Sprint</code><span class="sig-paren">(</span><em>id</em>, <em>nombre</em>, <em>proyecto_id</em>, <em>descripcion</em>, <em>duracion_dias</em>, <em>observaciones</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/models.html#Sprint"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.models.Sprint" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sprint.models.</code><code class="descname">Sprint</code><span class="sig-paren">(</span><em>id</em>, <em>nombre</em>, <em>proyecto_id</em>, <em>descripcion</em>, <em>duracion_dias</em>, <em>observaciones</em>, <em>estado_id</em>, <em>capacidadTotal</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/models.html#Sprint"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.models.Sprint" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
 <dl class="exception">
 <dt id="sprint.models.Sprint.DoesNotExist">
@@ -217,6 +361,11 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <em class="property">exception </em><code class="descclassname">Sprint.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#sprint.models.Sprint.MultipleObjectsReturned" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.models.Sprint.estado">
+<code class="descclassname">Sprint.</code><code class="descname">estado</code><a class="headerlink" href="#sprint.models.Sprint.estado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="sprint.models.Sprint.objects">
@@ -266,6 +415,46 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <div class="section" id="module-sprint.views">
 <span id="sprint-views-module"></span><h2>sprint.views module<a class="headerlink" href="#module-sprint.views" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="class">
+<dt id="sprint.views.BurndownSprintList">
+<em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">BurndownSprintList</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#BurndownSprintList"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.BurndownSprintList" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista basada en Clase para lista de sprint</em>:</dt>
+<dd><ul class="first last simple">
+<li><em>template_name</em>: nombre del template que vamos a renderizar</li>
+<li><em>model</em>: modelo que vamos a listar.</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sprint.views.BurndownSprintList.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#BurndownSprintList.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.BurndownSprintList.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.BurndownSprintList.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#BurndownSprintList.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.BurndownSprintList.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.BurndownSprintList.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#BurndownSprintList.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.BurndownSprintList.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.BurndownSprintList.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.views.BurndownSprintList.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Sprint</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.BurndownSprintList.template_name">
+<code class="descname">template_name</code><em class="property"> = 'sprint/burndown_sprint_list.html'</em><a class="headerlink" href="#sprint.views.BurndownSprintList.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="sprint.views.CreateSprint">
 <em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">CreateSprint</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#CreateSprint"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.CreateSprint" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></code></p>
@@ -312,6 +501,106 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </dd></dl>
 
 <dl class="class">
+<dt id="sprint.views.EjecutarSprint">
+<em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">EjecutarSprint</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#EjecutarSprint"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.EjecutarSprint" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista Basada en Clase para modificar un sprint:</em></dt>
+<dd>+*template_name*: template a ser renderizado
++*model*: modelo que se va modificar
++*form_class*:Formulario para actualizar el usuario
++*success_url*: url a ser redireccionada en caso de exito</dd>
+</dl>
+<dl class="method">
+<dt id="sprint.views.EjecutarSprint.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#EjecutarSprint.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.EjecutarSprint.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.EjecutarSprint.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#sprint.views.EjecutarSprint.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">EjecutarSprintForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.EjecutarSprint.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#EjecutarSprint.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.EjecutarSprint.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.EjecutarSprint.get_form_kwargs">
+<code class="descname">get_form_kwargs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#EjecutarSprint.get_form_kwargs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.EjecutarSprint.get_form_kwargs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.EjecutarSprint.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#EjecutarSprint.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.EjecutarSprint.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.EjecutarSprint.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.views.EjecutarSprint.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Sprint</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.EjecutarSprint.template_name">
+<code class="descname">template_name</code><em class="property"> = 'sprint/ejecutar_sprint.html'</em><a class="headerlink" href="#sprint.views.EjecutarSprint.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sprint.views.FinalizarSprint">
+<em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">FinalizarSprint</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#FinalizarSprint"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.FinalizarSprint" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista Basada en Clase para modificar un sprint:</em></dt>
+<dd>+*template_name*: template a ser renderizado
++*model*: modelo que se va modificar
++*form_class*:Formulario para actualizar el usuario
++*success_url*: url a ser redireccionada en caso de exito</dd>
+</dl>
+<dl class="method">
+<dt id="sprint.views.FinalizarSprint.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#FinalizarSprint.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.FinalizarSprint.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.FinalizarSprint.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#sprint.views.FinalizarSprint.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">FinalizarSprintForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.FinalizarSprint.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#FinalizarSprint.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.FinalizarSprint.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.FinalizarSprint.get_form_kwargs">
+<code class="descname">get_form_kwargs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#FinalizarSprint.get_form_kwargs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.FinalizarSprint.get_form_kwargs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.FinalizarSprint.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#FinalizarSprint.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.FinalizarSprint.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.FinalizarSprint.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.views.FinalizarSprint.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Sprint</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.FinalizarSprint.template_name">
+<code class="descname">template_name</code><em class="property"> = 'sprint/finalizar_confirm.html'</em><a class="headerlink" href="#sprint.views.FinalizarSprint.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="sprint.views.IndexView">
 <em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">IndexView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexView"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexView" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
@@ -347,6 +636,176 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dl class="attribute">
 <dt id="sprint.views.IndexView.template_name">
 <code class="descname">template_name</code><em class="property"> = 'sprint/sprint_list'</em><a class="headerlink" href="#sprint.views.IndexView.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sprint.views.IndexViewEnEjecucion">
+<em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">IndexViewEnEjecucion</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewEnEjecucion"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewEnEjecucion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista basada en Clase para lista de sprint</em>:</dt>
+<dd><ul class="first last simple">
+<li><em>template_name</em>: nombre del template que vamos a renderizar</li>
+<li><em>model</em>: modelo que vamos a listar.</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sprint.views.IndexViewEnEjecucion.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewEnEjecucion.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewEnEjecucion.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.IndexViewEnEjecucion.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewEnEjecucion.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewEnEjecucion.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.IndexViewEnEjecucion.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewEnEjecucion.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewEnEjecucion.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.IndexViewEnEjecucion.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.views.IndexViewEnEjecucion.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Sprint</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.IndexViewEnEjecucion.template_name">
+<code class="descname">template_name</code><em class="property"> = 'sprint/finalizar_sprint_list.html'</em><a class="headerlink" href="#sprint.views.IndexViewEnEjecucion.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sprint.views.IndexViewFinalizado">
+<em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">IndexViewFinalizado</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewFinalizado"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewFinalizado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista basada en Clase para lista de sprint</em>:</dt>
+<dd><ul class="first last simple">
+<li><em>template_name</em>: nombre del template que vamos a renderizar</li>
+<li><em>model</em>: modelo que vamos a listar.</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sprint.views.IndexViewFinalizado.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewFinalizado.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewFinalizado.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.IndexViewFinalizado.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewFinalizado.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewFinalizado.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.IndexViewFinalizado.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewFinalizado.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewFinalizado.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.IndexViewFinalizado.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.views.IndexViewFinalizado.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">Sprint</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.IndexViewFinalizado.template_name">
+<code class="descname">template_name</code><em class="property"> = 'sprint/finalizado.html'</em><a class="headerlink" href="#sprint.views.IndexViewFinalizado.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sprint.views.IndexViewUs">
+<em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">IndexViewUs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewUs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewUs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista basada en Clase para lista de sprint</em>:</dt>
+<dd><ul class="first last simple">
+<li><em>template_name</em>: nombre del template que vamos a renderizar</li>
+<li><em>model</em>: modelo que vamos a listar.</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sprint.views.IndexViewUs.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewUs.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewUs.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.IndexViewUs.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewUs.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewUs.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.IndexViewUs.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#IndexViewUs.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.IndexViewUs.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.IndexViewUs.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.views.IndexViewUs.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="us.html#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.IndexViewUs.template_name">
+<code class="descname">template_name</code><em class="property"> = 'sprint/us_list.html'</em><a class="headerlink" href="#sprint.views.IndexViewUs.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sprint.views.ReasignarUs">
+<em class="property">class </em><code class="descclassname">sprint.views.</code><code class="descname">ReasignarUs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#ReasignarUs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.ReasignarUs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista Basada en Clase para modificar un sprint:</em></dt>
+<dd>+*template_name*: template a ser renderizado
++*model*: modelo que se va modificar
++*form_class*:Formulario para actualizar el usuario
++*success_url*: url a ser redireccionada en caso de exito</dd>
+</dl>
+<dl class="method">
+<dt id="sprint.views.ReasignarUs.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#ReasignarUs.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.ReasignarUs.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.ReasignarUs.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#sprint.views.ReasignarUs.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">usUpdateForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.ReasignarUs.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#ReasignarUs.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.ReasignarUs.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.ReasignarUs.get_form">
+<code class="descname">get_form</code><span class="sig-paren">(</span><em>form_class</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#ReasignarUs.get_form"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.ReasignarUs.get_form" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sprint.views.ReasignarUs.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#ReasignarUs.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.ReasignarUs.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.ReasignarUs.model">
+<code class="descname">model</code><a class="headerlink" href="#sprint.views.ReasignarUs.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="us.html#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sprint.views.ReasignarUs.template_name">
+<code class="descname">template_name</code><em class="property"> = 'sprint/updateus.html'</em><a class="headerlink" href="#sprint.views.ReasignarUs.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -419,6 +878,17 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dd></dd></dl>
 
 </dd></dl>
+
+<dl class="function">
+<dt id="sprint.views.burndown_chart_sprint">
+<code class="descclassname">sprint.views.</code><code class="descname">burndown_chart_sprint</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#burndown_chart_sprint"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.burndown_chart_sprint" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>lineChart page</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sprint.views.generar_horas_trabajadas">
+<code class="descclassname">sprint.views.</code><code class="descname">generar_horas_trabajadas</code><span class="sig-paren">(</span><em>pk</em>, <em>ydata</em>, <em>horas_estimadas</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sprint/views.html#generar_horas_trabajadas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sprint.views.generar_horas_trabajadas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="sprint.views.get_query">

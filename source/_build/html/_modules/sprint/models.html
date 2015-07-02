@@ -111,25 +111,29 @@
 <span class="kn">from</span> <span class="nn">usuarios.models</span> <span class="kn">import</span> <span class="n">Usuario</span>
 <span class="c">#from sprint.models import Sprint</span>
 <span class="kn">from</span> <span class="nn">proyectos.models</span> <span class="kn">import</span> <span class="n">Proyecto</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ValidationError</span>
 
+
+<div class="viewcode-block" id="Estado"><a class="viewcode-back" href="../../sprint.html#sprint.forms.Estado">[documentos]</a><span class="k">class</span> <span class="nc">Estado</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">estado</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">estado</span>
+
+
+</div>
 <div class="viewcode-block" id="Sprint"><a class="viewcode-back" href="../../sprint.html#sprint.forms.Sprint">[documentos]</a><span class="k">class</span> <span class="nc">Sprint</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">nombre</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="c">#lider_proyecto = models.ForeignKey(Usuario, related_name=&#39;Lider&#39;)</span>
-    <span class="c">#cliente = models.ForeignKey(Cliente, related_name=&#39;Cliente&#39;)</span>
-    <span class="c">#proyecto = models.ForeignKey(Proyecto, related_name= &#39;Proyecto&#39;, null=True)</span>
     <span class="n">proyecto</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Proyecto</span><span class="p">,</span><span class="n">help_text</span><span class="o">=</span><span class="s">&#39;Nombre del proyecto&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">descripcion</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&#39;Introduzca una breve resenha del sprint&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">duracion_dias</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&#39;Duracion en dias&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="c">#fecha_creacion = models.DateField(default=date.today(),auto_now_add=True, help_text=&#39;Fecha de creacion del Proyecto&#39;, null=True)</span>
-    <span class="c">#fecha_inicio = models.DateField(help_text=&#39;Fecha de inicio del Proyecto&#39;, null=True)</span>
-    <span class="c">#fecha_fin = models.DateField(help_text=&#39;Fecha estimada de finalizacion&#39;, null=True)</span>
-    <span class="c">#estado = models.CharField(max_length=3, choices=opciones_estado, default=&#39;PEN&#39;, help_text=&#39;Estado del proyecto&#39;)</span>
     <span class="n">observaciones</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;No hay observaciones&#39;</span><span class="p">)</span>
-
+    <span class="n">estado</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Estado</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">capacidadTotal</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span></div>
-</pre></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span>
+</pre></div></div>
 
           </div>
           <footer>

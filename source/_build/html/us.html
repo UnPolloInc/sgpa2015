@@ -108,6 +108,122 @@
 <div class="section" id="module-us.forms">
 <span id="us-forms-module"></span><h2>us.forms module<a class="headerlink" href="#module-us.forms" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="class">
+<dt id="us.forms.AprobarForm">
+<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">AprobarForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#AprobarForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.AprobarForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="us.forms.AprobarForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/us/forms.html#AprobarForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.AprobarForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="us.forms.AprobarForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('proyecto', 'estado_de_aprobacion')</em><a class="headerlink" href="#us.forms.AprobarForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.AprobarForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#us.forms.AprobarForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.AprobarForm.base_fields">
+<code class="descclassname">AprobarForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f970cdc28d0&gt;), ('estado_de_aprobacion', &lt;django.forms.fields.TypedChoiceField object at 0x7f970cdc2750&gt;)])</em><a class="headerlink" href="#us.forms.AprobarForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.AprobarForm.declared_fields">
+<code class="descclassname">AprobarForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#us.forms.AprobarForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.AprobarForm.media">
+<code class="descclassname">AprobarForm.</code><code class="descname">media</code><a class="headerlink" href="#us.forms.AprobarForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="us.forms.CambiarEstadoUsForm">
+<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">CambiarEstadoUsForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#CambiarEstadoUsForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.CambiarEstadoUsForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="us.forms.CambiarEstadoUsForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/us/forms.html#CambiarEstadoUsForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.CambiarEstadoUsForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="us.forms.CambiarEstadoUsForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('estado',)</em><a class="headerlink" href="#us.forms.CambiarEstadoUsForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CambiarEstadoUsForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#us.forms.CambiarEstadoUsForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CambiarEstadoUsForm.base_fields">
+<code class="descclassname">CambiarEstadoUsForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('estado', &lt;django.forms.fields.TypedChoiceField object at 0x7f970ca3b490&gt;)])</em><a class="headerlink" href="#us.forms.CambiarEstadoUsForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CambiarEstadoUsForm.declared_fields">
+<code class="descclassname">CambiarEstadoUsForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#us.forms.CambiarEstadoUsForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CambiarEstadoUsForm.media">
+<code class="descclassname">CambiarEstadoUsForm.</code><code class="descname">media</code><a class="headerlink" href="#us.forms.CambiarEstadoUsForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.forms.CambiarEstadoUsForm.save">
+<code class="descclassname">CambiarEstadoUsForm.</code><code class="descname">save</code><span class="sig-paren">(</span><em>commit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#CambiarEstadoUsForm.save"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.CambiarEstadoUsForm.save" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="us.forms.CancelarForm">
+<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">CancelarForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#CancelarForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.CancelarForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="us.forms.CancelarForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/us/forms.html#CancelarForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.CancelarForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="us.forms.CancelarForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('proyecto', 'estado_de_aprobacion')</em><a class="headerlink" href="#us.forms.CancelarForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CancelarForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#us.forms.CancelarForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CancelarForm.base_fields">
+<code class="descclassname">CancelarForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f970cdc2050&gt;), ('estado_de_aprobacion', &lt;django.forms.fields.TypedChoiceField object at 0x7f970cdc2c50&gt;)])</em><a class="headerlink" href="#us.forms.CancelarForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CancelarForm.declared_fields">
+<code class="descclassname">CancelarForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#us.forms.CancelarForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.CancelarForm.media">
+<code class="descclassname">CancelarForm.</code><code class="descname">media</code><a class="headerlink" href="#us.forms.CancelarForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="us.forms.PriorizarForm">
 <em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">PriorizarForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#PriorizarForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.PriorizarForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
@@ -136,7 +252,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 <dl class="attribute">
 <dt id="us.forms.PriorizarForm.base_fields">
-<code class="descclassname">PriorizarForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('prioridad', &lt;django.forms.fields.IntegerField object at 0x7f8627ab8ed0&gt;)])</em><a class="headerlink" href="#us.forms.PriorizarForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">PriorizarForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('prioridad', &lt;django.forms.fields.IntegerField object at 0x7f970ca83410&gt;)])</em><a class="headerlink" href="#us.forms.PriorizarForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -152,6 +268,43 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </dd></dl>
 
 <dl class="class">
+<dt id="us.forms.registroForm">
+<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">registroForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#registroForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.registroForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="us.forms.registroForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/us/forms.html#registroForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.registroForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="us.forms.registroForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('descripcion', 'horas_dedicadas', 'us', 'archivo_adjunto')</em><a class="headerlink" href="#us.forms.registroForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.registroForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#us.forms.registroForm.Meta.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">registroTrabajoUs</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.registroForm.base_fields">
+<code class="descclassname">registroForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('descripcion', &lt;django.forms.fields.CharField object at 0x7f970ca3ba90&gt;), ('horas_dedicadas', &lt;django.forms.fields.IntegerField object at 0x7f970ca3bb50&gt;), ('us', &lt;django.forms.models.ModelChoiceField object at 0x7f970ca83590&gt;), ('archivo_adjunto', &lt;django.forms.fields.FileField object at 0x7f970ca3bc10&gt;)])</em><a class="headerlink" href="#us.forms.registroForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.registroForm.declared_fields">
+<code class="descclassname">registroForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#us.forms.registroForm.declared_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.forms.registroForm.media">
+<code class="descclassname">registroForm.</code><code class="descname">media</code><a class="headerlink" href="#us.forms.registroForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="us.forms.usForm">
 <em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">usForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
@@ -160,7 +313,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/us/forms.html#usForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="us.forms.usForm.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('nombre', 'valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable')</em><a class="headerlink" href="#us.forms.usForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('nombre', 'valor_de_negocio', 'prioridad', 'valor_tecnico', 'descripcion', 'duracion_horas', 'proyecto', 'flujo', 'sprint', 'responsable', 'duracion_horas_en_sprint', 'actividad', 'estado', 'estado_de_aprobacion')</em><a class="headerlink" href="#us.forms.usForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -173,7 +326,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 <dl class="attribute">
 <dt id="us.forms.usForm.base_fields">
-<code class="descclassname">usForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f8627f67110&gt;), ('valor_de_negocio', &lt;django.forms.fields.IntegerField object at 0x7f8627f67310&gt;), ('prioridad', &lt;django.forms.fields.IntegerField object at 0x7f8627f679d0&gt;), ('valor_tecnico', &lt;django.forms.fields.IntegerField object at 0x7f8627f67b10&gt;), ('historial', &lt;django.forms.fields.CharField object at 0x7f8627f67510&gt;), ('duracion_horas', &lt;django.forms.fields.IntegerField object at 0x7f86280302d0&gt;), ('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f8627eea290&gt;), ('flujo', &lt;django.forms.models.ModelChoiceField object at 0x7f8627f569d0&gt;), ('sprint', &lt;django.forms.models.ModelChoiceField object at 0x7f8628030350&gt;), ('responsable', &lt;django.forms.models.ModelChoiceField object at 0x7f8627f56450&gt;)])</em><a class="headerlink" href="#us.forms.usForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">usForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f970cb56f50&gt;), ('valor_de_negocio', &lt;django.forms.fields.IntegerField object at 0x7f970cb56e90&gt;), ('prioridad', &lt;django.forms.fields.IntegerField object at 0x7f970cb56790&gt;), ('valor_tecnico', &lt;django.forms.fields.IntegerField object at 0x7f970cb56650&gt;), ('descripcion', &lt;django.forms.fields.CharField object at 0x7f970cb56bd0&gt;), ('duracion_horas', &lt;django.forms.fields.IntegerField object at 0x7f970cb56910&gt;), ('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f970ca836d0&gt;), ('flujo', &lt;django.forms.models.ModelChoiceField object at 0x7f970cb56f10&gt;), ('sprint', &lt;django.forms.models.ModelChoiceField object at 0x7f970cb56b90&gt;), ('responsable', &lt;django.forms.models.ModelChoiceField object at 0x7f970cb56d50&gt;), ('duracion_horas_en_sprint', &lt;django.forms.fields.IntegerField object at 0x7f970cb56710&gt;), ('actividad', &lt;django.forms.models.ModelChoiceField object at 0x7f970ca83e50&gt;), ('estado', &lt;django.forms.fields.TypedChoiceField object at 0x7f970ca83210&gt;), ('estado_de_aprobacion', &lt;django.forms.fields.TypedChoiceField object at 0x7f970ca83fd0&gt;)])</em><a class="headerlink" href="#us.forms.usForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -186,18 +339,23 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <code class="descclassname">usForm.</code><code class="descname">media</code><a class="headerlink" href="#us.forms.usForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="us.forms.usForm.save">
+<code class="descclassname">usForm.</code><code class="descname">save</code><span class="sig-paren">(</span><em>commit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usForm.save"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usForm.save" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="us.forms.usUpdateForm">
-<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">usUpdateForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usUpdateForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usUpdateForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">usUpdateForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usUpdateForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usUpdateForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
 <dl class="class">
 <dt id="us.forms.usUpdateForm.Meta">
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/us/forms.html#usUpdateForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usUpdateForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="us.forms.usUpdateForm.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('nombre', 'valor_de_negocio', 'prioridad', 'valor_tecnico', 'historial', 'duracion_horas', 'sprint', 'flujo', 'responsable', 'proyecto')</em><a class="headerlink" href="#us.forms.usUpdateForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('nombre', 'valor_de_negocio', 'prioridad', 'valor_tecnico', 'descripcion', 'duracion_horas', 'estado_de_aprobacion')</em><a class="headerlink" href="#us.forms.usUpdateForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -210,7 +368,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 <dl class="attribute">
 <dt id="us.forms.usUpdateForm.base_fields">
-<code class="descclassname">usUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f8627eead50&gt;), ('valor_de_negocio', &lt;django.forms.fields.IntegerField object at 0x7f8627eea250&gt;), ('prioridad', &lt;django.forms.fields.IntegerField object at 0x7f8627eea5d0&gt;), ('valor_tecnico', &lt;django.forms.fields.IntegerField object at 0x7f8627eeab90&gt;), ('historial', &lt;django.forms.fields.CharField object at 0x7f8627eea510&gt;), ('duracion_horas', &lt;django.forms.fields.IntegerField object at 0x7f8627eea3d0&gt;), ('sprint', &lt;django.forms.models.ModelChoiceField object at 0x7f8627eeae90&gt;), ('flujo', &lt;django.forms.models.ModelChoiceField object at 0x7f8627eea190&gt;), ('responsable', &lt;django.forms.models.ModelChoiceField object at 0x7f8627eead90&gt;), ('proyecto', &lt;django.forms.models.ModelChoiceField object at 0x7f8627eea990&gt;)])</em><a class="headerlink" href="#us.forms.usUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">usUpdateForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('nombre', &lt;django.forms.fields.CharField object at 0x7f970ca83050&gt;), ('valor_de_negocio', &lt;django.forms.fields.IntegerField object at 0x7f970ca83310&gt;), ('prioridad', &lt;django.forms.fields.IntegerField object at 0x7f970ca83810&gt;), ('valor_tecnico', &lt;django.forms.fields.IntegerField object at 0x7f970ca83250&gt;), ('descripcion', &lt;django.forms.fields.CharField object at 0x7f970ca83450&gt;), ('duracion_horas', &lt;django.forms.fields.IntegerField object at 0x7f970ca83f50&gt;), ('estado_de_aprobacion', &lt;django.forms.fields.TypedChoiceField object at 0x7f970ca83a90&gt;)])</em><a class="headerlink" href="#us.forms.usUpdateForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -223,18 +381,23 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <code class="descclassname">usUpdateForm.</code><code class="descname">media</code><a class="headerlink" href="#us.forms.usUpdateForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="us.forms.usUpdateForm.save">
+<code class="descclassname">usUpdateForm.</code><code class="descname">save</code><span class="sig-paren">(</span><em>commit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usUpdateForm.save"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usUpdateForm.save" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="us.forms.usasigForm">
-<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">usasigForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usasigForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usasigForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="descclassname">us.forms.</code><code class="descname">usasigForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usasigForm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usasigForm" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
 <dl class="class">
 <dt id="us.forms.usasigForm.Meta">
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/us/forms.html#usasigForm.Meta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usasigForm.Meta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="us.forms.usasigForm.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('sprint', 'flujo', 'responsable')</em><a class="headerlink" href="#us.forms.usasigForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('sprint', 'flujo', 'responsable', 'duracion_horas_en_sprint')</em><a class="headerlink" href="#us.forms.usasigForm.Meta.fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -247,7 +410,7 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 
 <dl class="attribute">
 <dt id="us.forms.usasigForm.base_fields">
-<code class="descclassname">usasigForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('sprint', &lt;django.forms.models.ModelChoiceField object at 0x7f8627709fd0&gt;), ('flujo', &lt;django.forms.models.ModelChoiceField object at 0x7f86277170d0&gt;), ('responsable', &lt;django.forms.models.ModelChoiceField object at 0x7f8627717290&gt;)])</em><a class="headerlink" href="#us.forms.usasigForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descclassname">usasigForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('sprint', &lt;django.forms.models.ModelChoiceField object at 0x7f970cdc2d10&gt;), ('flujo', &lt;django.forms.models.ModelChoiceField object at 0x7f970cdc2650&gt;), ('responsable', &lt;django.forms.models.ModelChoiceField object at 0x7f970cdc2310&gt;), ('duracion_horas_en_sprint', &lt;django.forms.fields.IntegerField object at 0x7f970cdc2d50&gt;)])</em><a class="headerlink" href="#us.forms.usasigForm.base_fields" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -260,14 +423,52 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <code class="descclassname">usasigForm.</code><code class="descname">media</code><a class="headerlink" href="#us.forms.usasigForm.media" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="us.forms.usasigForm.save">
+<code class="descclassname">usasigForm.</code><code class="descname">save</code><span class="sig-paren">(</span><em>commit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/forms.html#usasigForm.save"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.forms.usasigForm.save" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
-<div class="section" id="module-us.models">
-<span id="us-models-module"></span><h2>us.models module<a class="headerlink" href="#module-us.models" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="us-models-module">
+<h2>us.models module<a class="headerlink" href="#us-models-module" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-us.models"></span><dl class="class">
+<dt id="us.models.registroTrabajoUs">
+<em class="property">class </em><code class="descclassname">us.models.</code><code class="descname">registroTrabajoUs</code><span class="sig-paren">(</span><em>id</em>, <em>us_id</em>, <em>descripcion</em>, <em>horas_dedicadas</em>, <em>fecha_hora_creacion</em>, <em>archivo_adjunto</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/models.html#registroTrabajoUs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.models.registroTrabajoUs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<dl class="exception">
+<dt id="us.models.registroTrabajoUs.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#us.models.registroTrabajoUs.DoesNotExist" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="us.models.registroTrabajoUs.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">registroTrabajoUs.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#us.models.registroTrabajoUs.MultipleObjectsReturned" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="us.models.registroTrabajoUs.getKey">
+<code class="descclassname">registroTrabajoUs.</code><code class="descname">getKey</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/models.html#registroTrabajoUs.getKey"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.models.registroTrabajoUs.getKey" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.models.registroTrabajoUs.objects">
+<code class="descclassname">registroTrabajoUs.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#us.models.registroTrabajoUs.objects" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.models.registroTrabajoUs.us">
+<code class="descclassname">registroTrabajoUs.</code><code class="descname">us</code><a class="headerlink" href="#us.models.registroTrabajoUs.us" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="us.models.us">
-<em class="property">class </em><code class="descclassname">us.models.</code><code class="descname">us</code><span class="sig-paren">(</span><em>id</em>, <em>nombre</em>, <em>valor_de_negocio</em>, <em>prioridad</em>, <em>valor_tecnico</em>, <em>historial</em>, <em>duracion_horas</em>, <em>sprint_id</em>, <em>flujo_id</em>, <em>responsable_id</em>, <em>proyecto_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/models.html#us"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.models.us" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="descclassname">us.models.</code><code class="descname">us</code><span class="sig-paren">(</span><em>id</em>, <em>nombre</em>, <em>valor_de_negocio</em>, <em>prioridad</em>, <em>valor_tecnico</em>, <em>descripcion</em>, <em>duracion_horas</em>, <em>duracion_horas_en_sprint</em>, <em>sprint_id</em>, <em>flujo_id</em>, <em>responsable_id</em>, <em>proyecto_id</em>, <em>actividad_id</em>, <em>estado</em>, <em>estado_de_aprobacion</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/models.html#us"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.models.us" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
 <dl class="exception">
 <dt id="us.models.us.DoesNotExist">
@@ -282,8 +483,23 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="us.models.us.actividad">
+<code class="descclassname">us.</code><code class="descname">actividad</code><a class="headerlink" href="#us.models.us.actividad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="us.models.us.flujo">
 <code class="descclassname">us.</code><code class="descname">flujo</code><a class="headerlink" href="#us.models.us.flujo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.models.us.get_estado_de_aprobacion_display">
+<code class="descclassname">us.</code><code class="descname">get_estado_de_aprobacion_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#us.models.us.get_estado_de_aprobacion_display" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.models.us.get_estado_display">
+<code class="descclassname">us.</code><code class="descname">get_estado_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#us.models.us.get_estado_display" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -292,8 +508,23 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="us.models.us.opciones_aprobacion">
+<code class="descclassname">us.</code><code class="descname">opciones_aprobacion</code><em class="property"> = (('PEN', 'Pendiente'), ('CAN', 'Cancelado'), ('OK', 'Aprobado'))</em><a class="headerlink" href="#us.models.us.opciones_aprobacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.models.us.opciones_estado">
+<code class="descclassname">us.</code><code class="descname">opciones_estado</code><em class="property"> = (('TODO', 'To Do'), ('DOING', 'Doing'), ('DONE', 'Done'))</em><a class="headerlink" href="#us.models.us.opciones_estado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="us.models.us.proyecto">
 <code class="descclassname">us.</code><code class="descname">proyecto</code><a class="headerlink" href="#us.models.us.proyecto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.models.us.registrotrabajous_set">
+<code class="descclassname">us.</code><code class="descname">registrotrabajous_set</code><a class="headerlink" href="#us.models.us.registrotrabajous_set" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -316,23 +547,8 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <em class="property">class </em><code class="descclassname">us.tests.</code><code class="descname">Test_us</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/tests.html#Test_us"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.tests.Test_us" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
 <dl class="method">
-<dt id="us.tests.Test_us.crear_cliente">
-<code class="descname">crear_cliente</code><span class="sig-paren">(</span><em>username='cliente'</em>, <em>first_name='mengano'</em>, <em>last_name='test'</em>, <em>cedula='4617'</em>, <em>email='alfa.alvaro.rodriguez&#64;gmail.com'</em>, <em>password='alforro'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/tests.html#Test_us.crear_cliente"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.tests.Test_us.crear_cliente" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="us.tests.Test_us.crear_miembro">
-<code class="descname">crear_miembro</code><span class="sig-paren">(</span><em>proyecto</em>, <em>usuario</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/tests.html#Test_us.crear_miembro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.tests.Test_us.crear_miembro" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="us.tests.Test_us.crear_usuario">
-<code class="descname">crear_usuario</code><span class="sig-paren">(</span><em>username='alforro'</em>, <em>first_name='alvaro'</em>, <em>last_name='test'</em>, <em>cedula='4617510'</em>, <em>email='alfa.alvaro.rodriguez&#64;gmail.com'</em>, <em>password='alforro'</em>, <em>is_superuser=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/tests.html#Test_us.crear_usuario"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.tests.Test_us.crear_usuario" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="us.tests.Test_us.create_us">
-<code class="descname">create_us</code><span class="sig-paren">(</span><em>nombre</em>, <em>valor_de_negocio</em>, <em>prioridad</em>, <em>valor_tecnico</em>, <em>historial</em>, <em>duracion_horas</em>, <em>sprint</em>, <em>flujo</em>, <em>responsable</em>, <em>proyecto</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/tests.html#Test_us.create_us"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.tests.Test_us.create_us" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="descname">create_us</code><span class="sig-paren">(</span><em>nombre='us2'</em>, <em>valor_de_negocio=2</em>, <em>prioridad=1</em>, <em>valor_tecnico=3</em>, <em>historial='hacer lalala'</em>, <em>duracion_horas='25'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/tests.html#Test_us.create_us"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.tests.Test_us.create_us" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -348,6 +564,56 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </div>
 <div class="section" id="module-us.views">
 <span id="us-views-module"></span><h2>us.views module<a class="headerlink" href="#module-us.views" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="us.views.Aprobar">
+<em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">Aprobar</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#Aprobar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.Aprobar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista Basada en Clase para modificar un sprint:</em></dt>
+<dd>+*template_name*: template a ser renderizado
++*model*: modelo que se va modificar
++*form_class*:Formulario para actualizar el usuario
++*success_url*: url a ser redireccionada en caso de exito</dd>
+</dl>
+<dl class="method">
+<dt id="us.views.Aprobar.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#Aprobar.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.Aprobar.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.Aprobar.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#us.views.Aprobar.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">AprobarForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="us.views.Aprobar.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#Aprobar.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.Aprobar.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.Aprobar.get_form_kwargs">
+<code class="descname">get_form_kwargs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#Aprobar.get_form_kwargs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.Aprobar.get_form_kwargs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.Aprobar.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#Aprobar.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.Aprobar.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.Aprobar.model">
+<code class="descname">model</code><a class="headerlink" href="#us.views.Aprobar.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.Aprobar.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/aprobar_us.html'</em><a class="headerlink" href="#us.views.Aprobar.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="us.views.Asignacion">
 <em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">Asignacion</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#Asignacion"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.Asignacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
@@ -391,9 +657,109 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 <dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
 </dd></dl>
 
+<dl class="method">
+<dt id="us.views.Asignacion.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>commit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#Asignacion.save"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.Asignacion.save" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="us.views.Asignacion.template_name">
 <code class="descname">template_name</code><em class="property"> = 'us/asignar.html'</em><a class="headerlink" href="#us.views.Asignacion.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="us.views.CambiarEstadoUs">
+<em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">CambiarEstadoUs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CambiarEstadoUs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CambiarEstadoUs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista Basada en Clase para modificar un flujo:</em></dt>
+<dd>+*template_name*: template a ser renderizado
++*model*: modelo que se va modificar
++*form_class*:Formulario para actualizar el usuario
++*success_url*: url a ser redireccionada en caso de exito</dd>
+</dl>
+<dl class="method">
+<dt id="us.views.CambiarEstadoUs.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CambiarEstadoUs.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CambiarEstadoUs.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.CambiarEstadoUs.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#us.views.CambiarEstadoUs.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">CambiarEstadoUsForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="us.views.CambiarEstadoUs.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CambiarEstadoUs.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CambiarEstadoUs.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.CambiarEstadoUs.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CambiarEstadoUs.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CambiarEstadoUs.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.CambiarEstadoUs.model">
+<code class="descname">model</code><a class="headerlink" href="#us.views.CambiarEstadoUs.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.CambiarEstadoUs.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/update.html'</em><a class="headerlink" href="#us.views.CambiarEstadoUs.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="us.views.CancelarUs">
+<em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">CancelarUs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CancelarUs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CancelarUs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista Basada en Clase para modificar un sprint:</em></dt>
+<dd>+*template_name*: template a ser renderizado
++*model*: modelo que se va modificar
++*form_class*:Formulario para actualizar el usuario
++*success_url*: url a ser redireccionada en caso de exito</dd>
+</dl>
+<dl class="method">
+<dt id="us.views.CancelarUs.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CancelarUs.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CancelarUs.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.CancelarUs.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#us.views.CancelarUs.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">CancelarForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="us.views.CancelarUs.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CancelarUs.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CancelarUs.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.CancelarUs.get_form_kwargs">
+<code class="descname">get_form_kwargs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CancelarUs.get_form_kwargs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CancelarUs.get_form_kwargs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.CancelarUs.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#CancelarUs.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.CancelarUs.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.CancelarUs.model">
+<code class="descname">model</code><a class="headerlink" href="#us.views.CancelarUs.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.CancelarUs.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/cancelar_us.html'</em><a class="headerlink" href="#us.views.CancelarUs.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -509,6 +875,86 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </dd></dl>
 
 <dl class="class">
+<dt id="us.views.IndexViewAprobados">
+<em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">IndexViewAprobados</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewAprobados"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewAprobados" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista basada en Clase para lista de flujos</em>:</dt>
+<dd><ul class="first last simple">
+<li><em>template_name</em>: nombre del template que vamos a renderizar</li>
+<li><em>model</em>: modelo que vamos a listar.</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="us.views.IndexViewAprobados.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewAprobados.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewAprobados.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.IndexViewAprobados.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewAprobados.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewAprobados.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.IndexViewAprobados.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewAprobados.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewAprobados.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.IndexViewAprobados.model">
+<code class="descname">model</code><a class="headerlink" href="#us.views.IndexViewAprobados.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.IndexViewAprobados.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/aprobado_list.html'</em><a class="headerlink" href="#us.views.IndexViewAprobados.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="us.views.IndexViewRelease">
+<em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">IndexViewRelease</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewRelease"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewRelease" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista basada en Clase para lista de flujos</em>:</dt>
+<dd><ul class="first last simple">
+<li><em>template_name</em>: nombre del template que vamos a renderizar</li>
+<li><em>model</em>: modelo que vamos a listar.</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="us.views.IndexViewRelease.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewRelease.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewRelease.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.IndexViewRelease.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewRelease.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewRelease.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.IndexViewRelease.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#IndexViewRelease.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.IndexViewRelease.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.IndexViewRelease.model">
+<code class="descname">model</code><a class="headerlink" href="#us.views.IndexViewRelease.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#module-us" title="us"><code class="xref py py-class docutils literal"><span class="pre">us</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.IndexViewRelease.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/release.html'</em><a class="headerlink" href="#us.views.IndexViewRelease.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="us.views.PriorizarUs">
 <em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">PriorizarUs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#PriorizarUs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.PriorizarUs" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
@@ -592,13 +1038,45 @@ self.fields[&#8216;last_name&#8217;].required = True</dd>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="us.views.Updateus.success_url">
-<code class="descname">success_url</code><em class="property"> = '/us'</em><a class="headerlink" href="#us.views.Updateus.success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="us.views.Updateus.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/update.html'</em><a class="headerlink" href="#us.views.Updateus.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="us.views.createRegistro">
+<em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">createRegistro</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#createRegistro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.createRegistro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.FormView</span></code></p>
+<dl class="method">
+<dt id="us.views.createRegistro.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#createRegistro.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.createRegistro.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="us.views.Updateus.template_name">
-<code class="descname">template_name</code><em class="property"> = 'us/update.html'</em><a class="headerlink" href="#us.views.Updateus.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="us.views.createRegistro.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#us.views.createRegistro.form_class" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">registroForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="us.views.createRegistro.form_valid">
+<code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#createRegistro.form_valid"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.createRegistro.form_valid" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.createRegistro.get_form_kwargs">
+<code class="descname">get_form_kwargs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#createRegistro.get_form_kwargs"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.createRegistro.get_form_kwargs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.createRegistro.get_success_url">
+<code class="descname">get_success_url</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#createRegistro.get_success_url"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.createRegistro.get_success_url" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.createRegistro.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/crearRegistro.html'</em><a class="headerlink" href="#us.views.createRegistro.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -653,6 +1131,46 @@ Example:</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="class">
+<dt id="us.views.registroView">
+<em class="property">class </em><code class="descclassname">us.views.</code><code class="descname">registroView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#registroView"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.registroView" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<dl class="docutils">
+<dt><em>Vista basada en Clase para lista de flujos</em>:</dt>
+<dd><ul class="first last simple">
+<li><em>template_name</em>: nombre del template que vamos a renderizar</li>
+<li><em>model</em>: modelo que vamos a listar.</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="us.views.registroView.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#registroView.dispatch"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.registroView.dispatch" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.registroView.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#registroView.get_context_data"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.registroView.get_context_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="us.views.registroView.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/us/views.html#registroView.get_queryset"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#us.views.registroView.get_queryset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.registroView.model">
+<code class="descname">model</code><a class="headerlink" href="#us.views.registroView.model" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>alias de <code class="xref py py-class docutils literal"><span class="pre">registroTrabajoUs</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="us.views.registroView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'us/lista_registro.html'</em><a class="headerlink" href="#us.views.registroView.template_name" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="function">

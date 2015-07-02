@@ -99,13 +99,16 @@
           <div role="main" class="document">
             
   <h1>Código fuente para miembros.views</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseForbidden</span><span class="p">,</span> <span class="n">HttpResponseRedirect</span>
 <span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">RequestContext</span>
 <span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">ListView</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">,</span> <span class="n">UpdateView</span>
+<span class="kn">from</span> <span class="nn">clientes.models</span> <span class="kn">import</span> <span class="n">Cliente</span>
 <span class="kn">from</span> <span class="nn">miembros.forms</span> <span class="kn">import</span> <span class="n">MiembroForm</span><span class="p">,</span> <span class="n">MiembroUpdateForm</span>
 <span class="kn">from</span> <span class="nn">miembros.models</span> <span class="kn">import</span> <span class="n">Miembro</span>
 <span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span><span class="p">,</span> <span class="n">ProtectedError</span>
+<span class="kn">from</span> <span class="nn">roles.models</span> <span class="kn">import</span> <span class="n">Rol</span>
 <span class="kn">from</span> <span class="nn">usuarios.models</span> <span class="kn">import</span> <span class="n">Usuario</span>
 <span class="kn">from</span> <span class="nn">proyectos.models</span> <span class="kn">import</span> <span class="n">Proyecto</span>
 <span class="c"># Create your views here.</span>
@@ -136,13 +139,24 @@
 <div class="viewcode-block" id="IndexViewVerUser.get_queryset"><a class="viewcode-back" href="../../miembros.html#miembros.views.IndexViewVerUser.get_queryset">[documentos]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexViewVerUser</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
         <span class="n">miembros</span> <span class="o">=</span> <span class="n">Miembro</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="n">proyecto</span> <span class="o">=</span> <span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
         <span class="n">qs</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">id__in</span><span class="o">=</span><span class="p">[</span><span class="n">miembro</span><span class="o">.</span><span class="n">usuario</span><span class="o">.</span><span class="n">pk</span> <span class="k">for</span> <span class="n">miembro</span> <span class="ow">in</span> <span class="n">miembros</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">id__in</span><span class="o">=</span><span class="p">[</span><span class="n">miembro</span><span class="o">.</span><span class="n">usuario</span><span class="o">.</span><span class="n">pk</span> <span class="k">for</span> <span class="n">miembro</span> <span class="ow">in</span> <span class="n">miembros</span><span class="p">])</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">proyecto</span><span class="o">.</span><span class="n">pk</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">pk</span> <span class="o">=</span> <span class="n">proyecto</span><span class="o">.</span><span class="n">lider_proyecto</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="IndexViewVerUser.get_context_data"><a class="viewcode-back" href="../../miembros.html#miembros.views.IndexViewVerUser.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexViewVerUser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">context</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cliente</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">return</span> <span class="n">context</span>
+
 
 
 </div></div>
@@ -174,6 +188,8 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;initial&#39;</span><span class="p">][</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">proyecto</span><span class="o">.</span><span class="n">pk</span>
         <span class="n">usuario</span><span class="o">=</span><span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;usuario&#39;</span><span class="p">])</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;initial&#39;</span><span class="p">][</span><span class="s">&#39;usuario&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">usuario</span><span class="o">.</span><span class="n">pk</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&#39;proyecto&#39;</span><span class="p">:</span> <span class="n">proyecto</span><span class="p">})</span>
+
         <span class="k">return</span> <span class="n">kwargs</span>
 </div>
 <div class="viewcode-block" id="CreateMiembro.get_success_url"><a class="viewcode-back" href="../../miembros.html#miembros.views.CreateMiembro.get_success_url">[documentos]</a>    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -195,12 +211,24 @@
 </div>
 <div class="viewcode-block" id="IndexView.get_context_data"><a class="viewcode-back" href="../../miembros.html#miembros.views.IndexView.get_context_data">[documentos]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">context</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="n">proyecto</span> <span class="o">=</span> <span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="n">context</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">proyecto</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;lider&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cliente</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;cliente&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">return</span> <span class="n">context</span>
 </div>
 <div class="viewcode-block" id="IndexView.get_queryset"><a class="viewcode-back" href="../../miembros.html#miembros.views.IndexView.get_queryset">[documentos]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="n">proyecto</span><span class="o">=</span><span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">proyecto</span><span class="o">=</span><span class="n">proyecto</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">usuario</span><span class="o">=</span><span class="n">proyecto</span><span class="o">.</span><span class="n">lider_proyecto</span><span class="p">)</span>
+
 </div></div>
 <div class="viewcode-block" id="MiembroMixin"><a class="viewcode-back" href="../../miembros.html#miembros.views.MiembroMixin">[documentos]</a><span class="k">class</span> <span class="nc">MiembroMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -228,7 +256,6 @@
 <span class="sd">            + *success_url: url a ser redireccionada en caso de exito*</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;miembros/delete_confirm.html&#39;</span>
-    <span class="c">#success_url = &#39;/miembros/configurar/&#39;</span>
 
     <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
 <div class="viewcode-block" id="DeleteMiembro.dispatch"><a class="viewcode-back" href="../../miembros.html#miembros.views.DeleteMiembro.dispatch">[documentos]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -240,7 +267,21 @@
         <span class="n">context</span><span class="p">[</span><span class="s">&#39;miembro&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Miembro</span>
         <span class="n">context</span><span class="p">[</span><span class="s">&#39;proyecto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Proyecto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">miembro</span><span class="o">.</span><span class="n">proyecto</span><span class="o">.</span><span class="n">pk</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">context</span>
-
+</div>
+<div class="viewcode-block" id="DeleteMiembro.delete"><a class="viewcode-back" href="../../miembros.html#miembros.views.DeleteMiembro.delete">[documentos]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">DeleteMiembro</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">ProtectedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c"># Return the appropriate response</span>
+            <span class="c">#return HttpResponseForbidden()</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DeleteMiembro</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">miembro</span> <span class="o">=</span> <span class="n">Miembro</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;pk&#39;</span><span class="p">])</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;miembros_listar&#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;pk&#39;</span><span class="p">:</span><span class="n">miembro</span><span class="o">.</span><span class="n">proyecto</span><span class="o">.</span><span class="n">pk</span><span class="p">})</span>
+            <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="c">#</span>
+            <span class="c">#return reverse(&#39;miembros_listar&#39;,args=[miembro.proyecto.pk])</span>
 
 </div>
 <div class="viewcode-block" id="DeleteMiembro.get_success_url"><a class="viewcode-back" href="../../miembros.html#miembros.views.DeleteMiembro.get_success_url">[documentos]</a>    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
