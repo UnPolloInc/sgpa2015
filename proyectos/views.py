@@ -262,15 +262,12 @@ def reporte_pdf(request, pk):
 
     # Create the PDF object, using the response object as its "file."
     p = canvas.Canvas(response)
-    proyectos = Proyecto.objects.all()
-    sprint  = Sprint.objects.filter(estado=2)
-    miembros = Miembro.objects.all()
+
     p.drawString(210, 800, "1 - Cantidad de Trabajos en curso por equipo.")
     proyecto = Proyecto.objects.get(pk=pk)
-    user_storie = us.objects.all()
     j=750
     p.setFont('Helvetica', 8)
-    p.drawString(100, j, proyecto.nombre)
+    p.drawString(100, j, proyecto.nombre + ': ' + 'Estado  ' + proyecto.estado)
     equipo = Miembro.objects.filter(proyecto=proyecto.pk)
     sprints = Sprint.objects.filter(proyecto = proyecto.pk).filter(estado=2)
     j = j-20
@@ -289,38 +286,75 @@ def reporte_pdf(request, pk):
     p.showPage()
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
-    proyectos = Proyecto.objects.all()
-    miembros = Miembro.objects.all()
+    miembros = Miembro.objects.filter(proyecto = proyecto.pk)
     p.drawString(200, 800, "2 - Cantidad de Trabajos por usuario, pendiente, en curso y finalizado.")
     j=750
 
     for usuario_system in miembros :
                 p.setFont('Helvetica', 8)
-                p.drawString(100, j, usuario_system.usuario.username + ': ' + usuario_system.proyecto.nombre + '  Estado:' + usuario_system.proyecto.estado)
+                p.drawString(100, j, usuario_system.usuario.username)
                 user_story = us.objects.filter(responsable = usuario_system)
                 j = j-20
                 for hu in user_story:
-                            p.drawString(140, j, '- ' + hu.nombre)
+                            p.drawString(120, j, '- ' + hu.nombre)
                             j=j-20
 
     p.showPage()
 
-    proyectos = Proyecto.objects.all()
+
     p.drawString(210, 800, "3 - Lista de Actividades para completar un proyecto.")
     j=750
 
-    for proyect in proyectos :
-                p.setFont('Helvetica', 8)
-                p.drawString(100, j, proyect.nombre)
-                fluj = Flujos.objects.filter(proyecto = proyect.pk)
-                j = j-20
-                for f in fluj:
-                        p.drawString(120, j, f.nombre)
-                        acti = Actividad.objects.filter(flujo = f.pk).order_by('orden')
-                        j = j-20
-                        for a in acti:
-                            p.drawString(140, j, str(a.orden) + ': ' + a.nombre)
-                            j = j-20
+
+    fluj = Flujos.objects.filter(proyecto = proyecto.pk)
+    j = j-20
+    for f in fluj:
+         p.setFont('Helvetica', 8)
+         p.drawString(120, j, f.nombre)
+         acti = Actividad.objects.filter(flujo = f.pk).order_by('orden')
+         j = j-20
+         for a in acti:
+               p.drawString(140, j, str(a.orden) + ': ' + a.nombre)
+               j = j-20
+
+    p.showPage()
+
+
+    p.drawString(210, 800, "5 - Product BackLog por proyectos .")
+    j=750
+
+    p.setFont('Helvetica', 8)
+    p.drawString(100, j, proyecto.nombre)
+    user_story = us.objects.filter(proyecto = proyecto.pk).order_by('prioridad')
+    j = j-20
+
+    p.drawString(120, j, 'Nombre del Us')
+    p.drawString(200, j, '      Prioridad')
+    j = j-20
+    for u in user_story:
+            p.drawString(120, j, u.nombre + '          ' + str(u.prioridad))
+            j = j-20
+
+
+    p.showPage()
+
+    proyectos = Proyecto.objects.all()
+    p.drawString(210, 800, "5 - Sprint BackLog por proyectos .")
+    j=750
+
+
+    p.setFont('Helvetica', 8)
+    p.drawString(100, j, proyecto.nombre)
+    sprints = Sprint.objects.filter(proyecto = proyecto.pk)
+    j = j-20
+    for s in sprints:
+          p.drawString(120, j, s.nombre)
+          user_story = us.objects.filter(sprint = s.pk)
+          j = j-20
+          for hu in user_story:
+                  p.drawString(140, j, hu.nombre + ' RESPONSABLE:  ' + hu.responsable.usuario.username)
+                  j = j-20
+
 
     p.save()
     return response

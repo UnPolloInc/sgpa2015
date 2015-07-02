@@ -31,6 +31,7 @@
 {%  if user.is_superuser %}
         <th>Modificar</th>
 {% endif %}
+        <th>Reportes</th>
     </tr>
     {% for proyecto in object_list %}
         <tr>
@@ -51,6 +52,7 @@
             {% elif proyecto.estado == 'FIN' %}
             <td><a href="{% url 'configurar' proyecto.id %}" class="btn btn-sm btn-default" >Detalles</a></td>
             {% endif %}
+            <td><a href="{% url 'generar_pdf' proyecto.id %}" class="btn btn-sm btn-default" >Reportes</a></td>
 
             {%  if user.is_superuser %}
 
