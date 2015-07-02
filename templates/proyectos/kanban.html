@@ -41,7 +41,8 @@
                         {% if us.actividad == actividad %}
                         <td align="center">
                             {% if us.estado == 'TODO'  %}
-                         <ul class="list-inline">
+                          <div class="btn-group" role="group" align="left">
+
                             <li>{{ us.nombre  }}</li>
                             <li><a href="{% url 'crearRegistro' proyecto.id us.id %}" class="btn btn-default">Registrar Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
                             <li><a href="{% url 'listar_registro' proyecto.id us.id %}" class="btn btn-default">Historial de Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
@@ -50,12 +51,13 @@
                              {% if proyecto.lider_proyecto == lider  %}
                              <li><a href="{% url 'cancelar_us' us.id %}" class="btn btn-default">Cancelar <span class="glyphicon glyphicon-remove"></span></a></li>
                             {% endif %}
-                         </ul>
+                         </div>
                             {% endif %}
                         </td>
                         <td>
                             {% if us.estado == 'DOING'  %}
-                            <ul class="list-inline">
+                            <div class="btn-group" role="group" align="left">
+
                             <li>{{ us.nombre  }}</li>
                             <li><a href="{% url 'crearRegistro' proyecto.id us.id %}" class="btn btn-default">Registrar Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
                                                         <li><a href="{% url 'listar_registro' proyecto.id us.id %}" class="btn btn-default">Historial de Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
@@ -65,12 +67,13 @@
                                                              {% if proyecto.lider_proyecto == lider  %}
                                 <li><a href="{% url 'cancelar_us' us.id %}" class="btn btn-default">Cancelar <span class="glyphicon glyphicon-remove"></span></a></li>
                             {% endif %}
-                            </ul>
+                            </div>
                             {% endif %}
                         </td>
                         <td>
                             {% if us.estado == 'DONE' %}
-                            <ul class="list-inline">
+                            <div class="btn-group" role="group" align="left">
+
                             <li>{{ us.nombre  }}</li>
                             <li><a href="{% url 'crearRegistro' proyecto.id us.id %}" class="btn btn-default">Registrar Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
                             <li><a href="{% url 'listar_registro' proyecto.id us.id %}" class="btn btn-default">Historial de Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
@@ -82,7 +85,7 @@
 
                                 <li><a href="{% url 'cancelar_us' us.id %}" class="btn btn-default">Cancelar <span class="glyphicon glyphicon-remove"></span></a></li>
     {% endif %}
-                            </ul>
+                            </div>
                             {% endif %}
                         </td>
                         {% else %}
