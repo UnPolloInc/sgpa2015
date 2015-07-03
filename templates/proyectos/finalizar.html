@@ -2,8 +2,9 @@
 {% block menu %}
 {% block list %}
 <h1>{{ proyecto.nombre }}</h1>
-<h1>Iniciar proyecto</h1>
-<div class="alert alert-success">¿Estas seguro que deseas iniciar este proyecto?</div>
+<h1>Finalizar proyecto</h1>
+<div class="alert alert-success">¿Estas seguro que deseas finalizar este Proyecto?</div>
+
 <form method="post" class="form">
     {% csrf_token %}
     {% for field in form.visible_fields %}
@@ -17,7 +18,8 @@
     {% for field in form.hidden_fields %}
      <div style="display:none;">{{ field }}</div>
  {% endfor %}
-    <input type="submit" value="Iniciar" />
+    <input type="submit" value="Finalizar" />
+    <a href="{% url 'lista_proyecto' %}" class="btn btn-sm btn-default">Cancelar</a>
 </form>
 {% endblock %}
 {% endblock %}

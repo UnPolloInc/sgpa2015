@@ -28,12 +28,15 @@
             {% else %}
             <th>Configurar</th>
         {% endif %}
-{%  if user.is_superuser %}
+    {%  if user.is_superuser %}
         <th>Modificar</th>
-{% endif %}
+    {% endif %}
         <th>Reportes</th>
+        <th>Finalizar</th>
+
     </tr>
     {% for proyecto in object_list %}
+
         <tr>
             <td>{{ proyecto.nombre }}</td>
             <td>{{ proyecto.lider_proyecto }}</td>
@@ -55,10 +58,12 @@
             <td><a href="{% url 'generar_pdf' proyecto.id %}" class="btn btn-sm btn-default" >Reportes</a></td>
 
             {%  if user.is_superuser %}
-
             <td><a href="{% url 'modificar_proyecto' proyecto.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
         {% endif %}
 
+            {%  if proyecto.lider_proyecto == lider %}
+                <td><a href="{% url 'finalizar_proyecto' proyecto.id %}" class="btn btn-sm btn-default" >Finalizar</a></td>
+        {% endif %}
         </tr>
     {% endfor %}
 </table>

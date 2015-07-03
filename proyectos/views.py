@@ -71,6 +71,12 @@ class IndexView(ListView):
             return matches
 
 
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['lider'] = Usuario.objects.get(pk=self.request.user)
+        return context
+
 class ProyectoMixin(object):
     """
         *Vista Basada en Clase para soporte de eliminacion de proyecto*:
@@ -259,6 +265,36 @@ class IniciarProyecto(UpdateView):
         kwargs = super(IniciarProyecto, self).get_form_kwargs(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
         return reverse('configurar',args=[proyecto.pk])
+
+class FinalizarProyecto(UpdateView):
+    """
+        *Vista Basada en Clase para iniciar un proyecto:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'proyectos/finalizar.html'
+    model = Proyecto
+    form_class = ProyectoIniciarForm
+    #success_url = '/proyectos/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(FinalizarProyecto, self).dispatch(*args, **kwargs)
+
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(FinalizarProyecto, self).get_form_kwargs(**kwargs)
+        kwargs['initial']['estado'] = 'FIN'
+        return kwargs
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(FinalizarProyecto, self).get_form_kwargs(**kwargs)
+        proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return reverse('configurar',args=[proyecto.pk])
+
+
 
 from reportlab.pdfgen import canvas
 from django.http import HttpResponse

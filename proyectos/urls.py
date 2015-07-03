@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     url(r'^kanban/(?P<pk>\d+)$', login_required(views.Kanban.as_view()), name='kanban'),
     url(r'^iniciar/(?P<pk>\d+)$', login_required(views.IniciarProyecto.as_view()), name='iniciar_proyecto'),
     url(r'^reporte_pdf/(?P<pk>\d+)$', views.reporte_pdf, name='generar_pdf'),
-
+    url(r'^finalizar/(?P<pk>\d+)$', login_required(views.FinalizarProyecto.as_view()), name='finalizar_proyecto'),
 )
