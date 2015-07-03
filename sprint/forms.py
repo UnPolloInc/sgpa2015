@@ -1,3 +1,4 @@
+# coding=utf-8
 __author__ = 'chelox'
 
 
@@ -34,15 +35,19 @@ class EjecutarSprintForm(ModelForm):
         model = Sprint
         fields = ('proyecto', 'estado',)
 
-    def clean_estado(self):
-        data = self.cleaned_data['estado']
-        proyecto=self.cleaned_data['proyecto']
-        sprint = Sprint.objects.filter(pk=proyecto.pk).filter(estado=2)
-        if sprint is not None:
-            raise forms.ValidationError("Actualmente hay otro sprint en ejecucion.")
-        # Always return the cleaned data, whether you have changed it or
-        # not.
-        return data
+    def clean(self):
+        cleaned_data = super(EjecutarSprintForm, self).clean()
+        estado = cleaned_data.get("estado")
+        project = cleaned_data.get("proyecto")
+        sprint =  Sprint.objects.filter(proyecto = project.pk).filter(estado=2)
+        for s in sprint:
+            if estado.pk == s.estado.pk:
+                 msg = "Ya existe otro Sprint en ejecución"
+                 self.add_error('estado', msg)
+                 break
+
+
+
 
 class SprintForm(ModelForm):
     """
