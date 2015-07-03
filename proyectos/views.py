@@ -304,7 +304,8 @@ def reporte_pdf(request, pk):
                 user_story = us.objects.filter(responsable = usuario_system)
                 j = j-20
                 for hu in user_story:
-                            p.drawString(120, j, '- ' + hu.nombre)
+                            sp = hu.sprint.pk
+                            p.drawString(120, j, '- ' + hu.nombre + '  Estado:' + hu.sprint.estado.estado)
                             j=j-20
 
     p.showPage()
@@ -314,7 +315,7 @@ def reporte_pdf(request, pk):
     j=750
 
 
-    fluj = Flujos.objects.filter(proyecto = proyecto.pk)
+    fluj = Flujos.objects.filter(proyecto = proyecto.pk).order_by('nombre')
     j = j-20
     for f in fluj:
          p.setFont('Helvetica', 8)
@@ -353,7 +354,7 @@ def reporte_pdf(request, pk):
 
     p.setFont('Helvetica', 8)
     p.drawString(100, j, proyecto.nombre)
-    sprints = Sprint.objects.filter(proyecto = proyecto.pk)
+    sprints = Sprint.objects.filter(proyecto = proyecto.pk).order_by('nombre')
     j = j-20
     for s in sprints:
           p.drawString(120, j, s.nombre)
