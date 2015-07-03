@@ -368,57 +368,63 @@ def reporte_pdf(request, pk):
     p.drawString(210, 800, "6 - Tiempo estimado y tiempo en curso.")
     j=750
     j = j-20
-    sprint = Sprint.objects.filter(proyecto=proyecto.pk).get(estado=2)
-    sprint_dias = sprint.duracion_dias
-    miembros = Miembro.objects.filter(proyecto=proyecto.pk)
+    sprint = Sprint.objects.filter(proyecto=proyecto.pk)
+    for s in sprint:
+        sprint_dias = s.duracion_dias
+        miembros = Miembro.objects.filter(proyecto=proyecto.pk)
 
-    horas_estimadas=0
+        horas_estimadas=0
 
-    for miembro in miembros:
-       horas_estimadas+=miembro.horas_por_dia
+        for miembro in miembros:
+            horas_estimadas+=miembro.horas_por_dia
 
-    xdata =[i + 1 for i in range(sprint_dias)]
+        xdata =[i + 1 for i in range(sprint_dias)]
 
-    ydataestimado= [horas_estimadas*(sprint_dias-i) for i in range(sprint_dias)]
-
-    ydata2real = generar_horas_trabajadas(sprint.pk, ydataestimado,horas_estimadas*sprint.duracion_dias)
-
-    drawing = Drawing(400, 200)
-    datose = []
-    datosr = []
-    dias = []
-
-    for ye in ydataestimado:
-        datose.append(ye)
-
-    for yr in ydata2real:
-        datosr.append(yr)
-
-    data = [datose,datosr]
-
-    for d in xdata:
-        dias.append(str(d))
+        ydataestimado= [horas_estimadas*(sprint_dias-i) for i in range(sprint_dias)]
 
 
-    lc = HorizontalLineChart()
-    lc.x = 50
-    lc.y = 50
-    lc.height = 200
-    lc.width = 400
-    lc.data = data
-    lc.joinedLines = 1
-    lc.categoryAxis.categoryNames = dias
-    lc.categoryAxis.labels.boxAnchor = 'n'
-    lc.valueAxis.valueMin = 0
-    lc.valueAxis.valueMax = horas_estimadas*sprint_dias
-    lc.valueAxis.valueStep = 10
-    lc.lines[0].strokeWidth = 2
-    lc.lines[1].strokeWidth = 1.5
-    drawing.add(lc)
+        datose = []
+        dias = []
 
-    renderPDF.draw(drawing, p, 50, 500)
+        for ye in ydataestimado:
+            datose.append(ye)
 
-    p.showPage()
+        if s.estado.pk == 2:
+            ydata2real = generar_horas_trabajadas(s.pk, ydataestimado,horas_estimadas*s.duracion_dias)
+            datosr = []
+            for yr in ydata2real:
+                datosr.append(yr)
+
+            data = [datose,datosr]
+        else:
+            data = [datose]
+
+        drawing = Drawing(400, 200)
+
+
+        for d in xdata:
+            dias.append(str(d))
+
+
+        lc = HorizontalLineChart()
+        lc.x = 50
+        lc.y = 50
+        lc.height = 200
+        lc.width = 400
+        lc.data = data
+        lc.joinedLines = 1
+        lc.categoryAxis.categoryNames = dias
+        lc.categoryAxis.labels.boxAnchor = 'n'
+        lc.valueAxis.valueMin = 0
+        lc.valueAxis.valueMax = horas_estimadas*sprint_dias
+        lc.valueAxis.valueStep = 10
+        lc.lines[0].strokeWidth = 1.5
+        lc.lines[1].strokeWidth = 1.5
+        drawing.add(lc)
+
+        renderPDF.draw(drawing, p, 50, 500)
+
+        p.showPage()
 
 
     p.showPage()
@@ -432,19 +438,31 @@ def generar_horas_trabajadas(pk,ydata,horas_estimadas):
     user_stories = us.objects.filter(sprint=pk)
     registros=[]
     for user_story in user_stories:
-        registros+=registroTrabajoUs.objects.filter(us=user_story)
+        registros += registroTrabajoUs.objects.filter(us=user_story)
+
     registros=sorted(registros,key=registroTrabajoUs.getKey)
-    fecha_inicial=registros[0].fecha_hora_creacion
-    horas_reales=range(sprint.duracion_dias)
-    horas_disponibles=horas_estimadas
+
+    fecha_inicial = registros[0].fecha_hora_creacion
+
+    horas_reales = range(sprint.duracion_dias)
+
+    horas_disponibles = horas_estimadas
+
     for i in range(sprint.duracion_dias):
         registros=[]
+
         for user_story in user_stories:
             registros+=registroTrabajoUs.objects.filter(us=user_story).filter(fecha_hora_creacion=fecha_inicial)
+
         horas=0
+
         for registro in registros:
             horas=horas+ registro.horas_dedicadas
+
         horas_reales[i]=horas_disponibles
+
         horas_disponibles-=horas
+
         fecha_inicial=fecha_inicial+ datetime.timedelta(days=1)
+
     return [horas_reales[i] for i in range(sprint.duracion_dias)]
