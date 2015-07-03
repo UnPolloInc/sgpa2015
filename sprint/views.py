@@ -143,7 +143,6 @@ class EjecutarSprint(UpdateView):
     template_name = 'sprint/ejecutar_sprint.html'
     model = Sprint
     form_class = EjecutarSprintForm
-
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(EjecutarSprint, self).dispatch(*args, **kwargs)
