@@ -1,0 +1,24 @@
+{% extends "main/principal.html" %}
+{% block menu %}
+{% block list %}
+<h1>{{ proyecto.nombre }}</h1>
+<h1>Finalizar US</h1>
+<div class="alert alert-success">¿Está seguro de finalizar este User Storie?</div>
+
+<form method="post" class="form">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        {{ field.errors }}
+        <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }}<br/>
+        {{ field }}
+        </div>
+    {% endfor %}
+    {% for field in form.hidden_fields %}
+     <div style="display:none;">{{ field }}</div>
+ {% endfor %}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
+{% endblock %}

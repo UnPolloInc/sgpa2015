@@ -417,7 +417,7 @@ class CambiarEstadoUs(UpdateView):
             +*form_class*:Formulario para actualizar el usuario
             +*success_url*: url a ser redireccionada en caso de exito
     """
-    template_name = 'us/update.html'
+    template_name = 'us/cambiar_estado_us.html'
     model = us
     form_class = CambiarEstadoUsForm
 
