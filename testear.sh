@@ -24,3 +24,6 @@ coverage run manage.py test flujos -v 2
 
 echo 'Ejecutando test de Miembros'
 coverage run manage.py test miembros -v 2
+
+echo 'Ejecutando test de Roles'
+coverage run manage.py test roles -v 2

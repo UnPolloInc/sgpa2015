@@ -913,7 +913,7 @@ us11p3 = us(nombre='US11 para el proyecto 3', proyecto=proyecto3,valor_de_negoci
          duracion_horas=10, duracion_horas_en_sprint=12,actividad=actividad6,sprint=sprint7,flujo=flujo5,responsable=miembro5,
          estado_de_aprobacion='FIN',estado='DONE')
 us11p3.save()
-us12p3 = us(nombre='US12 para el proyecto 4', proyecto=proyecto3,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
+us12p3 = us(nombre='US12 para el proyecto 3', proyecto=proyecto3,valor_de_negocio= 5, prioridad= 5, valor_tecnico= 5, descripcion='vacio',
          duracion_horas=10, duracion_horas_en_sprint=12,actividad=actividad6,sprint=sprint7,flujo=flujo5,responsable=miembro333,
          estado_de_aprobacion='FIN',estado='DONE')
 
