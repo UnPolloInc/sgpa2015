@@ -1,9 +1,16 @@
 from itertools import chain
+from reportlab.graphics import renderPDF
+from reportlab.graphics.charts.legends import LineLegend
+from reportlab.graphics.charts.linecharts import HorizontalLineChart
+from reportlab.graphics.charts.lineplots import GridLinePlot
+from reportlab.graphics.shapes import Drawing, _DrawingEditorMixin
+from reportlab.lib.colors import Color
+from reportlab.graphics.widgets.markers import makeMarker
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import request
 from django.shortcuts import render, render_to_response, get_object_or_404
-
+from reportlab.graphics.charts.linecharts import HorizontalLineChart
 # Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
@@ -19,6 +26,7 @@ from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
 from django.db.models import Q
+import datetime
 
 
 class CreateProyecto(CreateView):
@@ -355,41 +363,67 @@ def reporte_pdf(request, pk):
                   p.drawString(140, j, hu.nombre + ' RESPONSABLE:  ' + hu.responsable.usuario.username)
                   j = j-20
 
+    p.showPage()
 
+    p.drawString(210, 800, "6 - Tiempo estimado y tiempo en curso.")
+    j=750
+    j = j-20
+    sprint = Sprint.objects.filter(proyecto=proyecto.pk).get(estado=2)
+    sprint_dias = sprint.duracion_dias
+    miembros = Miembro.objects.filter(proyecto=proyecto.pk)
+
+    horas_estimadas=0
+
+    for miembro in miembros:
+       horas_estimadas+=miembro.horas_por_dia
+
+    xdata =[i + 1 for i in range(sprint_dias)]
+
+    ydataestimado= [horas_estimadas*(sprint_dias-i) for i in range(sprint_dias)]
+
+    ydata2real = generar_horas_trabajadas(sprint.pk, ydataestimado,horas_estimadas*sprint.duracion_dias)
+
+    drawing = Drawing(400, 200)
+    datose = []
+    datosr = []
+    dias = []
+
+    for ye in ydataestimado:
+        datose.append(ye)
+
+    for yr in ydata2real:
+        datosr.append(yr)
+
+    data = [datose,datosr]
+
+    for d in xdata:
+        dias.append(str(d))
+
+
+    lc = HorizontalLineChart()
+    lc.x = 50
+    lc.y = 50
+    lc.height = 200
+    lc.width = 400
+    lc.data = data
+    lc.joinedLines = 1
+    lc.categoryAxis.categoryNames = dias
+    lc.categoryAxis.labels.boxAnchor = 'n'
+    lc.valueAxis.valueMin = 0
+    lc.valueAxis.valueMax = horas_estimadas*sprint_dias
+    lc.valueAxis.valueStep = 10
+    lc.lines[0].strokeWidth = 2
+    lc.lines[1].strokeWidth = 1.5
+    drawing.add(lc)
+
+    renderPDF.draw(drawing, p, 50, 500)
+
+    p.showPage()
+
+
+    p.showPage()
     p.save()
     return response
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
