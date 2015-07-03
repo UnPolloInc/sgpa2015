@@ -231,6 +231,7 @@ class IndexViewUs(ListView):
         context['proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         try:
             context['lider'] = Usuario.objects.get(pk=self.request.user)
+            context['estado'] = 'FIN'
         except:
             context['lider'] = None
 

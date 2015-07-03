@@ -29,6 +29,7 @@
         <th>Reasignar US</th>
 
 
+
     </tr>
     {% for us in object_list %}
         <tr>
@@ -41,9 +42,11 @@
             <td>{{ us.responsable }}</td>
 
 
-            <td><a href="{% url 'priorizar_us' us.id %}" class="btn btn-sm btn-default" >Priorizar</a></td>
-            <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
-            <td><a href="{% url 'reasignar_us' us.id %}" class="btn btn-sm btn-default" >Reasignar</a></td>
+            {% if us.estado_de_aprobacion != estado %}
+                <td><a href="{% url 'priorizar_us' us.id %}" class="btn btn-sm btn-default" >Priorizar</a></td>
+                <td><a href="{% url 'modificar_us' us.id %}" class="btn btn-sm btn-default" >Modificar</a></td>
+                <td><a href="{% url 'reasignar_us' us.id %}" class="btn btn-sm btn-default" >Reasignar</a></td>
+            {% endif %}
         </tr>
     {% endfor %}
 </table>
