@@ -21,7 +21,8 @@ class us(models.Model):
     opciones_aprobacion = (
         ('PEN','Pendiente'),
         ('CAN', 'Cancelado'),
-        ('OK', 'Aprobado')
+        ('OK', 'Aprobado'),
+        ('FIN','Finalizado'),
     )
     nombre = models.CharField(max_length=100)
     valor_de_negocio = models.IntegerField(max_length=2, help_text='Introduzca un valor de negocio (1 al 10)', null = False)
