@@ -292,7 +292,7 @@ class FinalizarProyecto(UpdateView):
     def get_success_url(self, **kwargs):
         kwargs = super(FinalizarProyecto, self).get_form_kwargs(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
-        return reverse('configurar',args=[proyecto.pk])
+        return reverse('lista_proyecto')
 
 
 
