@@ -3,7 +3,7 @@
 {% block list %}
 <h1>{{ proyecto.nombre }}</h1>
 <h1>Finalizar US</h1>
-<div class="alert alert-success">¿Está seguro de finalizar este User Storie?</div>
+<div class="alert alert-success">¿Avanzar User Storie?</div>
 
 <form method="post" class="form">
     {% csrf_token %}
@@ -18,7 +18,7 @@
     {% for field in form.hidden_fields %}
      <div style="display:none;">{{ field }}</div>
  {% endfor %}
-    <input type="submit" value="Finalizar" />
+    <input type="submit" value="Avanzar" />
     <a href="{% url 'kanban' proyecto.id %}" class="btn btn-sm btn-default">Cancelar</a>
 </form>
 {% endblock %}

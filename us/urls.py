@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^cancelar/(?P<pk>\d+)$', login_required(views.CancelarUs.as_view()), name='cancelar_us'),
     url(r'^release/(?P<pk>\d+)$', login_required(views.IndexViewRelease.as_view()), name='release_us'),
     url(r'^retroceder/(?P<pk>\d+)$', login_required(views.RetrocederEstadoUs.as_view()), name='retroceder'),
-
+    url(r'^avanzar/(?P<pk>\d+)$', login_required(views.AvanzarEstadoUs.as_view()), name='avanzar'),
 
 )
 

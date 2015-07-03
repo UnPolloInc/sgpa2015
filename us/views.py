@@ -13,7 +13,7 @@ from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
 from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm, \
-    CancelarForm, RetrocederUsForm
+    CancelarForm, RetrocederUsForm, AvanzarUsForm
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
@@ -469,6 +469,36 @@ class RetrocederEstadoUs(UpdateView):
         proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
         return reverse('kanban',args=[proyecto.pk])
 
+
+class AvanzarEstadoUs(UpdateView):
+    """
+        *Vista Basada en Clase para modificar un flujo:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'us/Avanzar.html'
+    model = us
+    form_class = AvanzarUsForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(AvanzarEstadoUs, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(AvanzarEstadoUs, self).get_context_data(**kwargs)
+        Us = us.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
+        context['proyecto']= proyecto
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(AvanzarEstadoUs, self).get_form_kwargs(**kwargs)
+        Us = us.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
+        return reverse('kanban',args=[proyecto.pk])
 
 class CancelarUs(UpdateView):
     """

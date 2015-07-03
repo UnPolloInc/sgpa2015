@@ -168,6 +168,52 @@ class CambiarEstadoUsForm(ModelForm):
             us.save()
         return us
 
+class AvanzarUsForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(AvanzarUsForm, self).__init__(*args, **kwargs)
+        self.fields['estado'].widget = HiddenInput()
+
+    class Meta:
+        model = us
+        fields = ('estado',)
+
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        us = super(AvanzarUsForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            if us.estado == 'TODO':
+                us.estado = 'DOING'
+            elif us.estado == 'DOING':
+                try:
+                    actividad = Actividad.objects.filter(orden = us.actividad.orden+1)
+                    us.actividad=actividad.get(flujo=us.flujo)
+                    us.estado='TODO'
+                except:
+                    #falta que el lider pueda finalizar el user storie aca.
+#                    proyecto = Proyecto.objects.get(pk=us.proyecto.pk)
+ #                   if self.request.user == proyecto.lider_proyecto:
+                    us.estado='DONE'
+                    us.save()
+            elif us.estado == 'DONE':
+                try:
+                    actividad = Actividad.objects.filter(orden = us.actividad.orden+1)
+                    us.actividad=actividad.get(flujo=us.flujo)
+                    us.estado='TODO'
+                except:
+                    #falta que el lider pueda finalizar el user storie aca.
+#                    proyecto = Proyecto.objects.get(pk=us.proyecto.pk)
+ #                   if self.request.user == proyecto.lider_proyecto:
+                    us.estado_de_aprobacion='FIN'
+                    us.save()
+            us.save()
+        return us
+
+
+
+
 class RetrocederUsForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
