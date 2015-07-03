@@ -4,7 +4,7 @@ from reportlab.graphics.charts.legends import LineLegend
 from reportlab.graphics.charts.linecharts import HorizontalLineChart
 from reportlab.graphics.charts.lineplots import GridLinePlot
 from reportlab.graphics.shapes import Drawing, _DrawingEditorMixin
-from reportlab.lib.colors import Color
+from reportlab.lib.colors import Color, green, red, black
 from reportlab.graphics.widgets.markers import makeMarker
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -271,11 +271,13 @@ def reporte_pdf(request, pk):
     # Create the PDF object, using the response object as its "file."
     p = canvas.Canvas(response)
 
+
     p.drawString(210, 800, "1 - Cantidad de Trabajos en curso por equipo.")
     proyecto = Proyecto.objects.get(pk=pk)
     j=750
+    p.setFillColorRGB(0,0,0)
     p.setFont('Helvetica', 8)
-    p.drawString(100, j, proyecto.nombre + ': ' + 'Estado  ' + proyecto.estado)
+    p.drawString(100, j, proyecto.nombre +  ': ' + 'Estado  ' + proyecto.estado)
     equipo = Miembro.objects.filter(proyecto=proyecto.pk)
     sprints = Sprint.objects.filter(proyecto = proyecto.pk).filter(estado=2)
     j = j-20
@@ -295,6 +297,9 @@ def reporte_pdf(request, pk):
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
     miembros = Miembro.objects.filter(proyecto = proyecto.pk)
+
+    #son los user stories que estan en el proyecto actual del cual se genera el reporte, de cada uno  de los
+    #sprint en uno de los tres estados (pendiente, en ejecucion o finalizado)
     p.drawString(200, 800, "2 - Cantidad de Trabajos por usuario, pendiente, en curso y finalizado.")
     j=750
 
@@ -310,7 +315,7 @@ def reporte_pdf(request, pk):
 
     p.showPage()
 
-
+    #son la actividades que se encuentran en cada flujo de un proyecto
     p.drawString(210, 800, "3 - Lista de Actividades para completar un proyecto.")
     j=750
 
@@ -329,11 +334,10 @@ def reporte_pdf(request, pk):
     p.showPage()
 
 
-    p.drawString(210, 800, "5 - Product BackLog por proyectos .")
+    p.drawString(210, 800, "5 - Product BackLog del proyecto .")
     j=750
 
     p.setFont('Helvetica', 8)
-    p.drawString(100, j, proyecto.nombre)
     user_story = us.objects.filter(proyecto = proyecto.pk).order_by('prioridad')
     j = j-20
 
@@ -347,13 +351,12 @@ def reporte_pdf(request, pk):
 
     p.showPage()
 
-    proyectos = Proyecto.objects.all()
-    p.drawString(210, 800, "5 - Sprint BackLog por proyectos .")
+
+    p.drawString(210, 800, "6 - Sprint BackLog del proyecto .")
     j=750
 
 
     p.setFont('Helvetica', 8)
-    p.drawString(100, j, proyecto.nombre)
     sprints = Sprint.objects.filter(proyecto = proyecto.pk).order_by('nombre')
     j = j-20
     for s in sprints:
@@ -365,15 +368,22 @@ def reporte_pdf(request, pk):
                   j = j-20
 
     p.showPage()
-
-    p.drawString(210, 800, "6 - Tiempo estimado y tiempo en curso.")
+    p.setFont('Helvetica', 8)
+    #grafica del burndown chart del tiempo estimado y del tiempo real de todos los sprint del proyecto actual    p.drawString(210, 800, "6 - Tiempo estimado y tiempo en curso, de cada sprint del proyecto, burndown chart")
+    p.drawString(210, 800, "Burndown chart de los sprint del proyecto.")
     j=750
-    j = j-20
     sprint = Sprint.objects.filter(proyecto=proyecto.pk)
     for s in sprint:
+        p.setFont('Helvetica', 8)
+        p.setFillColor(red)
+        p.drawString(210, 760, "Tiempo Estimado.")
+        p.setFillColor(green)
+        p.drawString(280, 760,"Tiempo Real")
+        p.setFillColor(black)
         sprint_dias = s.duracion_dias
         miembros = Miembro.objects.filter(proyecto=proyecto.pk)
-
+        p.drawString(210,j,s.nombre + ': ' + s.estado.estado)
+        j = j-20
         horas_estimadas=0
 
         for miembro in miembros:
