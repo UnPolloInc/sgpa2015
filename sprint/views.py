@@ -416,15 +416,15 @@ def burndown_chart_sprint(request,pk):
     lineChart page
     """
     sprint = Sprint.objects.get(pk=pk)
-    nb_element = sprint.duracion_dias
+    nb_element = sprint.duracion_dias+1
+    nb_element_y= nb_element-1
     miembros = Miembro.objects.filter(proyecto=sprint.proyecto)
     horas_estimadas=0
     for miembro in miembros:
         horas_estimadas+=miembro.horas_por_dia
-    xdata =[i + 1 for i in range(nb_element)]
-    ydata= [horas_estimadas*(nb_element-i) for i in range(nb_element)]
-    #ydata = [i + random.randint(1, 10) for i in range(nb_element)]
-    #ydata2 = map(lambda x: x , ydata)
+    xdata =range(nb_element)
+    ydata= [horas_estimadas*(nb_element-i-1) for i in range(nb_element)]
+
     try:
         ydata2 = generar_horas_trabajadas(pk, ydata,horas_estimadas*sprint.duracion_dias)
     except:
@@ -440,6 +440,12 @@ def burndown_chart_sprint(request,pk):
         'chartdata': chartdata,
         'proyecto': sprint.proyecto,
         'sprint': sprint,
+        'extra': {
+        'x_is_date': False,
+        'x_axis_format': '',
+        'tag_script_js': True,
+        'jquery_on_ready': False,
+        }
     }
     return render_to_response('piechart.html',data , context_instance=RequestContext(request))
 
