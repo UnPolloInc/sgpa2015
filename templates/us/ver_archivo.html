@@ -1,0 +1,9 @@
+{% extends "main/menu.html" %}
+{% block menu %}
+{% block list %}
+{{ object.descripcion }}
+<a href='{% url "db_file_storage.download_file" %}?name={{ object.archivo_adjunto }}'>
+    <i>Click here to download the picture</i>
+</a>
+{% endblock %}
+{% endblock %}

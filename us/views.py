@@ -6,7 +6,7 @@ from django.shortcuts import render, render_to_response
 # Create your views here.
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView, FormView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView, FormView, DetailView
 from clientes.models import Cliente
 from flujos.models import Flujos
 from proyectos.models import Proyecto
@@ -576,3 +576,6 @@ class IndexViewRelease(ListView):
         qs = super(IndexViewRelease, self).get_queryset()
         userstories = us.objects.filter(proyecto=self.kwargs['pk'])
         return userstories.filter(estado_de_aprobacion='FIN')
+
+class RegistroDetalle(DetailView):
+    model = registroTrabajoUs

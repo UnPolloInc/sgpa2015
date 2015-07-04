@@ -2,6 +2,7 @@
 from django.conf.urls import patterns, url
 from us import views
 from django.contrib.auth.decorators import login_required
+from us.views import RegistroDetalle
 
 urlpatterns = patterns('',
     url(r'^configurar/(?P<pk>\d+)$', login_required(views.IndexView.as_view()), name='lista_us'),
@@ -20,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^release/(?P<pk>\d+)$', login_required(views.IndexViewRelease.as_view()), name='release_us'),
     url(r'^retroceder/(?P<pk>\d+)$', login_required(views.RetrocederEstadoUs.as_view()), name='retroceder'),
     url(r'^avanzar/(?P<pk>\d+)$', login_required(views.AvanzarEstadoUs.as_view()), name='avanzar'),
+    url(r'^registro_detalle/(?P<pk>\d+)/', RegistroDetalle.as_view(
+                template_name='us/ver_archivo.html'), name="ver_archivo")
 
 )
 
