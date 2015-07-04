@@ -440,12 +440,14 @@ def reporte_pdf(request, pk):
             datose.append(ye)
 
         if s.estado.pk == 2 or s.estado.pk == 3:
-            ydata2real = generar_horas_trabajadas(s.pk, ydataestimado,horas_estimadas*s.duracion_dias)
-            datosr = []
-            for yr in ydata2real:
-                datosr.append(yr)
-
-            data = [datose,datosr]
+            try:
+                ydata2real = generar_horas_trabajadas(s.pk, ydataestimado,horas_estimadas*s.duracion_dias)
+                datosr = []
+                for yr in ydata2real:
+                    datosr.append(yr)
+                data = [datose,datosr]
+            except:
+                data = []
         else:
             data = [datose]
 
