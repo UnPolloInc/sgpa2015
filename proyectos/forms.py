@@ -21,18 +21,21 @@ class ProyectoForm(ModelForm):
         model = Proyecto
         fields = ('nombre','lider_proyecto', 'cliente', 'fecha_inicio', 'fecha_fin', 'descripcion', 'observaciones')
 
-    def clean_fecha_inicio_menor_fecha_fin(self):
+    def clean(self):
         """
         Validacion de fecha, inicio menor a fin
         """
+        cleaned_data = super(ProyectoForm, self).clean()
         diccionario_limpio = self.cleaned_data
-        fecha_inicio = diccionario_limpio.get('fecha_inicio')
-        fecha_fin = diccionario_limpio.get('fecha_fin')
+        fecha_inicio = cleaned_data.get('fecha_inicio')
+        fecha_fin = cleaned_data.get('fecha_fin')
 
         if fecha_inicio > fecha_fin:
-            raise forms.ValidationError("La fecha de inicio es mayor a la de fin")
+            msg = "La fecha inicio es mayor a fecha fin"
+            self.add_error('fecha_inicio', msg)
+            #raise forms.ValidationError("La fecha de inicio es mayor a la de fin")
 
-        return fecha_inicio
+        #return fecha_inicio
 
     def save(self, commit=True):
         # Save the provided password in hashed format
