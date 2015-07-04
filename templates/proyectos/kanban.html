@@ -60,6 +60,9 @@
                               {% if proyecto.lider_proyecto == lider  %}
                              <li><a href="{% url 'cancelar_us' us.id %}" class="btn btn-default">Cancelar <span class="glyphicon glyphicon-remove"></span></a></li>
                             {% endif %}
+        {% if proyecto.lider_proyecto == lider and us.estado_de_aprobacion != 'FIN' %}
+                                <li><a href="{% url 'cambiar_actividad_lider' us.id %}" class="btn btn-default">Cambiar Actividad <span class="glyphicon glyphicon-fast-backward"></span></a></li>
+                            {% endif %}
                          </div>
                             {% endif %}
                         </td>
@@ -78,7 +81,9 @@
                              {% if proyecto.lider_proyecto == lider or us.responsable.usuario == lider  %}
                                 <li><a href="{% url 'retroceder' us.id %}" class="btn btn-default">Atras <span class="glyphicon glyphicon-fast-backward"></span></a></li>
                              {% endif %}
-
+        {% if proyecto.lider_proyecto == lider %}
+                                <li><a href="{% url 'cambiar_actividad_lider' us.id %}" class="btn btn-default">Cambiar Actividad <span class="glyphicon glyphicon-fast-backward"></span></a></li>
+                            {% endif %}
                              {% if proyecto.lider_proyecto == lider  %}
                                 <li><a href="{% url 'cancelar_us' us.id %}" class="btn btn-default">Cancelar <span class="glyphicon glyphicon-remove"></span></a></li>
                             {% endif %}
@@ -94,7 +99,9 @@
                               <li><a href="{% url 'crearRegistro' proyecto.id us.id %}" class="btn btn-default">Registrar Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
                               <li><a href="{% url 'listar_registro' proyecto.id us.id %}" class="btn btn-default">Historial de Trabajo <span class="glyphicon glyphicon-edit"></span></a></li>
                             {% endif %}
-
+                            {% if proyecto.lider_proyecto == lider and us.estado_de_aprobacion != 'FIN' %}
+                                <li><a href="{% url 'cambiar_actividad_lider' us.id %}" class="btn btn-default">Cambiar Actividad <span class="glyphicon glyphicon-fast-backward"></span></a></li>
+                            {% endif %}
                             {% if proyecto.lider_proyecto == lider or us.responsable.usuario == lider  %}
                                 <li><a href="{% url 'retroceder' us.id %}" class="btn btn-default">Atras <span class="glyphicon glyphicon-fast-backward"></span></a></li>
                             {% endif %}

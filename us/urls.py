@@ -22,8 +22,8 @@ urlpatterns = patterns('',
     url(r'^retroceder/(?P<pk>\d+)$', login_required(views.RetrocederEstadoUs.as_view()), name='retroceder'),
     url(r'^avanzar/(?P<pk>\d+)$', login_required(views.AvanzarEstadoUs.as_view()), name='avanzar'),
     url(r'^registro_detalle/(?P<pk>\d+)/', RegistroDetalle.as_view(
-                template_name='us/ver_archivo.html'), name="ver_archivo")
-
+                template_name='us/ver_archivo.html'), name="ver_archivo"),
+    url(r'^cambiar_actividad_lider/(?P<pk>\d+)$', login_required(views.CambiarActividadLider.as_view()), name='cambiar_actividad_lider'),
 )
 
 

@@ -8,11 +8,12 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, FormView, DetailView
 from clientes.models import Cliente
-from flujos.models import Flujos
+from flujos.models import Flujos, Actividad
 from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
-from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm,CancelarForm, RetrocederUsForm, AvanzarUsForm
+from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm,CancelarForm, RetrocederUsForm, AvanzarUsForm, \
+    CambiarActividadLiderForm
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
@@ -579,3 +580,47 @@ class IndexViewRelease(ListView):
 
 class RegistroDetalle(DetailView):
     model = registroTrabajoUs
+
+class CambiarActividadLider(UpdateView):
+    """
+        *Vista Basada en Clase para modificar la actividad del US:*
+            +*template_name*: template a ser renderizado
+            +*model*: modelo que se va modificar
+            +*form_class*:Formulario para actualizar el usuario
+            +*success_url*: url a ser redireccionada en caso de exito
+    """
+    template_name = 'us/cambiar_actividad_lider.html'
+    model = us
+    form_class = CambiarActividadLiderForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CambiarActividadLider, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(CambiarActividadLider, self).get_context_data(**kwargs)
+        Us = us.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
+        context['proyecto']= proyecto
+        return context
+
+
+    def get_success_url(self, **kwargs):
+        kwargs = super(CambiarActividadLider, self).get_form_kwargs(**kwargs)
+        Us = us.objects.get(pk=self.kwargs['pk'])
+        proyecto = Proyecto.objects.get(pk=Us.proyecto.pk)
+        return reverse('kanban',args=[proyecto.pk])
+
+    def get_form(self, form_class):
+        form = super(CambiarActividadLider, self).get_form(form_class)
+        userstorie = us.objects.get(pk=self.kwargs['pk'])
+        form.fields['actividad'].queryset = Actividad.objects.filter(flujo=userstorie.flujo.pk)
+
+        return form
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(CambiarActividadLider, self).get_form_kwargs(**kwargs)
+        user_story=us.objects.get(pk=self.kwargs['pk'])
+        kwargs['initial']['actividad'] = Actividad.objects.filter(flujo=1)
+        kwargs['initial']['estado'] = 'TODO'
+        return kwargs

@@ -1,0 +1,25 @@
+{% extends "main/principal.html" %}
+{% block menu %}
+{% block list %}
+<h1>{{ proyecto.nombre }}</h1>
+<h1>Cambiar de Actividad</h1>
+<div class="alert alert-success">Seleccione la actividad</div>
+
+<form method="post" class="form">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        {{ field.errors }}
+        <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }}<br/>
+        {{ field }}
+        </div>
+    {% endfor %}
+    {% for field in form.hidden_fields %}
+     <div style="display:none;">{{ field }}</div>
+ {% endfor %}
+    <input type="submit" value="Aceptar" />
+    <a href="{% url 'kanban' proyecto.id %}" class="btn btn-sm btn-default">Cancelar</a>
+</form>
+{% endblock %}
+{% endblock %}

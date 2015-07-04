@@ -258,3 +258,24 @@ class RetrocederUsForm(ModelForm):
         registro = registroTrabajoUs(us=us, descripcion="se retrocedio el estado", horas_dedicadas=0, fecha_hora_creacion = date.today(), archivo_adjunto=None )
         registro.save()
         return us
+
+
+class CambiarActividadLiderForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CambiarActividadLiderForm, self).__init__(*args, **kwargs)
+        self.fields['flujo'].widget = HiddenInput()
+        self.fields['estado'].widget = HiddenInput()
+    class Meta:
+        model = us
+        fields = ('flujo', 'actividad','estado',)
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        us = super(CambiarActividadLiderForm, self).save(commit=False)
+        #proyecto.set_password(self.cleaned_data["password1"])
+        if commit:
+            us.save()
+            notificar_mod_us(us.proyecto.lider_proyecto,us.proyecto)
+            #notificar_asignacion_us(us.proyecto.cliente,us.proyecto)
+        return us
+
