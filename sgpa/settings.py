@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'database_files',
     'djangobower',
     'django_nvd3',
+    'db_file_storage',
 )
 
 MIDDLEWARE_CLASSES = (
