@@ -30,7 +30,13 @@
             <td>{{ registroTrabajoUs.descripcion }}</td>
             <td>{{ registroTrabajoUs.horas_dedicadas }}</td>
             <td>{{ registroTrabajoUs.fecha_hora_creacion }}</td>
-            <td>{{ registroTrabajoUs.archivo_adjunto }}</td>
+            {% if registroTrabajoUs.archivo_adjunto%}
+            <td><a href='{% url "db_file_storage.download_file" %}?name={{ registroTrabajoUs.archivo_adjunto }}'>
+    <i>Descargar</i>
+                {% else %}
+                <td>vacio</td>
+                {% endif %}
+</a></td>
 
 
     </tr>
