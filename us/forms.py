@@ -1,10 +1,11 @@
-from django import forms
-from django.forms import DateField, ModelForm, HiddenInput
-from django.contrib.admin.widgets import AdminDateWidget
+from django.forms import ModelForm, HiddenInput
+
 from flujos.models import Actividad
-from proyectos.models import Proyecto
+
 from us.models import us, registroTrabajoUs
-from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us, notificar_generico
+
+from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us
+from db_file_storage.form_widgets import DBClearableFileInput
 
 
 class AprobarForm(ModelForm):
@@ -122,6 +123,9 @@ class registroForm(ModelForm):
     class Meta:
         model = registroTrabajoUs
         fields = ('descripcion','horas_dedicadas','us','archivo_adjunto',)
+        widgets = {
+            'archivo_adjunto': DBClearableFileInput
+        }
 
 
 

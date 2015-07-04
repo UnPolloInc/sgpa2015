@@ -20,6 +20,5 @@ urlpatterns = patterns('',
     url(r'^miembros/', include('miembros.urls')),
     url(r'^proyectos/roles/', include('roles.urls')),
     url(r'^mensajes/', include('mensajes.urls')),
-
-
+    url(r'^files/', include('db_file_storage.urls')),
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

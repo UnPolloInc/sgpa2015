@@ -48,9 +48,14 @@ class registroTrabajoUs(models.Model):
     descripcion=models.TextField(max_length=200,unique=False, help_text='Introduzca una descricpion del trabajo realizado')
     horas_dedicadas = models.IntegerField(max_length=2, help_text='Introduzca las horas dedicadas',validators=[MinValueValidator(0),])
     fecha_hora_creacion = models.DateTimeField(default=date.today(), help_text='Hora de envio del mensaje', null=True)
-    archivo_adjunto = models.FileField(null=False, blank=False,upload_to='.')
+    archivo_adjunto = models.FileField(upload_to='us.ArchivoBaseDeDatos/bytes/filename/mimetype', blank=True, null=True)
 
     def __unicode__(self):
         return self.us
     def getKey(self):
         return self.fecha_hora_creacion
+
+class ArchivoBaseDeDatos(models.Model):
+    bytes = models.TextField()
+    filename = models.CharField(max_length=255)
+    mimetype = models.CharField(max_length=50)
