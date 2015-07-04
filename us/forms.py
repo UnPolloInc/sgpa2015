@@ -1,4 +1,5 @@
 from django.forms import ModelForm, HiddenInput
+from django.utils.datetime_safe import date
 
 from flujos.models import Actividad
 
@@ -169,6 +170,8 @@ class CambiarEstadoUsForm(ModelForm):
                     us.estado_de_aprobacion='FIN'
                     us.save()
             us.save()
+        registro = registroTrabajoUs(us=us, descripcion="se finalizo el US", horas_dedicadas=0, fecha_hora_creacion = date.today(), archivo_adjunto=None )
+        registro.save()
         return us
 
 class AvanzarUsForm(ModelForm):
@@ -212,6 +215,8 @@ class AvanzarUsForm(ModelForm):
                     us.estado_de_aprobacion='FIN'
                     us.save()
             us.save()
+        registro = registroTrabajoUs(us=us, descripcion="se avanzo el estado", horas_dedicadas=0, fecha_hora_creacion = date.today(), archivo_adjunto=None )
+        registro.save()
         return us
 
 
@@ -233,6 +238,7 @@ class RetrocederUsForm(ModelForm):
         us = super(RetrocederUsForm, self).save(commit=False)
         #proyecto.set_password(self.cleaned_data["password1"])
         if commit:
+
             if us.estado == 'TODO':
                 try:
                     actividad = Actividad.objects.filter(orden = us.actividad.orden-1)
@@ -249,4 +255,6 @@ class RetrocederUsForm(ModelForm):
             elif us.estado == 'DONE':
                 us.estado= 'DOING'
             us.save()
+        registro = registroTrabajoUs(us=us, descripcion="se retrocedio el estado", horas_dedicadas=0, fecha_hora_creacion = date.today(), archivo_adjunto=None )
+        registro.save()
         return us
