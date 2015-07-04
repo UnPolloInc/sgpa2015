@@ -12,8 +12,7 @@ from flujos.models import Flujos
 from proyectos.models import Proyecto
 from miembros.models import Miembro
 from sprint.models import Sprint
-from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm, \
-    CancelarForm, RetrocederUsForm, AvanzarUsForm
+from us.forms import usForm, usUpdateForm, PriorizarForm, usasigForm, registroForm, CambiarEstadoUsForm, AprobarForm,CancelarForm, RetrocederUsForm, AvanzarUsForm
 from usuarios.models import Usuario
 from usuarios.views import get_query
 import re
