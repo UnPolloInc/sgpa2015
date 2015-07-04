@@ -218,6 +218,7 @@ class Kanban(ListView):
     def get_context_data(self, **kwargs):
         context = super(Kanban, self).get_context_data(**kwargs)
         proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+        sprint = Sprint.objects.filter(proyecto = proyecto.pk).get(estado=2)
         context['proyecto'] = proyecto
         context['us_list'] = us.objects.filter(proyecto=proyecto).order_by('pk').exclude(estado_de_aprobacion='CAN')
         flujos= Flujos.objects.filter(proyecto=proyecto)
