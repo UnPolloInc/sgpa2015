@@ -403,8 +403,9 @@ def search(request,pk):
     if ('busqueda' in request.GET) and request.GET['busqueda'].strip():
         query_string = request.GET['busqueda']
         entry_query = get_query(query_string, ['nombre'])
-        found_entries = Sprint.objects.filter(entry_query).order_by('nombre')
         proyecto = Proyecto.objects.get(pk=pk)
+        found_entries = Sprint.objects.filter(proyecto=proyecto).filter(entry_query).order_by('nombre')
+
     return render_to_response('sprint/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries, 'proyecto': proyecto },
                           context_instance=RequestContext(request))
