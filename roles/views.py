@@ -163,8 +163,12 @@ def search(request,pk):
     if ('busqueda' in request.GET) and request.GET['busqueda'].strip():
         query_string = request.GET['busqueda']
         entry_query = get_query(query_string, ['name'])
-        found_entries = Rol.objects.filter(entry_query).order_by('name')
+        #found_entries = Rol.objects.filter(entry_query).order_by('name')
         proyecto = Proyecto.objects.get(pk=pk)
+
+        found_entries = Rol.objects.filter(proyecto=proyecto).filter(entry_query).order_by('name')
+
+
     return render_to_response('roles/search_results.html',
                           { 'query_string': query_string, 'found_entries': found_entries, 'proyecto': proyecto },
                           context_instance=RequestContext(request))

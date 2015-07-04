@@ -1,4 +1,4 @@
-{% extends "miembros/miembros_listar.html" %}
+{% extends "miembros/miembros_list.html" %}
 
     {% block list %}
 <div class="col-sm-9">
@@ -23,11 +23,9 @@
 
         </tr>
     {% empty %}
-<div class="alert alert-danger">La busqueda no tuvo resultados</div>
+        <div class="alert alert-danger">La busqueda no tuvo resultados</div>
     {% endfor %}
 </table>
-
-</ul>
 
 </ul>
           </ul>
