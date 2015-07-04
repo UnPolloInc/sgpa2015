@@ -1,6 +1,6 @@
 {% extends "main/menu.html" %}
 {% block busqueda%}
- <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_us' %}" method="get">
+ <form class="navbar-form navbar-left" role="search" action="{% url 'buscar_us' proyecto.id %}" method="get">
         <div class="form-group">
           <input type="text" name= "busqueda" class="form-control" placeholder="Nombre">
         </div>
