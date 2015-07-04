@@ -7,7 +7,6 @@ from us.models import us, registroTrabajoUs
 from Notificaciones.views import notificar_asignacion_us, notificar_creacion_us, notificar_mod_us
 from db_file_storage.form_widgets import DBClearableFileInput
 
-
 class AprobarForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
